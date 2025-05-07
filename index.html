@@ -3,19 +3,68 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ultimate Life Ebook</title>
+  <title>How To Sell Digital Products Online</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <section class="container">
-    <div class="content">
-      <h1>Your Life-Changing Ebook</h1>
-      <p>Unlock secrets to a focused, productive, and successful life with our 40-page compact guide. Ideal for 18–30 age group.</p>
-      <div class="buttons">
-        <a href="https://wa.me/919999999999?text=I%20want%20to%20buy%20your%20ebook" class="btn primary">Buy Now - ₹199</a>
-        <a href="https://wa.me/919999999999" class="btn secondary">Chat on WhatsApp</a>
+  <main class="product-page">
+    <div class="col image-col">
+      <img src="cover-main.jpg" alt="How To Sell Digital Products Ebook" class="main-image" />
+      <div class="thumbs">
+        <img src="thumb1.jpg" alt="Page preview 1" />
+        <img src="thumb2.jpg" alt="Page preview 2" />
+        <img src="thumb3.jpg" alt="Page preview 3" />
       </div>
     </div>
-  </section>
+
+    <div class="col info-col">
+      <h1 class="title">How To Sell Digital Products Online 2024</h1>
+      <div class="reviews">
+        <span class="stars">★★★★☆</span>
+        <span class="count">(64 reviews)</span>
+      </div>
+      <div class="price">
+        <span class="old">₹499.00</span>
+        <span class="new">₹99.00</span>
+      </div>
+      <div class="countdown" id="countdown">
+        <div><span id="days">00</span><small>Days</small></div>
+        <div><span id="hrs">00</span><small>Hrs</small></div>
+        <div><span id="mins">00</span><small>Mins</small></div>
+        <div><span id="secs">00</span><small>Secs</small></div>
+      </div>
+      <div class="trust">
+        <img src="visa.png" alt="Visa" />
+        <img src="mastercard.png" alt="Mastercard" />
+        <img src="amex.png" alt="Amex" />
+        <img src="discover.png" alt="Discover" />
+      </div>
+      <div class="actions">
+        <label>Qty:</label>
+        <input type="number" value="1" min="1" />
+        <a href="#" class="btn add-to-cart">Add to Cart</a>
+      </div>
+      <p class="description">
+        Master the skill of creating & selling digital products for passive income. This comprehensive guide covers everything from idea validation to advanced marketing tactics.
+      </p>
+    </div>
+  </main>
+
+  <script>
+    // Simple countdown
+    const endTime = new Date(new Date().getTime() + 7*24*60*60*1000);
+    const cd = () => {
+      const now = new Date(), diff = endTime - now;
+      const d = Math.floor(diff / (1000*60*60*24));
+      const h = Math.floor((diff%(1000*60*60*24))/(1000*60*60));
+      const m = Math.floor((diff%(1000*60*60))/(1000*60));
+      const s = Math.floor((diff%(1000*60))/1000);
+      document.getElementById('days').textContent = String(d).padStart(2,'0');
+      document.getElementById('hrs').textContent = String(h).padStart(2,'0');
+      document.getElementById('mins').textContent = String(m).padStart(2,'0');
+      document.getElementById('secs').textContent = String(s).padStart(2,'0');
+    };
+    setInterval(cd, 1000);
+    cd();
+  </script>
 </body>
-</html>
