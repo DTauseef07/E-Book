@@ -1,26 +1,152 @@
-* { box-sizing: border-box; margin: 0; padding: 0; }
-body { font-family: 'Segoe UI', sans-serif; background: #fafafa; color: #222; }
-.product-page { display: flex; flex-wrap: wrap; max-width: 1200px; margin: auto; padding: 2rem; gap: 2rem; }
-.col { flex: 1; }
-.image-col { max-width: 500px; }
-.main-image { width: 100%; border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); }
-.thumbs { display: flex; gap: 0.5rem; margin-top: 1rem; }
-.thumbs img { width: 30%; border-radius: 4px; cursor: pointer; }
-.info-col .title { font-size: 2rem; margin-bottom: 0.5rem; }
-.reviews { font-size: 1rem; color: #f2a518; margin-bottom: 1rem; }
-.reviews .count { color: #555; margin-left: 0.5rem; }
-.price { margin-bottom: 1rem; font-size: 1.5rem; }
-.price .old { text-decoration: line-through; color: #888; margin-right: 1rem; }
-.price .new { color: #d9534f; font-weight: bold; }
-.countdown { display: flex; gap: 1rem; margin-bottom: 1rem; }
-.countdown div { text-align: center; }
-.countdown small { display: block; font-size: 0.7rem; color: #555; }
-.trust { display: flex; gap: 1rem; margin-bottom: 1rem; }
-.trust img { height: 32px; }
-.actions { display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem; }
-.actions label { font-weight: 600; }
-.actions input { width: 60px; padding: 0.3rem; border: 1px solid #ccc; border-radius: 4px; }
-.btn.add-to-cart { background: #007bff; color: #fff; padding: 0.7rem 1.5rem; border-radius: 4px; text-decoration: none; font-weight: 600; }
-.btn.add-to-cart:hover { background: #0056b3; }
-.description { line-height: 1.6; color: #333; }
-@media (max-width: 768px) { .product-page { flex-direction: column; } }
+/* style.css */
+
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(to right, #f3f4f6, #e0e7ff);
+  color: #111827;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 60px 20px;
+  gap: 60px;
+  flex-wrap: wrap;
+}
+
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  perspective: 1200px;
+}
+
+.product-preview {
+  flex: 1;
+  max-width: 400px;
+  transform-style: preserve-3d;
+  animation: float 5s ease-in-out infinite;
+}
+
+.product-preview .main-img img {
+  width: 100%;
+  border-radius: 16px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease;
+}
+
+.product-preview .thumbnails {
+  margin-top: 20px;
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+}
+
+.product-preview .thumbnails img {
+  width: 70px;
+  height: 70px;
+  object-fit: cover;
+  border-radius: 12px;
+  cursor: pointer;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+  transition: transform 0.3s;
+}
+
+.product-preview .thumbnails img:hover {
+  transform: scale(1.1);
+}
+
+.product-details {
+  flex: 1;
+  max-width: 500px;
+  background: #ffffff;
+  padding: 40px;
+  border-radius: 24px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.12);
+  transform: rotateY(-5deg);
+}
+
+.product-details h1 {
+  font-size: 2.2rem;
+  margin-bottom: 10px;
+}
+
+.product-details .subtitle {
+  font-size: 1.1rem;
+  color: #6b7280;
+  margin-bottom: 15px;
+}
+
+.ratings {
+  font-size: 1.2rem;
+  color: #f59e0b;
+  margin-bottom: 10px;
+}
+
+.price {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+}
+
+.price del {
+  color: #9ca3af;
+  margin-right: 10px;
+}
+
+.price .discount {
+  color: #10b981;
+  font-weight: 600;
+}
+
+.countdown {
+  margin-bottom: 20px;
+  font-weight: 500;
+  font-size: 1.1rem;
+  color: #ef4444;
+}
+
+#timer {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-top: 5px;
+}
+
+.trust img {
+  height: 30px;
+  margin-right: 10px;
+}
+
+.buy-btn {
+  padding: 14px 30px;
+  background: #6366f1;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 1rem;
+  cursor: pointer;
+  margin: 20px 0;
+  transition: background 0.3s, transform 0.2s;
+}
+
+.buy-btn:hover {
+  background: #4f46e5;
+  transform: translateY(-3px);
+}
+
+.desc {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #374151;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
