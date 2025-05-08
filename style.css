@@ -1,184 +1,143 @@
-// style.css file
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
-/* General Reset */
-* { margin: 0; padding: 0; box-sizing: border-box; }
-
-/* Body and Background */
 body {
-  font-family: 'Poppins', sans-serif;
-  background: linear-gradient(135deg, #e0e7ff 0%, #f3f4f6 100%);
-  color: #111827;
+  font-family: 'Segoe UI', sans-serif;
+  background: #f0f0f3;
+  color: #333;
+  padding: 30px;
+}
+
+.hero {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
+  gap: 40px;
+  max-width: 1200px;
+  margin: auto;
+  background: white;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+}
+
+.preview {
+  flex: 1;
   padding: 20px;
 }
 
-/* Hero Section Layout */
-.hero {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 40px;
-  max-width: 1200px;
+.preview .main {
   width: 100%;
-  align-items: center;
-  perspective: 1000px;
+  border-radius: 15px;
+  object-fit: cover;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
 }
 
-/* Preview Card Animation and Styling */
-.preview {
-  position: relative;
-  animation: float 6s ease-in-out infinite;
-}
-.preview img.main {
-  width: 100%;
-  border-radius: 20px;
-  box-shadow: 0 30px 60px rgba(0,0,0,0.1);
-  transform-style: preserve-3d;
-  transition: transform 0.3s;
-}
-.preview:hover img.main {
-  transform: translateY(-10px) rotateZ(-1deg);
-}
-
-/* Thumbnails */
 .thumbnails {
   display: flex;
-  justify-content: center;
-  gap: 10px;
+  justify-content: space-between;
   margin-top: 20px;
-}
-.thumbnails img {
-  width: 70px;
-  height: 70px;
-  border-radius: 12px;
-  object-fit: cover;
-  cursor: pointer;
-  box-shadow: 0 10px 20px rgba(0,0,0,0.08);
-  transition: transform 0.2s;
-}
-.thumbnails img:hover {
-  transform: scale(1.1);
+  gap: 10px;
 }
 
-/* Details Card with Glassmorphism */
+.thumbnails img {
+  width: 24%;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.2s;
+  box-shadow: 0 5px 10px rgba(0,0,0,0.05);
+}
+
+.thumbnails img:hover {
+  transform: scale(1.05);
+}
+
 .details {
+  flex: 1;
   background: rgba(255,255,255,0.6);
   backdrop-filter: blur(20px);
-  border-radius: 20px;
+  -webkit-backdrop-filter: blur(20px);
   padding: 40px;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-  transform: rotateY(-5deg);
-  transition: transform 0.3s;
-}
-.details:hover {
-  transform: rotateY(0);
+  border-radius: 20px;
 }
 
 .details h1 {
-  font-size: 2.4rem;
+  font-size: 2rem;
   margin-bottom: 10px;
-  color: #111827;
 }
+
 .details .subtitle {
-  font-size: 1rem;
-  color: #6b7280;
-  margin-bottom: 20px;
-}
-
-/* Ratings and Pricing */
-.ratings {
-  color: #f59e0b;
-  margin-bottom: 20px;
+  color: #666;
   font-size: 1.1rem;
-}
-.price {
-  font-size: 1.8rem;
   margin-bottom: 20px;
-  display: flex;
-  align-items: baseline;
-  gap: 15px;
-}
-.price del {
-  color: #9ca3af;
-  font-size: 1.2rem;
-}
-.price .new {
-  color: #10b981;
-  font-weight: 700;
 }
 
-/* Countdown Timer */
+.ratings {
+  font-size: 1rem;
+  color: #f39c12;
+  margin-bottom: 15px;
+}
+
+.price {
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+}
+
+.price del {
+  color: #aaa;
+  margin-right: 10px;
+}
+
+.price .new {
+  color: #27ae60;
+  font-weight: bold;
+}
+
 .countdown {
   margin-bottom: 20px;
-  color: #ef4444;
-  font-weight: 600;
-}
-.countdown #timer {
-  font-size: 1.6rem;
-  margin-top: 5px;
+  font-weight: bold;
+  color: #e74c3c;
 }
 
-/* Trust Icons */
+#timer {
+  margin-top: 5px;
+  font-size: 1.2rem;
+}
+
 .trust {
   display: flex;
-  gap: 15px;
-  margin-bottom: 25px;
-}
-.trust img {
-  height: 32px;
+  gap: 10px;
+  margin: 20px 0;
 }
 
-/* Buttons */
+.trust img {
+  width: 30px;
+  height: 30px;
+}
+
 .btn {
   display: inline-block;
-  padding: 15px 30px;
-  font-size: 1rem;
-  font-weight: 600;
-  border: none;
-  border-radius: 12px;
-  cursor: pointer;
+  padding: 12px 20px;
+  margin: 10px 10px 10px 0;
+  border-radius: 8px;
   text-decoration: none;
-  transition: transform 0.2s;
+  font-weight: bold;
 }
+
 .btn-buy {
-  background: #6366f1;
-  color: #fff;
+  background: #27ae60;
+  color: white;
 }
-.btn-buy:hover {
-  transform: translateY(-3px);
-  background: #4f46e5;
-}
+
 .btn-chat {
-  background: transparent;
-  color: #6366f1;
-  border: 2px solid #6366f1;
-  margin-left: 20px;
-}
-.btn-chat:hover {
-  background: #6366f1;
-  color: #fff;
+  background: #25D366;
+  color: white;
 }
 
-.details p.desc {
-  margin-top: 30px;
-  color: #374151;
+.desc {
+  margin-top: 20px;
+  font-size: 1rem;
   line-height: 1.6;
-}
-
-/* Floating Animation Keyframes */
-@keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-15px); }
-}
-
-/* Responsive Adjustments */
-@media (max-width: 900px) {
-  .hero {
-    grid-template-columns: 1fr;
-  }
-  .details {
-    transform: rotateY(0) !important;
-  }
+  color: #555;
 }
