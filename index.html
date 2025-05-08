@@ -1,54 +1,65 @@
----
-# index.html
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Premium Digital Asset Pack</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Digital Product Premium Showcase</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.2/vanilla-tilt.min.js"></script>
 </head>
 <body>
-  <div class="page-wrapper">
-    <div class="hero-section">
-      <div class="image-container" id="card">
-        <img src="main.jpg" alt="Premium Digital Asset Pack" class="product-image">
-        <div class="glare"></div>
+  <div class="container">
+    <div class="hero">
+      <div class="preview" data-tilt data-tilt-max="10" data-tilt-speed="500">
+        <img class="main" src="main.jpg" alt="Main Product Image">
+        <div class="thumbnails">
+          <img src="thumb1.jpg" alt="Thumb 1">
+          <img src="thumb2.jpg" alt="Thumb 2">
+          <img src="thumb3.jpg" alt="Thumb 3">
+        </div>
       </div>
-      <div class="thumb-container">
-        <img src="thumb1.jpg" loading="lazy" alt="Preview 1" class="thumb">
-        <img src="thumb2.jpg" loading="lazy" alt="Preview 2" class="thumb">
-        <img src="thumb3.jpg" loading="lazy" alt="Preview 3" class="thumb">
-      </div>
-    </div>
-    <div class="info-section">
-      <h1 class="fade-in">Premium Digital Asset Pack</h1>
-      <p class="fade-in delay-1">Boost your editing workflow with pro-grade overlays, transitions & more.</p>
-      <div class="price-container fade-in delay-2">
-        <span class="old-price">₹499</span>
-        <span class="new-price">₹99</span>
-      </div>
-      <div class="buttons fade-in delay-3">
-        <a href="#" class="btn btn-primary">Buy Now</a>
-        <a href="#" class="btn btn-secondary">Chat on WhatsApp</a>
+      <div class="details">
+        <h1 class="fade-in">Epic Digital Product</h1>
+        <p class="subtitle fade-in">An innovative, sleek and modern UI kit crafted to perfection.</p>
+        <div class="ratings fade-in">
+          ⭐⭐⭐⭐⭐ 4.9/5 by 10k+ users
+        </div>
+        <div class="price fade-in">
+          <del>$79</del>
+          <span class="new">$39</span>
+        </div>
+        <div class="countdown fade-in">
+          Offer ends in:
+          <div id="timer"></div>
+        </div>
+        <div class="trust fade-in">
+          <img src="https://img.icons8.com/color/48/verified-badge.png" alt="Secure">
+          <img src="https://img.icons8.com/color/48/like.png" alt="Trusted">
+        </div>
+        <div class="buttons fade-in">
+          <a href="#" class="btn btn-buy">Buy Now</a>
+          <a href="#" class="btn btn-chat">Live Chat</a>
+        </div>
+        <p class="desc fade-in">
+          Experience a premium UI crafted for maximum usability and visual appeal. Built with love, purpose, and cutting-edge animations.
+        </p>
       </div>
     </div>
   </div>
+
   <script>
-    // 3D tilt effect
-    const card = document.getElementById('card');
-    card.addEventListener('mousemove', e => {
-      const halfWidth = card.offsetWidth/2;
-      const halfHeight = card.offsetHeight/2;
-      const x = (e.offsetX - halfWidth)/halfWidth;
-      const y = (e.offsetY - halfHeight)/halfHeight;
-      card.style.transform = `rotateY(${x*10}deg) rotateX(${y*-10}deg)`;
-    });
-    card.addEventListener('mouseleave', () => {
-      card.style.transform = 'rotateY(0) rotateX(0)';
-    });
+    // Countdown Timer
+    const end = new Date();
+    end.setHours(end.getHours() + 72);
+    const timerEl = document.getElementById('timer');
+    setInterval(() => {
+      const now = new Date();
+      const diff = end - now;
+      const hrs = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const mins = Math.floor((diff / (1000 * 60)) % 60);
+      const secs = Math.floor((diff / 1000) % 60);
+      timerEl.textContent = `${hrs}h ${mins}m ${secs}s`;
+    }, 1000);
   </script>
 </body>
 </html>
-```
