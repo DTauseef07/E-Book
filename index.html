@@ -1,65 +1,227 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Digital Product Premium Showcase</title>
-  <link rel="stylesheet" href="style.css" />
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.2/vanilla-tilt.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Premium eBook - Your Ultimate Guide to Success">
+    <title>Premium eBook - Your Ultimate Guide</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-  <div class="container">
-    <div class="hero">
-      <div class="preview" data-tilt data-tilt-max="10" data-tilt-speed="500">
-        <img class="main" src="main.jpg" alt="Main Product Image">
-        <div class="thumbnails">
-          <img src="thumb1.jpg" alt="Thumb 1">
-          <img src="thumb2.jpg" alt="Thumb 2">
-          <img src="thumb3.jpg" alt="Thumb 3">
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="fade-in">Master Your Success with Our Premium eBook</h1>
+                <p class="subtitle fade-in">Unlock the secrets to achieving your goals with our comprehensive guide</p>
+                <div class="hero-image" data-tilt data-tilt-max="10" data-tilt-speed="500">
+                    <img src="https://placehold.co/400x600" alt="Premium eBook Cover">
+                </div>
+                <a href="#pricing" class="cta-button glow">Buy Now</a>
+            </div>
         </div>
-      </div>
-      <div class="details">
-        <h1 class="fade-in">Epic Digital Product</h1>
-        <p class="subtitle fade-in">An innovative, sleek and modern UI kit crafted to perfection.</p>
-        <div class="ratings fade-in">
-          ⭐⭐⭐⭐⭐ 4.9/5 by 10k+ users
-        </div>
-        <div class="price fade-in">
-          <del>$79</del>
-          <span class="new">$39</span>
-        </div>
-        <div class="countdown fade-in">
-          Offer ends in:
-          <div id="timer"></div>
-        </div>
-        <div class="trust fade-in">
-          <img src="https://img.icons8.com/color/48/verified-badge.png" alt="Secure">
-          <img src="https://img.icons8.com/color/48/like.png" alt="Trusted">
-        </div>
-        <div class="buttons fade-in">
-          <a href="#" class="btn btn-buy">Buy Now</a>
-          <a href="#" class="btn btn-chat">Live Chat</a>
-        </div>
-        <p class="desc fade-in">
-          Experience a premium UI crafted for maximum usability and visual appeal. Built with love, purpose, and cutting-edge animations.
-        </p>
-      </div>
-    </div>
-  </div>
+    </section>
 
-  <script>
-    // Countdown Timer
-    const end = new Date();
-    end.setHours(end.getHours() + 72);
-    const timerEl = document.getElementById('timer');
-    setInterval(() => {
-      const now = new Date();
-      const diff = end - now;
-      const hrs = Math.floor((diff / (1000 * 60 * 60)) % 24);
-      const mins = Math.floor((diff / (1000 * 60)) % 60);
-      const secs = Math.floor((diff / 1000) % 60);
-      timerEl.textContent = `${hrs}h ${mins}m ${secs}s`;
-    }, 1000);
-  </script>
+    <!-- Benefits Section -->
+    <section class="benefits">
+        <div class="container">
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <i class="fas fa-book-open"></i>
+                    <h3>Comprehensive Content</h3>
+                    <p>200+ pages of valuable insights and strategies</p>
+                </div>
+                <div class="benefit-card">
+                    <i class="fas fa-mobile-alt"></i>
+                    <h3>Mobile Friendly</h3>
+                    <p>Read anywhere, anytime on any device</p>
+                </div>
+                <div class="benefit-card">
+                    <i class="fas fa-download"></i>
+                    <h3>Instant Download</h3>
+                    <p>Get immediate access after purchase</p>
+                </div>
+                <div class="benefit-card">
+                    <i class="fas fa-headset"></i>
+                    <h3>24/7 Support</h3>
+                    <p>Dedicated customer support team</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sample Pages Section -->
+    <section class="preview">
+        <div class="container">
+            <h2>Take a Peek Inside</h2>
+            <div class="preview-carousel">
+                <div class="preview-slide">
+                    <img src="https://placehold.co/300x400" alt="Sample Page 1">
+                </div>
+                <div class="preview-slide">
+                    <img src="https://placehold.co/300x400" alt="Sample Page 2">
+                </div>
+                <div class="preview-slide">
+                    <img src="https://placehold.co/300x400" alt="Sample Page 3">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Countdown Section -->
+    <section class="countdown">
+        <div class="container">
+            <h2>Limited Time Offer</h2>
+            <div class="timer">
+                <div class="time-block">
+                    <span id="hours">24</span>
+                    <label>Hours</label>
+                </div>
+                <div class="time-block">
+                    <span id="minutes">00</span>
+                    <label>Minutes</label>
+                </div>
+                <div class="time-block">
+                    <span id="seconds">00</span>
+                    <label>Seconds</label>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials">
+        <div class="container">
+            <h2>What Our Readers Say</h2>
+            <div class="testimonial-grid">
+                <div class="testimonial-card">
+                    <div class="stars">★★★★★</div>
+                    <p>"This eBook transformed my approach to success. Highly recommended!"</p>
+                    <div class="author">- Rahul Sharma</div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="stars">★★★★★</div>
+                    <p>"The insights are invaluable. Worth every penny!"</p>
+                    <div class="author">- Priya Patel</div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="stars">★★★★★</div>
+                    <p>"Clear, concise, and actionable advice. A must-read!"</p>
+                    <div class="author">- Amit Kumar</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="pricing">
+        <div class="container">
+            <h2>Get Your Copy Today</h2>
+            <div class="price-card">
+                <div class="price-tag">
+                    <span class="old-price">₹499</span>
+                    <span class="new-price">₹199</span>
+                </div>
+                <ul class="features">
+                    <li>✓ 200+ Pages of Premium Content</li>
+                    <li>✓ Instant Digital Download</li>
+                    <li>✓ Lifetime Access</li>
+                    <li>✓ Free Updates</li>
+                </ul>
+                <a href="#" class="cta-button">Buy Now</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq">
+        <div class="container">
+            <h2>Frequently Asked Questions</h2>
+            <div class="faq-grid">
+                <details>
+                    <summary>What format is the eBook available in?</summary>
+                    <p>The eBook is available in PDF format, compatible with all devices and e-readers.</p>
+                </details>
+                <details>
+                    <summary>How will I receive the eBook after purchase?</summary>
+                    <p>You'll receive an instant download link via email after your payment is confirmed.</p>
+                </details>
+                <details>
+                    <summary>Is there a money-back guarantee?</summary>
+                    <p>Yes, we offer a 30-day money-back guarantee if you're not satisfied with your purchase.</p>
+                </details>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trust & Payment Section -->
+    <section class="trust">
+        <div class="container">
+            <div class="payment-methods">
+                <img src="https://placehold.co/100x50" alt="Paytm">
+                <img src="https://placehold.co/100x50" alt="Razorpay">
+                <img src="https://placehold.co/100x50" alt="GPay">
+                <img src="https://placehold.co/100x50" alt="SSL Secure">
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                    <a href="#">Contact Us</a>
+                </div>
+                <p class="copyright">© 2024 Premium eBook. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.2/vanilla-tilt.min.js"></script>
+    <script>
+        // Initialize tilt effect
+        VanillaTilt.init(document.querySelector(".hero-image"), {
+            max: 10,
+            speed: 400,
+            glare: true,
+            "max-glare": 0.5
+        });
+
+        // Countdown Timer
+        function updateTimer() {
+            const hours = document.getElementById('hours');
+            const minutes = document.getElementById('minutes');
+            const seconds = document.getElementById('seconds');
+            
+            let h = parseInt(hours.textContent);
+            let m = parseInt(minutes.textContent);
+            let s = parseInt(seconds.textContent);
+            
+            setInterval(() => {
+                s--;
+                if (s < 0) {
+                    s = 59;
+                    m--;
+                }
+                if (m < 0) {
+                    m = 59;
+                    h--;
+                }
+                if (h < 0) {
+                    h = 23;
+                }
+                
+                hours.textContent = h.toString().padStart(2, '0');
+                minutes.textContent = m.toString().padStart(2, '0');
+                seconds.textContent = s.toString().padStart(2, '0');
+            }, 1000);
+        }
+        
+        updateTimer();
+    </script>
 </body>
-</html>
+</html> 
