@@ -2,188 +2,48 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>How To Sell Digital Products Online 2024</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet" />
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-      font-family: 'Poppins', sans-serif;
-      background: linear-gradient(135deg, #e0e7ff 0%, #f3f4f6 100%);
-      color: #111827;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-      padding: 20px;
-    }
-    .hero {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 40px;
-      max-width: 1200px;
-      width: 100%;
-      align-items: center;
-      perspective: 1000px;
-    }
-    .preview {
-      position: relative;
-      animation: float 6s ease-in-out infinite;
-    }
-    .preview img.main {
-      width: 100%;
-      border-radius: 20px;
-      box-shadow: 0 30px 60px rgba(0,0,0,0.1);
-      transform-style: preserve-3d;
-      transition: transform 0.3s;
-    }
-    .preview:hover img.main { transform: translateY(-10px) rotateZ(-1deg); }
-    .thumbnails {
-      display: flex;
-      justify-content: center;
-      gap: 10px;
-      margin-top: 20px;
-    }
-    .thumbnails img {
-      width: 70px; height:70px;
-      border-radius: 12px;
-      object-fit: cover;
-      cursor: pointer;
-      box-shadow: 0 10px 20px rgba(0,0,0,0.08);
-      transition: transform 0.2s;
-    }
-    .thumbnails img:hover { transform: scale(1.1); }
-    .details {
-      background: rgba(255,255,255,0.6);
-      backdrop-filter: blur(20px);
-      border-radius: 20px;
-      padding: 40px;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-      transform: rotateY(-5deg);
-      transition: transform 0.3s;
-    }
-    .details:hover { transform: rotateY(0); }
-    .details h1 {
-      font-size: 2.4rem;
-      margin-bottom: 10px;
-      color: #111827;
-    }
-    .details .subtitle {
-      font-size: 1rem;
-      color: #6b7280;
-      margin-bottom: 20px;
-    }
-    .ratings {
-      color: #f59e0b;
-      margin-bottom: 20px;
-      font-size: 1.1rem;
-    }
-    .price {
-      font-size: 1.8rem;
-      margin-bottom: 20px;
-      display: flex;
-      align-items: baseline;
-      gap: 15px;
-    }
-    .price del { color: #9ca3af; font-size: 1.2rem; }
-    .price .new { color: #10b981; font-weight: 700; }
-    .countdown {
-      margin-bottom: 20px;
-      color: #ef4444;
-      font-weight: 600;
-    }
-    .countdown #timer {
-      font-size: 1.6rem;
-      margin-top: 5px;
-    }
-    .trust {
-      display: flex;
-      gap: 15px;
-      margin-bottom: 25px;
-    }
-    .trust img { height: 32px; }
-    .btn {
-      display: inline-block;
-      padding: 15px 30px;
-      font-size: 1rem;
-      font-weight: 600;
-      border: none;
-      border-radius: 12px;
-      cursor: pointer;
-      text-decoration: none;
-      transition: transform 0.2s;
-    }
-    .btn-buy {
-      background: #6366f1;
-      color: #fff;
-    }
-    .btn-buy:hover { transform: translateY(-3px); background: #4f46e5; }
-    .btn-chat {
-      background: transparent;
-      color: #6366f1;
-      border: 2px solid #6366f1;
-      margin-left: 20px;
-    }
-    .btn-chat:hover { background: #6366f1; color: #fff; }
-    .details p.desc {
-      margin-top: 30px;
-      color: #374151;
-      line-height: 1.6;
-    }
-    @keyframes float {
-      0%,100% { transform: translateY(0); }
-      50% { transform: translateY(-15px); }
-    }
-    @media (max-width: 900px) {
-      .hero { grid-template-columns: 1fr; }
-      .details { transform: rotateY(0) !important; }
-    }
-  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Digital Product Showcase</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <section class="hero">
+    <!-- Left side: Main Image and Thumbnails -->
     <div class="preview">
-      <img src="https://source.unsplash.com/600x800?ebook,stack" alt="Ebook Cover" class="main" />
+      <img src="main.jpg" alt="Main Product Image" class="main" />
       <div class="thumbnails">
-        <img src="https://source.unsplash.com/100x100?ebook,page1" alt="Preview 1" />
-        <img src="https://source.unsplash.com/100x100?ebook,page2" alt="Preview 2" />
-        <img src="https://source.unsplash.com/100x100?ebook,page3" alt="Preview 3" />
+        <img src="thumb1.jpg" alt="Thumbnail 1" />
+        <img src="thumb2.jpg" alt="Thumbnail 2" />
+        <img src="thumb3.jpg" alt="Thumbnail 3" />
+        <img src="thumb4.jpg" alt="Thumbnail 4" />
       </div>
     </div>
+
+    <!-- Right side: Details -->
     <div class="details">
-      <h1>How To Sell Digital Products Online 2024</h1>
-      <div class="subtitle">Ebook (Full Course) | Passive Income</div>
-      <div class="ratings">★★★★☆ (64 reviews)</div>
+      <h1>Ultimate Digital Asset Pack</h1>
+      <div class="subtitle">Perfect for Creators, Editors & Designers</div>
+      <div class="ratings">★★★★★ 4.9/5 (1,234 reviews)</div>
       <div class="price">
-        <del>₹499</del>
-        <span class="new">₹99</span>
+        <del>$99</del>
+        <span class="new">$29</span>
       </div>
       <div class="countdown">
-        Hurry Up! <div id="timer">00:07:30</div>
+        Limited Time Offer!
+        <div id="timer">00d:00h:00m:00s</div>
       </div>
       <div class="trust">
-        <img src="https://placeholder.pics/svg/32x32/DEDEDE/555555/VISA" alt="Visa" />
-        <img src="https://placeholder.pics/svg/32x32/DEDEDE/555555/MC" alt="MasterCard" />
-        <img src="https://placeholder.pics/svg/32x32/DEDEDE/555555/RP" alt="Razorpay" />
+        <img src="https://img.icons8.com/emoji/48/100--percent-emoji.png" alt="Trust 1"/>
+        <img src="https://img.icons8.com/color/48/verified-badge.png" alt="Trust 2"/>
+        <img src="https://img.icons8.com/color/48/thumb-up.png" alt="Trust 3"/>
       </div>
-      <a href="#" class="btn btn-buy">Add to Cart</a>
-      <a href="https://wa.me/919999999999?text=I%20want%20the%20ebook" class="btn btn-chat">Chat on WhatsApp</a>
-      <p class="desc">This guide is for you if you're keen to master the art of creating and selling digital products. Includes step-by-step blueprint, marketing tactics, and bonus worksheets to accelerate your growth.</p>
+      <a href="#" class="btn btn-buy">Buy Now</a>
+      <a href="#" class="btn btn-chat">Chat on WhatsApp</a>
+      <p class="desc">
+        This all-in-one digital pack includes editing tools, overlays, transitions, and more!
+        Elevate your content creation game instantly. Designed for professionals & beginners alike.
+      </p>
     </div>
   </section>
-  <script>
-    let end = new Date(new Date().getTime() + 8*60*60*1000);
-    function updateTimer() {
-      let now = new Date();
-      let diff = end - now;
-      if (diff < 0) diff = 0;
-      let h = String(Math.floor((diff % (1000*60*60*24)) / (1000*60*60))).padStart(2,'0');
-      let m = String(Math.floor((diff % (1000*60*60)) / (1000*60))).padStart(2,'0');
-      let s = String(Math.floor((diff % (1000*60)) / 1000)).padStart(2,'0');
-      document.getElementById('timer').textContent = `${h}:${m}:${s}`;
-    }
-    setInterval(updateTimer, 1000);
-    updateTimer();
-  </script>
 </body>
 </html>
