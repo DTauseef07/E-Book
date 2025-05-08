@@ -1,34 +1,48 @@
 /* Import Poppins font */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
-/* Reset and Base Styles */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
+/* Custom Properties */
 :root {
-    --bg-color: #f1f5f9;
-    --primary-color: #6366f1;
-    --accent-color: #10b981;
-    --text-color: #111827;
-    --white: #ffffff;
-    --glass-bg: rgba(255, 255, 255, 0.7);
-    --glass-border: rgba(255, 255, 255, 0.2);
-    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
-    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
-    --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
-    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --bg-color: #0f0f0f;
+    --primary-color: #00ffcc;
+    --secondary-color: #6366f1;
+    --text-color: #f3f4f6;
+    --glass-bg: rgba(255, 255, 255, 0.05);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.3);
+    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.4);
+    --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.5);
+    --transition: all 0.3s ease-in-out;
 }
 
+/* Base Styles */
 body {
-    font-family: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
-    line-height: 1.6;
-    color: var(--text-color);
+    font-family: 'Poppins', sans-serif;
     background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    overflow-x: hidden;
 }
 
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-color);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--secondary-color);
+}
+
+/* Container */
 .container {
     max-width: 1200px;
     margin: 0 auto;
@@ -48,47 +62,42 @@ body {
     min-height: 100vh;
     display: flex;
     align-items: center;
-    background: linear-gradient(135deg, var(--primary-color), #818cf8);
-    color: var(--white);
-    padding: 4rem 0;
     position: relative;
     overflow: hidden;
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(0, 255, 204, 0.1));
 }
 
-.hero::before {
-    content: '';
+.particles {
     position: absolute;
     top: 0;
     left: 0;
-    right: 0;
-    bottom: 0;
-    background: url('data:image/svg+xml,<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><rect width="1" height="1" fill="rgba(255,255,255,0.1)"/></svg>');
-    opacity: 0.1;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
 }
 
 .hero-content {
     position: relative;
-    z-index: 1;
+    z-index: 2;
     max-width: 800px;
     margin: 0 auto;
     text-align: center;
 }
 
-.hero h1 {
+.neon-text {
     font-size: clamp(2.5rem, 5vw, 4rem);
     font-weight: 700;
-    line-height: 1.2;
+    color: var(--text-color);
+    text-shadow: 0 0 10px var(--primary-color),
+                 0 0 20px var(--primary-color),
+                 0 0 30px var(--primary-color);
     margin-bottom: 1.5rem;
-    opacity: 0;
-    transform: translateY(20px);
-    animation: fadeInUp 0.8s forwards;
 }
 
 .hero .subtitle {
     font-size: clamp(1.1rem, 2vw, 1.5rem);
-    opacity: 0;
-    transform: translateY(20px);
-    animation: fadeInUp 0.8s 0.2s forwards;
+    opacity: 0.9;
+    margin-bottom: 2rem;
 }
 
 .hero-image {
@@ -96,8 +105,6 @@ body {
     max-width: 400px;
     transform-style: preserve-3d;
     perspective: 1000px;
-    opacity: 0;
-    animation: fadeInUp 0.8s 0.4s forwards;
 }
 
 .hero-image img {
@@ -109,36 +116,57 @@ body {
 }
 
 .hero-image:hover img {
-    transform: translateY(-10px) rotate(2deg);
-    box-shadow: 0 20px 30px rgba(0, 0, 0, 0.2);
+    transform: translateY(-10px) rotateY(10deg);
+    box-shadow: 0 20px 30px rgba(0, 255, 204, 0.2);
 }
 
-/* Benefits Section */
-.benefits {
+/* Features Section */
+.features {
     padding: 6rem 0;
-    background: var(--bg-color);
 }
 
-.benefits-grid {
+.features-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 2rem;
     margin-top: 3rem;
 }
 
-.benefit-card {
+.feature-card {
+    height: 300px;
+    perspective: 1000px;
+}
+
+.card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+}
+
+.feature-card:hover .card-inner {
+    transform: rotateY(180deg);
+}
+
+.card-front, .card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
     @extend .glass;
     padding: 2rem;
     text-align: center;
-    transition: var(--transition);
 }
 
-.benefit-card:hover {
-    transform: translateY(-5px);
-    box-shadow: var(--shadow-lg);
+.card-back {
+    transform: rotateY(180deg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.benefit-card i {
+.feature-card i {
     font-size: 2.5rem;
     color: var(--primary-color);
     margin-bottom: 1.5rem;
@@ -147,7 +175,6 @@ body {
 /* Preview Section */
 .preview {
     padding: 6rem 0;
-    background: var(--white);
 }
 
 .preview-carousel {
@@ -178,6 +205,11 @@ body {
     height: auto;
     border-radius: 16px;
     box-shadow: var(--shadow-md);
+    transition: var(--transition);
+}
+
+.preview-slide:hover img {
+    box-shadow: 0 0 20px var(--primary-color);
 }
 
 /* Countdown Section */
@@ -192,12 +224,13 @@ body {
 .timer {
     display: flex;
     justify-content: center;
-    gap: 2rem;
+    align-items: center;
+    gap: 1rem;
     margin-top: 2rem;
 }
 
 .time-block {
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(0, 255, 204, 0.1);
     padding: 1.5rem;
     border-radius: 12px;
     min-width: 100px;
@@ -206,20 +239,24 @@ body {
 .time-block span {
     font-size: 2.5rem;
     font-weight: 700;
-    display: block;
     color: var(--primary-color);
+    text-shadow: 0 0 10px var(--primary-color);
 }
 
-.time-block label {
-    font-size: 0.9rem;
-    text-transform: uppercase;
-    letter-spacing: 1px;
+.time-separator {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
 }
 
 /* Testimonials Section */
 .testimonials {
     padding: 6rem 0;
-    background: var(--bg-color);
 }
 
 .testimonial-grid {
@@ -237,11 +274,26 @@ body {
 
 .testimonial-card:hover {
     transform: translateY(-5px) scale(1.02);
-    box-shadow: var(--shadow-lg);
+    box-shadow: 0 0 20px rgba(0, 255, 204, 0.2);
+}
+
+.avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin: 0 auto 1rem;
+    overflow: hidden;
+    border: 2px solid var(--primary-color);
+}
+
+.avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .stars {
-    color: #fbbf24;
+    color: var(--primary-color);
     margin-bottom: 1rem;
     font-size: 1.2rem;
 }
@@ -265,13 +317,15 @@ body {
 
 .old-price {
     text-decoration: line-through;
-    color: #9ca3af;
+    color: #ef4444;
     font-size: 1.5rem;
     margin-right: 1rem;
 }
 
 .new-price {
-    color: var(--accent-color);
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
     font-size: 3rem;
     font-weight: 700;
 }
@@ -289,10 +343,13 @@ body {
     gap: 0.5rem;
 }
 
+.features li i {
+    color: var(--primary-color);
+}
+
 /* FAQ Section */
 .faq {
     padding: 6rem 0;
-    background: var(--bg-color);
 }
 
 .faq-grid {
@@ -319,14 +376,12 @@ summary {
     align-items: center;
 }
 
-summary::after {
-    content: '+';
-    font-size: 1.5rem;
+summary i {
     transition: var(--transition);
 }
 
-details[open] summary::after {
-    transform: rotate(45deg);
+details[open] summary i {
+    transform: rotate(180deg);
 }
 
 details p {
@@ -363,8 +418,7 @@ details p {
 
 /* Footer */
 footer {
-    background: var(--text-color);
-    color: var(--white);
+    background: rgba(0, 0, 0, 0.5);
     padding: 3rem 0;
     text-align: center;
 }
@@ -374,7 +428,7 @@ footer {
 }
 
 .footer-links a {
-    color: var(--white);
+    color: var(--text-color);
     text-decoration: none;
     margin: 0 1rem;
     opacity: 0.8;
@@ -383,14 +437,14 @@ footer {
 
 .footer-links a:hover {
     opacity: 1;
-    color: var(--accent-color);
+    color: var(--primary-color);
 }
 
 /* CTA Button */
 .cta-button {
     display: inline-block;
-    background: var(--accent-color);
-    color: var(--white);
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: var(--bg-color);
     padding: 1rem 2.5rem;
     border-radius: 50px;
     text-decoration: none;
@@ -424,7 +478,7 @@ footer {
 
 .cta-button:hover {
     transform: translateY(-2px);
-    box-shadow: 0 10px 20px rgba(16, 185, 129, 0.3);
+    box-shadow: 0 0 20px rgba(0, 255, 204, 0.4);
 }
 
 .cta-button.glow {
@@ -433,13 +487,13 @@ footer {
 
 @keyframes glow {
     0% {
-        box-shadow: 0 0 5px rgba(16, 185, 129, 0.5);
+        box-shadow: 0 0 5px rgba(0, 255, 204, 0.5);
     }
     50% {
-        box-shadow: 0 0 20px rgba(16, 185, 129, 0.8);
+        box-shadow: 0 0 20px rgba(0, 255, 204, 0.8);
     }
     100% {
-        box-shadow: 0 0 5px rgba(16, 185, 129, 0.5);
+        box-shadow: 0 0 5px rgba(0, 255, 204, 0.5);
     }
 }
 
@@ -453,6 +507,17 @@ footer {
         opacity: 1;
         transform: translateY(0);
     }
+}
+
+[data-aos] {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+[data-aos].aos-animate {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 /* Responsive Design */
@@ -475,7 +540,7 @@ footer {
         max-width: 200px;
     }
 
-    .benefits-grid,
+    .features-grid,
     .testimonial-grid {
         grid-template-columns: 1fr;
     }
@@ -493,14 +558,7 @@ footer {
     }
 }
 
-/* Scroll Animations */
-[data-aos] {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.6s ease, transform 0.6s ease;
-}
-
-[data-aos].aos-animate {
-    opacity: 1;
-    transform: translateY(0);
+/* Smooth Scroll */
+html {
+    scroll-behavior: smooth;
 } 
