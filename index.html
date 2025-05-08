@@ -1,150 +1,54 @@
-<!--
-  ⚠️ Place the following image files in the same directory as this HTML:
-  - main.jpg   (Product mockup: file-Bmhb6DuNPbrT6L1MNjME3G)
-  - thumb1.jpg (file-TqsmaGYmz1HfxhAbzgtwSx)
-  - thumb2.jpg (file-4PRNrn9ndNvuekkwie28kK)
-  - thumb3.jpg (file-N4XHc4pGP95KLA1kX6MBfK)
--->
+---
+# index.html
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Digital Product Showcase</title>
-  <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      background: #f0f2f5;
-      display: flex; justify-content: center; align-items: center;
-      min-height: 100vh; padding: 20px;
-    }
-    .hero {
-      display: flex; flex-wrap: wrap; max-width: 1000px;
-      background: #ffffff; border-radius: 16px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-      overflow: hidden;
-    }
-    .preview {
-      flex: 1; min-width: 300px; padding: 20px;
-    }
-    .preview img.main {
-      width: 100%; border-radius: 12px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-      transition: transform 0.3s;
-      cursor: pointer;
-    }
-    .preview img.main:hover {
-      transform: translateY(-5px);
-    }
-    .thumbnails {
-      display: flex; gap: 10px; margin-top: 15px;
-      justify-content: center;
-    }
-    .thumbnails img {
-      width: calc(33.33% - 6.66px);
-      border-radius: 8px;
-      cursor: pointer;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
-      transition: transform 0.2s;
-    }
-    .thumbnails img:hover {
-      transform: scale(1.1);
-    }
-    .details {
-      flex: 1; min-width: 300px;
-      background: rgba(255,255,255,0.8);
-      backdrop-filter: blur(15px);
-      padding: 30px;
-    }
-    .details h1 {
-      font-size: 1.8rem; margin-bottom: 8px;
-      color: #333;
-    }
-    .subtitle {
-      font-size: 1rem; color: #666;
-      margin-bottom: 15px;
-    }
-    .ratings {
-      color: #e67e22; margin-bottom: 15px;
-    }
-    .price {
-      font-size: 1.4rem; margin-bottom: 15px;
-    }
-    .price del { color: #999; margin-right: 8px; }
-    .price .new { color: #27ae60; font-weight: bold; }
-    .countdown {
-      color: #c0392b; font-weight: bold;
-      margin-bottom: 20px;
-    }
-    #timer { font-size: 1.2rem; margin-top: 5px; }
-    .trust {
-      display: flex; gap: 10px; margin-bottom: 20px;
-    }
-    .trust img { width: 28px; height: 28px; }
-    .btn {
-      display: inline-block; padding: 10px 20px;
-      border-radius: 8px; text-decoration: none;
-      font-weight: 600; transition: background 0.2s;
-      margin-right: 10px;
-    }
-    .btn-buy {
-      background: #2980b9; color: #fff;
-    }
-    .btn-buy:hover { background: #1f6391; }
-    .btn-chat {
-      background: #25d366; color: #fff;
-    }
-    .btn-chat:hover { background: #1db954; }
-    .desc {
-      margin-top: 20px; color: #555; line-height: 1.5;
-    }
-    @media (max-width: 700px) {
-      .hero { flex-direction: column; }
-      .thumbnails { flex-wrap: wrap; }
-    }
-  </style>
+  <title>Premium Digital Asset Pack</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <section class="hero">
-    <div class="preview">
-      <img src="main.jpg" alt="Main Product Image" class="main" />
-      <div class="thumbnails">
-        <img src="thumb1.jpg" alt="Thumbnail 1" />
-        <img src="thumb2.jpg" alt="Thumbnail 2" />
-        <img src="thumb3.jpg" alt="Thumbnail 3" />
+  <div class="page-wrapper">
+    <div class="hero-section">
+      <div class="image-container" id="card">
+        <img src="main.jpg" alt="Premium Digital Asset Pack" class="product-image">
+        <div class="glare"></div>
+      </div>
+      <div class="thumb-container">
+        <img src="thumb1.jpg" loading="lazy" alt="Preview 1" class="thumb">
+        <img src="thumb2.jpg" loading="lazy" alt="Preview 2" class="thumb">
+        <img src="thumb3.jpg" loading="lazy" alt="Preview 3" class="thumb">
       </div>
     </div>
-    <div class="details">
-      <h1>Premium Digital Asset Pack</h1>
-      <div class="subtitle">Boost Your Editing Workflow</div>
-      <div class="ratings">★★★★★ 4.9/5 (1,234 reviews)</div>
-      <div class="price"><del>$99</del> <span class="new">$29</span></div>
-      <div class="countdown">Limited Time! <div id="timer">00:00:00</div></div>
-      <div class="trust">
-        <img src="https://img.icons8.com/emoji/48/100--percent-emoji.png" alt="100% Guarantee">
-        <img src="https://img.icons8.com/color/48/verified-badge.png" alt="Verified">
-        <img src="https://img.icons8.com/color/48/thumb-up.png" alt="Thumbs Up">
+    <div class="info-section">
+      <h1 class="fade-in">Premium Digital Asset Pack</h1>
+      <p class="fade-in delay-1">Boost your editing workflow with pro-grade overlays, transitions & more.</p>
+      <div class="price-container fade-in delay-2">
+        <span class="old-price">₹499</span>
+        <span class="new-price">₹99</span>
       </div>
-      <a href="#" class="btn btn-buy">Buy Now</a>
-      <a href="#" class="btn btn-chat">Chat on WhatsApp</a>
-      <p class="desc">
-        This all-in-one digital pack contains overlays, transitions, LUTs, sound effects, and more.
-        Perfect for pro and beginner editors looking to save time and boost quality.
-      </p>
+      <div class="buttons fade-in delay-3">
+        <a href="#" class="btn btn-primary">Buy Now</a>
+        <a href="#" class="btn btn-secondary">Chat on WhatsApp</a>
+      </div>
     </div>
-  </section>
+  </div>
   <script>
-    // Countdown for 24 hours
-    let end = Date.now() + 24*60*60*1000;
-    function update() {
-      let diff = end - Date.now(); if(diff<0) diff=0;
-      let h = String(Math.floor(diff/3600000)).padStart(2,'0');
-      let m = String(Math.floor(diff%3600000/60000)).padStart(2,'0');
-      let s = String(Math.floor(diff%60000/1000)).padStart(2,'0');
-      document.getElementById('timer').textContent = `${h}:${m}:${s}`;
-    }
-    setInterval(update, 1000); update();
+    // 3D tilt effect
+    const card = document.getElementById('card');
+    card.addEventListener('mousemove', e => {
+      const halfWidth = card.offsetWidth/2;
+      const halfHeight = card.offsetHeight/2;
+      const x = (e.offsetX - halfWidth)/halfWidth;
+      const y = (e.offsetY - halfHeight)/halfHeight;
+      card.style.transform = `rotateY(${x*10}deg) rotateX(${y*-10}deg)`;
+    });
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = 'rotateY(0) rotateX(0)';
+    });
   </script>
 </body>
 </html>
+```
