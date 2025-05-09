@@ -380,6 +380,14 @@ body {
     display: flex;
     gap: 2rem;
     list-style: none;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-links li {
+    margin: 0;
+    padding: 0;
 }
 
 .nav-links a {
@@ -388,6 +396,8 @@ body {
     font-weight: 500;
     transition: var(--transition-normal);
     position: relative;
+    display: inline-block;
+    padding: 0.5rem 0;
 }
 
 .nav-links a::after {
@@ -936,7 +946,22 @@ details p {
     }
 
     .nav-links {
-        display: none;
+        position: fixed;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        background: var(--bg-color);
+        padding: 20px;
+        flex-direction: column;
+        align-items: center;
+        transform: translateY(-100%);
+        opacity: 0;
+        visibility: hidden;
+        transition: var(--transition-normal);
+    }
+
+    .nav-links li {
+        margin: 10px 0;
     }
 
     .timer {
@@ -1161,7 +1186,7 @@ body {
     }
 
     .nav-links li {
-        margin: 15px 0;
+        margin: 10px 0;
     }
 
     .back-to-top {
