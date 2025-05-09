@@ -13,12 +13,12 @@
     --glass-border: rgba(0, 255, 231, 0.2);
     
     /* Shadows & Glows */
-    --glow-sm: 0 0 10px var(--accent-primary);
-    --glow-md: 0 0 20px var(--accent-primary);
-    --glow-lg: 0 0 30px var(--accent-primary);
-    --shadow-sm: 0 4px 6px rgba(0, 0, 0, 0.1);
-    --shadow-md: 0 8px 12px rgba(0, 0, 0, 0.15);
-    --shadow-lg: 0 12px 24px rgba(0, 0, 0, 0.2);
+    --glow-sm: 0 0 8px rgba(0, 255, 231, 0.3);
+    --glow-md: 0 0 15px rgba(0, 255, 231, 0.4);
+    --glow-lg: 0 0 25px rgba(0, 255, 231, 0.5);
+    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
+    --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.12);
+    --shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.15);
     
     /* Transitions */
     --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
@@ -29,6 +29,7 @@
     --gradient-primary: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
     --gradient-border: linear-gradient(135deg, var(--accent-primary), transparent);
     --gradient-glow: radial-gradient(circle at center, rgba(0, 255, 231, 0.15), transparent 70%);
+    --gradient-avatar: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
 }
 
 /* Base Styles */
@@ -109,12 +110,18 @@ body {
     backdrop-filter: blur(15px);
     border: 1px solid var(--glass-border);
     border-radius: 16px;
+    transition: box-shadow var(--transition-normal);
 }
 
+.glass:hover {
+    box-shadow: var(--glow-sm);
+}
+
+/* Animation Classes */
 .animate-on-scroll {
     opacity: 0;
     transform: translateY(20px);
-    transition: var(--transition-normal);
+    transition: all var(--transition-normal);
 }
 
 .animate-on-scroll.active {
@@ -137,6 +144,42 @@ body {
     transform: rotateY(10deg) scale(1.02);
 }
 
+/* Book Placeholder Styles */
+.book-placeholder {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 12px;
+    padding: 2rem;
+    text-align: center;
+    transition: all var(--transition-normal);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.book-placeholder i {
+    color: var(--accent-primary);
+    transition: transform var(--transition-normal);
+}
+
+.book-placeholder .book-title {
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: var(--text-color);
+    opacity: 0.9;
+}
+
+.book-placeholder.thumbnail {
+    padding: 1.5rem;
+    transform: scale(0.95);
+}
+
+.book-placeholder.thumbnail:hover {
+    transform: scale(1);
+    box-shadow: var(--glow-sm);
+}
+
 /* Header Styles */
 .site-header {
     position: fixed;
@@ -147,12 +190,12 @@ body {
     background: rgba(13, 13, 13, 0.95);
     backdrop-filter: blur(10px);
     border-bottom: 1px solid var(--glass-border);
-    transition: var(--transition-normal);
+    transition: all var(--transition-normal);
 }
 
 .site-header.scrolled {
     background: rgba(13, 13, 13, 0.98);
-    box-shadow: var(--shadow-md);
+    box-shadow: var(--shadow-sm);
 }
 
 .main-nav {
@@ -224,6 +267,7 @@ body {
     height: 100%;
     background: var(--gradient-glow);
     pointer-events: none;
+    opacity: 0.5;
 }
 
 .hero-grid {
@@ -237,20 +281,20 @@ body {
     position: relative;
     transform-style: preserve-3d;
     perspective: 1000px;
+    transition: transform var(--transition-normal);
 }
 
-.book-cover {
-    width: 100%;
-    height: auto;
-    border-radius: 12px;
-    box-shadow: var(--shadow-lg);
-    transition: var(--transition-normal);
-    transform-style: preserve-3d;
-}
-
-.ebook-wrapper:hover .book-cover {
+.ebook-wrapper:hover {
     transform: rotateY(10deg) scale(1.02);
-    box-shadow: var(--glow-lg);
+}
+
+.ebook-wrapper:hover .book-placeholder {
+    box-shadow: var(--glow-md);
+}
+
+.ebook-wrapper:hover .book-placeholder i {
+    transform: scale(1.1);
+    color: var(--accent-secondary);
 }
 
 .hero-right h1 {
@@ -346,7 +390,7 @@ body {
     border-radius: 16px;
     padding: 2rem;
     text-align: center;
-    transition: var(--transition-normal);
+    transition: all var(--transition-normal);
     transform-style: preserve-3d;
     perspective: 1000px;
 }
@@ -354,21 +398,20 @@ body {
 .feature-card:hover {
     transform: translateY(-5px) rotateX(5deg);
     border-color: var(--accent-primary);
-    box-shadow: var(--glow-md);
+    box-shadow: var(--glow-sm);
 }
 
 .feature-icon {
     font-size: 2.5rem;
     color: var(--accent-primary);
     margin-bottom: 1.5rem;
-    transition: var(--transition-normal);
+    transition: all var(--transition-normal);
     display: inline-block;
 }
 
 .feature-card:hover .feature-icon {
-    transform: scale(1.1);
+    transform: scale(1.1) rotate(5deg);
     color: var(--accent-secondary);
-    animation: pulse 2s infinite;
 }
 
 /* Preview Section */
@@ -443,12 +486,12 @@ body {
     border: 1px solid var(--glass-border);
     border-radius: 16px;
     padding: 2rem;
-    transition: var(--transition-normal);
+    transition: all var(--transition-normal);
 }
 
 .testimonial-card:hover {
     border-color: var(--accent-primary);
-    box-shadow: var(--glow-md);
+    box-shadow: var(--glow-sm);
     transform: translateY(-5px);
 }
 
@@ -459,12 +502,24 @@ body {
     margin: 0 auto 1rem;
     overflow: hidden;
     border: 2px solid var(--accent-primary);
-    transition: var(--transition-normal);
+    transition: all var(--transition-normal);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--gradient-avatar);
+}
+
+.initials {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--bg-color);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
 }
 
 .testimonial-card:hover .avatar {
     border-color: var(--accent-secondary);
     transform: scale(1.1);
+    box-shadow: var(--glow-sm);
 }
 
 /* Countdown Section */
@@ -500,12 +555,12 @@ body {
     padding: 1.5rem;
     border-radius: 12px;
     min-width: 100px;
-    transition: var(--transition-normal);
+    transition: all var(--transition-normal);
 }
 
 .time-block:hover {
     border-color: var(--accent-primary);
-    box-shadow: var(--glow-md);
+    box-shadow: var(--glow-sm);
 }
 
 .time-block span {
@@ -537,7 +592,7 @@ details {
     border: 1px solid var(--glass-border);
     border-radius: 12px;
     margin-bottom: 1rem;
-    transition: var(--transition-normal);
+    transition: all var(--transition-normal);
 }
 
 details:hover {
@@ -659,9 +714,42 @@ details p {
     }
 }
 
+@keyframes fadeInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeInRight {
+    from {
+        opacity: 0;
+        transform: translateX(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes rotateIn {
+    from {
+        opacity: 0;
+        transform: rotate(-10deg) scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: rotate(0) scale(1);
+    }
+}
+
 @keyframes glow {
     0% { box-shadow: 0 0 5px var(--accent-primary); }
-    50% { box-shadow: 0 0 20px var(--accent-primary); }
+    50% { box-shadow: 0 0 15px var(--accent-primary); }
     100% { box-shadow: 0 0 5px var(--accent-primary); }
 }
 
@@ -674,6 +762,47 @@ details p {
 @keyframes blink {
     0%, 100% { opacity: 1; }
     50% { opacity: 0.5; }
+}
+
+/* Section-specific Animations */
+.hero-left {
+    animation: fadeInLeft 1s ease-out;
+}
+
+.hero-right {
+    animation: fadeInRight 1s ease-out;
+}
+
+.feature-card:nth-child(1) {
+    animation: fadeInUp 0.8s ease-out;
+}
+
+.feature-card:nth-child(2) {
+    animation: fadeInUp 0.8s ease-out 0.2s backwards;
+}
+
+.feature-card:nth-child(3) {
+    animation: fadeInUp 0.8s ease-out 0.4s backwards;
+}
+
+.preview-slide:nth-child(1) {
+    animation: fadeInLeft 0.8s ease-out;
+}
+
+.preview-slide:nth-child(2) {
+    animation: fadeInUp 0.8s ease-out 0.2s backwards;
+}
+
+.preview-slide:nth-child(3) {
+    animation: fadeInRight 0.8s ease-out;
+}
+
+.testimonial-card:nth-child(1) {
+    animation: rotateIn 0.8s ease-out;
+}
+
+.testimonial-card:nth-child(2) {
+    animation: rotateIn 0.8s ease-out 0.2s backwards;
 }
 
 /* Responsive Design */
@@ -712,7 +841,7 @@ details p {
         order: 1;
     }
 
-    .book-cover {
+    .book-placeholder {
         max-width: 300px;
         margin: 0 auto;
     }
