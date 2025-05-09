@@ -943,10 +943,6 @@ details p {
         margin: 0 auto;
     }
 
-    .nav-links {
-        display: none;
-    }
-
     .timer {
         flex-direction: column;
         align-items: center;
