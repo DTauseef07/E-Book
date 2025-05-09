@@ -21,9 +21,9 @@
     --shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.3);
     
     /* Transitions */
-    --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-    --transition-normal: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    --transition-slow: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-fast: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-normal: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-slow: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
     
     /* Gradients */
     --gradient-primary: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
@@ -122,7 +122,7 @@ body {
 .animate-on-scroll {
     opacity: 0;
     transform: translateY(20px);
-    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     will-change: transform, opacity;
 }
 
@@ -223,17 +223,17 @@ body {
 
 /* Optimized Section Animations */
 .hero-left {
-    animation: fadeInLeft 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    animation: fadeInLeft 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
 
 .hero-right {
-    animation: fadeInRight 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    animation: fadeInRight 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
 
 .feature-card {
     opacity: 0;
     transform: translateY(20px);
-    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .feature-card.animate {
@@ -244,7 +244,7 @@ body {
 .preview-slide {
     opacity: 0;
     transform: translateX(20px);
-    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .preview-slide.animate {
@@ -255,7 +255,7 @@ body {
 .testimonial-card {
     opacity: 0;
     transform: rotate(-5deg) scale(0.95);
-    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .testimonial-card.animate {
@@ -266,7 +266,7 @@ body {
 /* 3D Effect Optimizations */
 .tilt-element {
     transform-style: preserve-3d;
-    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     will-change: transform;
 }
 
@@ -278,7 +278,7 @@ body {
 .animate-on-scroll {
     opacity: 0;
     transform: translateY(20px);
-    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     will-change: transform, opacity;
 }
 
@@ -858,13 +858,13 @@ details p {
 /* Animations */
 @keyframes pulse {
     0% { transform: scale(1); }
-    50% { transform: scale(1.05); }
+    50% { transform: scale(1.03); }
     100% { transform: scale(1); }
 }
 
 @keyframes blink {
     0%, 100% { opacity: 1; }
-    50% { opacity: 0.5; }
+    50% { opacity: 0.7; }
 }
 
 /* Responsive Design */
