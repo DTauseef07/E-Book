@@ -67,7 +67,7 @@ body {
 }
 
 .cursor::before {
-    content: '📑';
+    content: '📚';
     position: absolute;
     top: 50%;
     left: 50%;
@@ -395,12 +395,7 @@ body {
     transition: var(--transition-normal);
     position: relative;
     display: inline-block;
-    padding: 0.5rem 1rem;
-    border-radius: 4px;
-}
-
-.nav-links a:hover {
-    background: rgba(255, 255, 255, 0.05);
+    padding: 0.5rem 0;
 }
 
 .nav-links a::after {
@@ -422,7 +417,7 @@ body {
 .nav-cta {
     background: var(--gradient-primary);
     color: var(--bg-color);
-    padding: 0.8rem 2.5rem;
+    padding: 0.8rem 2.2rem;
     border-radius: 50px;
     font-weight: 600;
     transition: var(--transition-normal);
@@ -430,18 +425,16 @@ body {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    height: 48px;
+    height: 45px;
     line-height: 1;
-    min-width: 160px;
+    min-width: 140px;
     text-align: center;
-    position: relative;
-    overflow: hidden;
 }
 
 .nav-cta:hover {
     transform: translateY(-2px);
     box-shadow: var(--glow-md);
-    padding: 0.8rem 2.7rem;
+    padding: 0.8rem 2.4rem;
 }
 
 /* Hero Section */
