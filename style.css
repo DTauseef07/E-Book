@@ -55,8 +55,8 @@ body {
 
 /* Custom Cursor */
 .cursor {
-    width: 32px;
-    height: 32px;
+    width: 24px;
+    height: 24px;
     background: transparent;
     position: fixed;
     pointer-events: none;
@@ -67,12 +67,12 @@ body {
 }
 
 .cursor::before {
-    content: '✒️';
+    content: '📑';
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    font-size: 24px;
+    font-size: 20px;
     opacity: 0.9;
     transition: all 0.1s ease;
     filter: drop-shadow(0 0 2px var(--accent-primary));
@@ -400,8 +400,7 @@ body {
 }
 
 .nav-links a:hover {
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(5px);
+    background: rgba(255, 255, 255, 0.05);
 }
 
 .nav-links a::after {
@@ -427,7 +426,7 @@ body {
     border-radius: 50px;
     font-weight: 600;
     transition: var(--transition-normal);
-    margin-left: 2rem;
+    margin-left: 1.5rem;
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -439,25 +438,10 @@ body {
     overflow: hidden;
 }
 
-.nav-cta::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-    transform: translateX(-100%);
-    transition: transform 0.6s ease;
-}
-
 .nav-cta:hover {
     transform: translateY(-2px);
     box-shadow: var(--glow-md);
-}
-
-.nav-cta:hover::before {
-    transform: translateX(100%);
+    padding: 0.8rem 2.7rem;
 }
 
 /* Hero Section */
@@ -998,15 +982,9 @@ details p {
     .nav-cta {
         margin: 15px 0 0 0;
         width: 100%;
-        max-width: 280px;
-        height: 52px;
-        padding: 0.8rem 2.8rem;
-    }
-
-    .nav-links a {
-        padding: 0.8rem 1.5rem;
-        width: 100%;
-        text-align: center;
+        max-width: 240px;
+        height: 50px;
+        padding: 0.8rem 2.5rem;
     }
 
     .timer {
