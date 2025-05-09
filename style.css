@@ -322,8 +322,8 @@ body {
     align-items: center;
     gap: 1rem;
     box-shadow: var(--shadow-sm);
-    width: 240px;
-    height: 360px;
+    width: 260px;
+    height: 390px;
     justify-content: center;
     margin: 0 auto;
 }
@@ -453,7 +453,7 @@ body {
     transform-style: preserve-3d;
     perspective: 1000px;
     transition: transform var(--transition-normal);
-    width: 240px;
+    width: 260px;
     margin: 0 auto;
 }
 
@@ -925,13 +925,13 @@ details p {
     }
 
     .book-placeholder {
-        width: 240px;
-        height: 360px;
+        width: 260px;
+        height: 390px;
         margin: 0 auto;
     }
 
     .ebook-wrapper {
-        width: 240px;
+        width: 260px;
         margin: 0 auto;
     }
 
