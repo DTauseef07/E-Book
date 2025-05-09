@@ -314,7 +314,7 @@ body {
     background: rgba(10, 10, 10, 0.8);
     border: 1px solid var(--glass-border);
     border-radius: 12px;
-    padding: 2rem;
+    padding: 1.5rem;
     text-align: center;
     transition: all var(--transition-normal);
     display: flex;
@@ -322,9 +322,10 @@ body {
     align-items: center;
     gap: 1rem;
     box-shadow: var(--shadow-sm);
-    width: 280px;
-    height: 400px;
+    width: 240px;
+    height: 360px;
     justify-content: center;
+    margin: 0 auto;
 }
 
 .book-placeholder i {
@@ -452,6 +453,8 @@ body {
     transform-style: preserve-3d;
     perspective: 1000px;
     transition: transform var(--transition-normal);
+    width: 240px;
+    margin: 0 auto;
 }
 
 .ebook-wrapper:hover {
@@ -922,8 +925,13 @@ details p {
     }
 
     .book-placeholder {
-        max-width: 280px;
-        height: 400px;
+        width: 240px;
+        height: 360px;
+        margin: 0 auto;
+    }
+
+    .ebook-wrapper {
+        width: 240px;
         margin: 0 auto;
     }
 
