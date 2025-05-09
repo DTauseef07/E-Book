@@ -9,6 +9,7 @@
     --primary-color: #00ffe7;
     --secondary-color: #ff6bcb;
     --text-color: #e4e4e4;
+    --heading-color: #ffffff;
     --glass-bg: rgba(255, 255, 255, 0.03);
     --glass-border: rgba(255, 255, 255, 0.05);
     
@@ -24,7 +25,7 @@
     
     /* Gradients */
     --gradient-primary: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-    --gradient-glass: linear-gradient(135deg, rgba(0, 255, 231, 0.1), rgba(255, 107, 203, 0.1));
+    --gradient-glass: linear-gradient(135deg, rgba(0, 255, 231, 0.05), rgba(255, 255, 255, 0.02));
 }
 
 /* Base Styles */
@@ -32,9 +33,22 @@
     font-family: 'Poppins', 'Urbanist', sans-serif;
     background-color: var(--bg-color);
     color: var(--text-color);
-    line-height: 1.6;
+    line-height: 1.8;
     overflow-x: hidden;
     scroll-behavior: smooth;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+    color: var(--heading-color);
+    letter-spacing: 0.02em;
+    font-weight: 700;
+    line-height: 1.3;
+}
+
+p {
+    font-weight: 400;
+    line-height: 1.8;
 }
 
 /* Custom Scrollbar */
@@ -102,6 +116,7 @@
     border: 1px solid var(--glass-border);
     border-radius: 16px;
     box-shadow: var(--shadow-sm);
+    background: var(--gradient-glass);
 }
 
 /* Hero Section */
@@ -135,18 +150,20 @@
 .neon-text {
     font-size: clamp(2.5rem, 5vw, 4rem);
     font-weight: 700;
-    color: var(--text-color);
+    color: var(--heading-color);
     text-shadow: 0 0 10px var(--primary-color),
                  0 0 20px var(--primary-color),
                  0 0 30px var(--primary-color);
     margin-bottom: 1.5rem;
     animation: glow 2s infinite alternate;
+    letter-spacing: 0.03em;
 }
 
 .hero .subtitle {
     font-size: clamp(1.1rem, 2vw, 1.5rem);
     opacity: 0.9;
     margin-bottom: 2rem;
+    line-height: 1.6;
 }
 
 .hero-image {
@@ -184,6 +201,7 @@
 .feature-card {
     height: 300px;
     perspective: 1000px;
+    transform-style: preserve-3d;
 }
 
 .card-inner {
@@ -250,10 +268,12 @@
     flex: 0 0 300px;
     scroll-snap-align: start;
     transition: var(--transition-smooth);
+    transform-style: preserve-3d;
+    perspective: 1000px;
 }
 
 .preview-slide:hover {
-    transform: scale(1.05);
+    transform: perspective(1000px) rotateY(3deg) scale(1.02);
 }
 
 .preview-slide img {
@@ -297,10 +317,11 @@
     border-radius: 12px;
     min-width: 100px;
     transition: var(--transition-smooth);
+    transform-style: preserve-3d;
 }
 
 .time-block:hover {
-    transform: translateY(-5px);
+    transform: translateY(-5px) perspective(1000px) rotateY(3deg);
     box-shadow: var(--glow-shadow);
 }
 
@@ -316,17 +337,6 @@
     font-size: 2.5rem;
     color: var(--primary-color);
     animation: blink 1s infinite;
-}
-
-@keyframes blink {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.5; }
-}
-
-@keyframes pulse {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.05); }
-    100% { transform: scale(1); }
 }
 
 /* Testimonials Section */
@@ -345,10 +355,11 @@
     @extend .glass;
     padding: 2rem;
     transition: var(--transition-smooth);
+    transform-style: preserve-3d;
 }
 
 .testimonial-card:hover {
-    transform: translateY(-5px) scale(1.02);
+    transform: translateY(-5px) perspective(1000px) rotateY(3deg);
     box-shadow: var(--glow-shadow);
 }
 
@@ -391,10 +402,11 @@
     margin: 3rem auto;
     padding: 3rem;
     transition: var(--transition-smooth);
+    transform-style: preserve-3d;
 }
 
 .price-card:hover {
-    transform: translateY(-5px);
+    transform: translateY(-5px) perspective(1000px) rotateY(3deg);
     box-shadow: var(--glow-shadow);
 }
 
@@ -418,170 +430,6 @@
     animation: shimmer 2s infinite;
 }
 
-@keyframes shimmer {
-    0% { background-position: -200% center; }
-    100% { background-position: 200% center; }
-}
-
-.features {
-    list-style: none;
-    margin: 2rem 0;
-    text-align: left;
-}
-
-.features li {
-    margin: 1rem 0;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-}
-
-.features li i {
-    color: var(--primary-color);
-}
-
-/* FAQ Section */
-.faq {
-    padding: 6rem 0;
-}
-
-.faq-grid {
-    max-width: 800px;
-    margin: 3rem auto;
-}
-
-details {
-    @extend .glass;
-    padding: 1.5rem;
-    margin-bottom: 1rem;
-    transition: var(--transition-smooth);
-}
-
-details:hover {
-    transform: translateX(5px);
-    box-shadow: var(--glow-shadow);
-}
-
-summary {
-    cursor: pointer;
-    font-weight: 600;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-summary i {
-    transition: var(--transition-smooth);
-}
-
-details[open] summary i {
-    transform: rotate(180deg);
-}
-
-details p {
-    margin-top: 1rem;
-    padding-left: 1rem;
-}
-
-/* Trust Section */
-.trust {
-    padding: 4rem 0;
-    text-align: center;
-}
-
-.payment-methods {
-    display: flex;
-    justify-content: center;
-    gap: 2rem;
-    flex-wrap: wrap;
-    margin-top: 2rem;
-}
-
-.payment-methods img {
-    height: 40px;
-    width: auto;
-    opacity: 0.7;
-    transition: var(--transition-smooth);
-    filter: grayscale(100%);
-}
-
-.payment-methods img:hover {
-    opacity: 1;
-    filter: grayscale(0%);
-    transform: scale(1.1);
-}
-
-/* Footer */
-footer {
-    background: rgba(0, 0, 0, 0.5);
-    padding: 3rem 0;
-    text-align: center;
-    position: relative;
-}
-
-.footer-links {
-    margin-bottom: 1.5rem;
-}
-
-.footer-links a {
-    color: var(--text-color);
-    text-decoration: none;
-    margin: 0 1rem;
-    opacity: 0.8;
-    transition: var(--transition-smooth);
-    position: relative;
-}
-
-.footer-links a::after {
-    content: '';
-    position: absolute;
-    bottom: -2px;
-    left: 0;
-    width: 0;
-    height: 1px;
-    background: var(--gradient-primary);
-    transition: var(--transition-smooth);
-}
-
-.footer-links a:hover {
-    opacity: 1;
-    color: var(--primary-color);
-}
-
-.footer-links a:hover::after {
-    width: 100%;
-}
-
-/* Scroll to Top Button */
-.scroll-top {
-    position: fixed;
-    bottom: 2rem;
-    right: 2rem;
-    background: var(--gradient-primary);
-    color: var(--bg-color);
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    opacity: 0;
-    visibility: hidden;
-    transition: var(--transition-smooth);
-    border: none;
-    box-shadow: var(--glow-shadow);
-}
-
-.scroll-top.show {
-    opacity: 1;
-    visibility: visible;
-}
-
-.scroll-top:hover {
-    transform: translateY(-5px);
-}
-
 /* CTA Button */
 .cta-button {
     display: inline-block;
@@ -596,6 +444,7 @@ footer {
     cursor: pointer;
     position: relative;
     overflow: hidden;
+    transform-style: preserve-3d;
 }
 
 .cta-button::before {
@@ -619,7 +468,7 @@ footer {
 }
 
 .cta-button:hover {
-    transform: translateY(-2px) scale(1.05);
+    transform: translateY(-2px) scale(1.05) perspective(1000px) rotateY(3deg);
     box-shadow: var(--glow-shadow);
 }
 
@@ -629,18 +478,6 @@ footer {
 
 .cta-button.glow {
     animation: glow 2s infinite;
-}
-
-@keyframes glow {
-    0% {
-        box-shadow: 0 0 5px rgba(0, 255, 231, 0.5);
-    }
-    50% {
-        box-shadow: 0 0 20px rgba(0, 255, 231, 0.8);
-    }
-    100% {
-        box-shadow: 0 0 5px rgba(0, 255, 231, 0.5);
-    }
 }
 
 /* Animations */
@@ -655,15 +492,32 @@ footer {
     }
 }
 
-[data-aos] {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.6s ease, transform 0.6s ease;
+@keyframes glow {
+    0% {
+        box-shadow: 0 0 5px rgba(0, 255, 231, 0.5);
+    }
+    50% {
+        box-shadow: 0 0 20px rgba(0, 255, 231, 0.8);
+    }
+    100% {
+        box-shadow: 0 0 5px rgba(0, 255, 231, 0.5);
+    }
 }
 
-[data-aos].aos-animate {
-    opacity: 1;
-    transform: translateY(0);
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+@keyframes shimmer {
+    0% { background-position: -200% center; }
+    100% { background-position: 200% center; }
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
 }
 
 /* Responsive Design */
@@ -676,10 +530,6 @@ footer {
 @media (max-width: 1024px) {
     .container {
         max-width: 960px;
-    }
-    
-    .hero-image {
-        max-width: 350px;
     }
 }
 
@@ -720,6 +570,6 @@ footer {
     }
 
     .cta-button {
-        padding: 1.2rem 3rem; /* Larger tap target for mobile */
+        padding: 1.2rem 3rem;
     }
 } 
