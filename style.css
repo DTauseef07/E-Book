@@ -392,13 +392,25 @@ body {
     padding: 0.5rem 0;
 }
 
-.nav-links a:focus {
-    outline: none;
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -4px;
+    width: 0;
+    height: 2px;
+    background: var(--gradient-primary);
+    transition: var(--transition-normal);
 }
 
 .nav-links a:hover::after,
 .nav-links a:focus::after {
     width: 100%;
+}
+
+.nav-links a:focus {
+    outline: none;
 }
 
 .nav-cta {
