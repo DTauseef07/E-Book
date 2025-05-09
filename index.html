@@ -206,7 +206,7 @@
     <script>
         // Initialize AOS with optimized settings
         AOS.init({
-            duration: 800,
+            duration: 500,
             once: false,
             mirror: true,
             offset: 50,
@@ -218,7 +218,7 @@
         // Initialize Vanilla Tilt with optimized settings
         VanillaTilt.init(document.querySelectorAll("[data-tilt]"), {
             max: 8,
-            speed: 300,
+            speed: 400,
             glare: true,
             "max-glare": 0.15,
             scale: 1.03,
@@ -241,8 +241,8 @@
             const dx = mouseX - cursorX;
             const dy = mouseY - cursorY;
             
-            cursorX += dx * 0.1;
-            cursorY += dy * 0.1;
+            cursorX += dx * 0.2;
+            cursorY += dy * 0.2;
             
             cursor.style.left = cursorX + 'px';
             cursor.style.top = cursorY + 'px';
