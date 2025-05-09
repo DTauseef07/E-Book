@@ -8,16 +8,17 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
       body { cursor: auto !important; }
-      /* Modal Overlay */
+      /* Payment Modal Overlay */
       #payment-modal {
         display: none;
         position: fixed;
         top: 0; left: 0; width: 100vw; height: 100vh;
-        background: rgba(0, 26, 20, 0.65);
+        background: linear-gradient(135deg, rgba(10,20,15,0.98) 60%, rgba(0,26,20,0.98) 100%);
         z-index: 9999;
         align-items: center;
         justify-content: center;
-        animation: fadeInModalBg 0.3s;
+        animation: fadeInModalBg 0.4s cubic-bezier(0.4,0,0.2,1);
+        backdrop-filter: blur(4px);
       }
       #payment-modal.active {
         display: flex;
@@ -26,48 +27,78 @@
         from { opacity: 0; }
         to { opacity: 1; }
       }
-      /* Modal Box */
-      #payment-modal .modal-box {
-        background: rgba(10, 30, 25, 0.85);
-        backdrop-filter: blur(18px) saturate(1.2);
-        border: 1.5px solid var(--glass-border);
-        border-radius: 20px;
-        box-shadow: 0 8px 32px rgba(0,255,231,0.10), 0 2px 8px rgba(0,0,0,0.18);
+      .modal-content {
+        background: rgba(10, 30, 25, 0.92);
+        border-radius: 22px;
+        box-shadow: 0 8px 40px 0 rgba(0,255,231,0.10), 0 1.5px 8px 0 rgba(0,255,231,0.08);
+        border: 1.5px solid rgba(0,255,231,0.13);
+        padding: 2.5rem 2.5rem 2rem 2.5rem;
         min-width: 320px;
         max-width: 95vw;
-        padding: 2.2rem 2.5rem 2rem 2.5rem;
         text-align: center;
-        animation: modalPopIn 0.35s cubic-bezier(0.4,0,0.2,1);
-        transform: scale(0.95);
+        position: relative;
+        transform: scale(0.85) perspective(800px) rotateX(8deg);
+        opacity: 0;
+        animation: modalIn 0.45s cubic-bezier(0.4,0,0.2,1) forwards;
+        box-shadow: 0 0 32px 0 #00ffe7a0, 0 2px 16px 0 #001a14a0;
       }
-      @keyframes modalPopIn {
-        0% { opacity: 0; transform: scale(0.85); }
-        100% { opacity: 1; transform: scale(1); }
+      @keyframes modalIn {
+        from {
+          opacity: 0;
+          transform: scale(0.7) perspective(800px) rotateX(18deg);
+        }
+        to {
+          opacity: 1;
+          transform: scale(1) perspective(800px) rotateX(0deg);
+        }
       }
-      #payment-modal h2 {
+      .modal-content h2 {
         color: var(--accent-primary);
         margin-bottom: 1.2rem;
         font-size: 1.3rem;
-        font-weight: 700;
-        letter-spacing: 0.5px;
+        letter-spacing: 1px;
+        text-shadow: 0 2px 8px #00ffe7a0;
       }
-      #payment-modal .pay-option {
-        margin: 0 auto;
-        width: 100%;
-        max-width: 320px;
-        border-radius: 12px;
-        font-size: 1.08rem;
+      .modal-content .pay-option {
+        margin: 0.2rem 0;
+        border: none;
+        border-radius: 10px;
+        padding: 0.9rem 1.2rem;
+        font-size: 1.1rem;
         font-weight: 600;
-        padding: 0.85rem 1.2rem;
-        transition: box-shadow 0.2s, transform 0.2s;
-        box-shadow: 0 2px 8px rgba(0,255,231,0.07);
-        outline: none;
+        box-shadow: 0 2px 12px 0 rgba(0,255,231,0.08);
+        transition: transform 0.18s cubic-bezier(0.4,0,0.2,1), box-shadow 0.18s;
+        will-change: transform;
+        background: linear-gradient(90deg, var(--accent-primary) 60%, var(--accent-secondary) 100%);
+        color: #000;
+        cursor: pointer;
+        position: relative;
       }
-      #payment-modal .pay-option:focus, #payment-modal .pay-option:hover {
-        box-shadow: 0 0 0 2px var(--accent-primary), 0 2px 8px rgba(0,255,231,0.13);
-        transform: translateY(-2px) scale(1.03);
+      .modal-content .pay-option[data-method="paytm"] {
+        background: linear-gradient(90deg, #00baf2 60%, #00ffe7 100%);
+        color: #fff;
       }
-      #payment-modal #close-modal {
+      .modal-content .pay-option[data-method="stripe"] {
+        background: linear-gradient(90deg, #635bff 60%, #00ffe7 100%);
+        color: #fff;
+      }
+      .modal-content .pay-option[data-method="paypal"] {
+        background: linear-gradient(90deg, #ffc439 60%, #00ffe7 100%);
+        color: #111;
+      }
+      .modal-content .pay-option[data-method="gpay"] {
+        background: linear-gradient(90deg, #fff 60%, #00ffe7 100%);
+        color: #111;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .modal-content .pay-option:hover {
+        transform: scale(1.04) perspective(600px) rotateY(3deg);
+        box-shadow: 0 0 16px 0 #00ffe7a0, 0 2px 8px 0 #001a14a0;
+        z-index: 2;
+      }
+      .modal-content #close-modal {
         margin-top: 1.5rem;
         background: none;
         color: #aaa;
@@ -76,13 +107,13 @@
         cursor: pointer;
         transition: color 0.2s;
       }
-      #payment-modal #close-modal:hover {
+      .modal-content #close-modal:hover {
         color: var(--accent-primary);
       }
       @media (max-width: 600px) {
-        #payment-modal .modal-box {
-          min-width: 0;
-          padding: 1.2rem 0.7rem 1.2rem 0.7rem;
+        .modal-content {
+          padding: 1.2rem 0.5rem 1.2rem 0.5rem;
+          min-width: 90vw;
         }
       }
     </style>
@@ -108,14 +139,14 @@
                 <button type="button" class="cta-button" id="pay-btn">Pay With</button>
             </form>
             <div id="payment-modal">
-                <div class="modal-box">
+                <div class="modal-content">
                     <h2>Choose Payment Method</h2>
                     <div style="display:flex; flex-direction:column; gap:1rem;">
-                        <button class="pay-option" data-method="razorpay" style="background:var(--accent-primary); color:#000; border:none;">Razorpay</button>
-                        <button class="pay-option" data-method="paytm" style="background:#00baf2; color:#fff; border:none;">Paytm</button>
-                        <button class="pay-option" data-method="stripe" style="background:#635bff; color:#fff; border:none;">Stripe</button>
-                        <button class="pay-option" data-method="paypal" style="background:#ffc439; color:#111; border:none;">PayPal</button>
-                        <button class="pay-option" data-method="gpay" style="background:#fff; color:#111; border:1px solid #eee; display:flex; align-items:center; justify-content:center;"><img src='https://img.icons8.com/color/24/google-pay-india.png' alt='GPay' style='margin-right:8px;'>Google Pay</button>
+                        <button class="pay-option" data-method="razorpay">Razorpay</button>
+                        <button class="pay-option" data-method="paytm">Paytm</button>
+                        <button class="pay-option" data-method="stripe">Stripe</button>
+                        <button class="pay-option" data-method="paypal">PayPal</button>
+                        <button class="pay-option" data-method="gpay"><img src='https://img.icons8.com/color/24/google-pay-india.png' alt='GPay' style='margin-right:8px;'>Google Pay</button>
                     </div>
                     <button id="close-modal">Cancel</button>
                 </div>
