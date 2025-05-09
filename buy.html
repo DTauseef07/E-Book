@@ -28,9 +28,21 @@
             </div>
             <p style="font-size: 1.1rem; margin-bottom: 1.5rem;">Unlock the full eBook for just <strong style="color: var(--accent-primary); font-size: 1.3rem;">₹199</strong></p>
             <form id="payment-form">
-                <!-- Example: Razorpay Button (replace with your gateway as needed) -->
-                <button type="button" class="cta-button" id="pay-btn">Pay with Razorpay</button>
+                <button type="button" class="cta-button" id="pay-btn">Pay With</button>
             </form>
+            <div id="payment-modal" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.6); z-index:9999; align-items:center; justify-content:center;">
+                <div style="background:#101c1a; border-radius:16px; padding:2rem 2.5rem; min-width:300px; max-width:90vw; box-shadow:0 8px 32px rgba(0,0,0,0.3); text-align:center;">
+                    <h2 style="color:var(--accent-primary); margin-bottom:1.2rem; font-size:1.3rem;">Choose Payment Method</h2>
+                    <div style="display:flex; flex-direction:column; gap:1rem;">
+                        <button class="pay-option" data-method="razorpay" style="background:var(--accent-primary); color:#000; border:none; border-radius:8px; padding:0.8rem 1.2rem; font-size:1.1rem; font-weight:600; cursor:pointer;">Razorpay</button>
+                        <button class="pay-option" data-method="paytm" style="background:#00baf2; color:#fff; border:none; border-radius:8px; padding:0.8rem 1.2rem; font-size:1.1rem; font-weight:600; cursor:pointer;">Paytm</button>
+                        <button class="pay-option" data-method="stripe" style="background:#635bff; color:#fff; border:none; border-radius:8px; padding:0.8rem 1.2rem; font-size:1.1rem; font-weight:600; cursor:pointer;">Stripe</button>
+                        <button class="pay-option" data-method="paypal" style="background:#ffc439; color:#111; border:none; border-radius:8px; padding:0.8rem 1.2rem; font-size:1.1rem; font-weight:600; cursor:pointer;">PayPal</button>
+                        <button class="pay-option" data-method="gpay" style="background:#fff; color:#111; border:1px solid #eee; border-radius:8px; padding:0.8rem 1.2rem; font-size:1.1rem; font-weight:600; cursor:pointer; display:flex; align-items:center; justify-content:center;"><img src='https://img.icons8.com/color/24/google-pay-india.png' alt='GPay' style='margin-right:8px;'>Google Pay</button>
+                    </div>
+                    <button id="close-modal" style="margin-top:1.5rem; background:none; color:#aaa; border:none; font-size:1rem; cursor:pointer;">Cancel</button>
+                </div>
+            </div>
             <div style="margin-top: 2rem; text-align: center; font-size: 0.95rem; color: #aaa;">
                 <span>We support:</span>
                 <div style="margin-top: 0.5rem;">
@@ -52,25 +64,35 @@
     <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
     <script>
         document.getElementById('pay-btn').onclick = function(e){
-            var options = {
-                "key": "YOUR_RAZORPAY_KEY", // Replace with your Razorpay key
-                "amount": 19900, // Amount in paise (₹199)
-                "currency": "INR",
-                "name": "eBookPro",
-                "description": "Premium eBook",
-                "image": "", // Optional: Add your logo URL
-                "handler": function (response){
-                    alert('Payment successful! Payment ID: ' + response.razorpay_payment_id);
-                    // Redirect or show download link here
-                },
-                "theme": {
-                    "color": "#00ffe7"
+            document.getElementById('payment-modal').style.display = 'flex';
+        };
+        document.getElementById('close-modal').onclick = function(){
+            document.getElementById('payment-modal').style.display = 'none';
+        };
+        Array.from(document.querySelectorAll('.pay-option')).forEach(function(btn){
+            btn.onclick = function(){
+                var method = btn.getAttribute('data-method');
+                document.getElementById('payment-modal').style.display = 'none';
+                if(method === 'razorpay'){
+                    var options = {
+                        "key": "YOUR_RAZORPAY_KEY",
+                        "amount": 19900,
+                        "currency": "INR",
+                        "name": "eBookPro",
+                        "description": "Premium eBook",
+                        "image": "",
+                        "handler": function (response){
+                            alert('Payment successful! Payment ID: ' + response.razorpay_payment_id);
+                        },
+                        "theme": { "color": "#00ffe7" }
+                    };
+                    var rzp1 = new Razorpay(options);
+                    rzp1.open();
+                } else {
+                    alert('This payment method is coming soon!');
                 }
             };
-            var rzp1 = new Razorpay(options);
-            rzp1.open();
-            e.preventDefault();
-        }
+        });
     </script>
 </body>
 </html> 
