@@ -90,6 +90,79 @@
                 opacity: 0;
             }
         }
+
+        /* Hero Section Styles */
+        .hero-container {
+            min-height: 100vh;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            padding: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .hero-left {
+            position: relative;
+            perspective: 1000px;
+        }
+
+        .book-cover {
+            width: 100%;
+            height: auto;
+            border-radius: 12px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease;
+        }
+
+        .hero-left:hover .book-cover {
+            transform: rotateY(10deg) scale(1.02);
+        }
+
+        .hero-right {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        .hero-right h1 {
+            font-size: clamp(2rem, 4vw, 3.5rem);
+            line-height: 1.3;
+            color: #e4e4e4;
+            opacity: 0.9;
+            margin: 0;
+        }
+
+        .hero-right p {
+            font-size: clamp(1.1rem, 1.5vw, 1.3rem);
+            line-height: 1.6;
+            color: #e4e4e4;
+            opacity: 0.8;
+            margin: 0;
+        }
+
+        @media (max-width: 768px) {
+            .hero-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 2rem;
+            }
+
+            .hero-left {
+                order: 2;
+            }
+
+            .hero-right {
+                order: 1;
+            }
+
+            .book-cover {
+                max-width: 300px;
+                margin: 0 auto;
+            }
+        }
     </style>
 </head>
 <body>
@@ -99,18 +172,21 @@
     </div>
 
     <!-- Hero Section -->
-    <header class="hero" role="banner">
-        <div class="particles" id="particles-js" aria-hidden="true"></div>
-        <div class="container">
-            <div class="hero-content" data-aos="fade-up">
-                <h1 class="neon-text">Unlock Limitless Potential with the Ultimate eBook</h1>
-                <p class="subtitle">Transform your life with expert insights and proven strategies</p>
-                <button class="cta-button glow" role="button" aria-label="Buy Now for ₹199" id="buyButton">
-                    Buy Now for ₹199
-                </button>
-            </div>
+    <section class="hero-container" role="banner">
+        <div class="hero-left">
+            <img src="ebook-cover.png" 
+                 alt="Premium eBook Cover - Transform Your Life" 
+                 class="book-cover"
+                 loading="eager">
         </div>
-    </header>
+        <div class="hero-right">
+            <h1>Unlock Limitless Potential<br>with the Ultimate eBook</h1>
+            <p>Discover the secrets to achieving mastery and building the future you deserve.</p>
+            <button class="cta-button" role="button" aria-label="Buy Now for ₹199" id="buyButton">
+                Buy Now for ₹199
+            </button>
+        </div>
+    </section>
 
     <!-- Bomb Animation Container -->
     <div class="bomb-container" id="bombContainer">
