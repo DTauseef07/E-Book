@@ -225,7 +225,7 @@
             gyroscope: false
         });
 
-        // Custom cursor with smooth movement
+        // Custom cursor with natural movement
         const cursor = document.querySelector('.cursor');
         let mouseX = 0;
         let mouseY = 0;
@@ -238,18 +238,23 @@
         });
 
         function updateCursor() {
-            const dx = mouseX - cursorX;
-            const dy = mouseY - cursorY;
-            
-            cursorX += dx * 0.2;
-            cursorY += dy * 0.2;
-            
-            cursor.style.left = cursorX + 'px';
-            cursor.style.top = cursorY + 'px';
-            
+            // Direct position update for more natural movement
+            cursor.style.left = mouseX + 'px';
+            cursor.style.top = mouseY + 'px';
             requestAnimationFrame(updateCursor);
         }
         updateCursor();
+
+        // Add hover effect for interactive elements
+        const interactiveElements = document.querySelectorAll('a, button, [role="button"], input, select, textarea');
+        interactiveElements.forEach(element => {
+            element.addEventListener('mouseenter', () => {
+                cursor.style.transform = 'translate(-50%, -50%) scale(1.2)';
+            });
+            element.addEventListener('mouseleave', () => {
+                cursor.style.transform = 'translate(-50%, -50%) scale(1)';
+            });
+        });
 
         // Optimized scroll animations
         const animatedElements = document.querySelectorAll('.feature-card, .preview-slide, .testimonial-card');
