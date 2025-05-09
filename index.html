@@ -204,32 +204,87 @@
     </footer>
 
     <script>
-        // Initialize AOS with reverse animations
+        // Initialize AOS with optimized settings
         AOS.init({
-            duration: 1000,
+            duration: 800,
             once: false,
             mirror: true,
-            offset: 100,
+            offset: 50,
             delay: 0,
-            easing: 'ease-in-out-cubic',
+            easing: 'cubic-bezier(0.4, 0, 0.2, 1)',
             disable: 'mobile'
         });
 
-        // Initialize Vanilla Tilt with enhanced 3D effect
+        // Initialize Vanilla Tilt with optimized settings
         VanillaTilt.init(document.querySelectorAll("[data-tilt]"), {
-            max: 10,
-            speed: 400,
+            max: 8,
+            speed: 300,
             glare: true,
-            "max-glare": 0.2,
-            scale: 1.05,
-            gyroscope: true
+            "max-glare": 0.15,
+            scale: 1.03,
+            gyroscope: false
         });
 
-        // Custom cursor
+        // Custom cursor with smooth movement
         const cursor = document.querySelector('.cursor');
+        let mouseX = 0;
+        let mouseY = 0;
+        let cursorX = 0;
+        let cursorY = 0;
+
         document.addEventListener('mousemove', (e) => {
-            cursor.style.left = e.clientX + 'px';
-            cursor.style.top = e.clientY + 'px';
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+        });
+
+        function updateCursor() {
+            const dx = mouseX - cursorX;
+            const dy = mouseY - cursorY;
+            
+            cursorX += dx * 0.1;
+            cursorY += dy * 0.1;
+            
+            cursor.style.left = cursorX + 'px';
+            cursor.style.top = cursorY + 'px';
+            
+            requestAnimationFrame(updateCursor);
+        }
+        updateCursor();
+
+        // Optimized scroll animations
+        const animatedElements = document.querySelectorAll('.feature-card, .preview-slide, .testimonial-card');
+        let lastScrollY = window.scrollY;
+        let ticking = false;
+
+        function updateAnimations() {
+            const scrollY = window.scrollY;
+            const direction = scrollY > lastScrollY ? 'down' : 'up';
+            
+            animatedElements.forEach(element => {
+                const rect = element.getBoundingClientRect();
+                const isInView = rect.top < window.innerHeight && rect.bottom >= 0;
+                
+                if (isInView) {
+                    if (direction === 'down') {
+                        element.classList.add('animate');
+                        element.classList.remove('reverse');
+                    } else {
+                        element.classList.add('animate', 'reverse');
+                    }
+                } else {
+                    element.classList.remove('animate');
+                }
+            });
+            
+            lastScrollY = scrollY;
+            ticking = false;
+        }
+
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                window.requestAnimationFrame(updateAnimations);
+                ticking = true;
+            }
         });
 
         // Countdown Timer
@@ -252,34 +307,25 @@
 
         // Header scroll effect
         const header = document.querySelector('.site-header');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
+        let lastHeaderScroll = window.scrollY;
+
+        function updateHeader() {
+            const currentScroll = window.scrollY;
+            
+            if (currentScroll > 50) {
                 header.classList.add('scrolled');
             } else {
                 header.classList.remove('scrolled');
             }
-        });
+            
+            lastHeaderScroll = currentScroll;
+        }
 
-        // Handle reverse animations on scroll
-        let lastScrollTop = 0;
         window.addEventListener('scroll', () => {
-            const st = window.pageYOffset || document.documentElement.scrollTop;
-            const direction = st > lastScrollTop ? 'down' : 'up';
-            
-            document.querySelectorAll('[data-aos]').forEach(element => {
-                const rect = element.getBoundingClientRect();
-                const isInView = rect.top < window.innerHeight && rect.bottom >= 0;
-                
-                if (isInView) {
-                    if (direction === 'down') {
-                        element.style.animationDirection = 'normal';
-                    } else {
-                        element.style.animationDirection = 'reverse';
-                    }
-                }
-            });
-            
-            lastScrollTop = st <= 0 ? 0 : st;
+            if (!ticking) {
+                window.requestAnimationFrame(updateHeader);
+                ticking = true;
+            }
         });
     </script>
 </body>
