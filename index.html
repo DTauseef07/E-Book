@@ -206,7 +206,7 @@
     <script>
         // Initialize AOS with optimized settings
         AOS.init({
-            duration: 500,
+            duration: 600,
             once: false,
             mirror: true,
             offset: 50,
@@ -218,7 +218,7 @@
         // Initialize Vanilla Tilt with optimized settings
         VanillaTilt.init(document.querySelectorAll("[data-tilt]"), {
             max: 8,
-            speed: 400,
+            speed: 350,
             glare: true,
             "max-glare": 0.15,
             scale: 1.03,
@@ -256,10 +256,11 @@
             });
         });
 
-        // Optimized scroll animations
+        // Optimized scroll animations with smoother transitions
         const animatedElements = document.querySelectorAll('.feature-card, .preview-slide, .testimonial-card');
         let lastScrollY = window.scrollY;
         let ticking = false;
+        let scrollTimeout;
 
         function updateAnimations() {
             const scrollY = window.scrollY;
