@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buy Premium eBook</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header class="site-header">
+        <nav class="main-nav container">
+            <div class="logo">
+                <i class="fas fa-book-open"></i>
+                <span>eBookPro</span>
+            </div>
+        </nav>
+    </header>
+    <main class="container" style="margin-top: 120px; min-height: 60vh;">
+        <section class="buy-section glass" style="max-width: 500px; margin: 0 auto; padding: 2.5rem;">
+            <h1 class="section-title" style="margin-bottom: 2rem;">Complete Your Purchase</h1>
+            <div class="book-placeholder" style="margin-bottom: 1.5rem;">
+                <i class="fas fa-book-open"></i>
+                <span class="book-title">Premium eBook</span>
+            </div>
+            <p style="font-size: 1.1rem; margin-bottom: 1.5rem;">Unlock the full eBook for just <strong style="color: var(--accent-primary); font-size: 1.3rem;">₹199</strong></p>
+            <form id="payment-form">
+                <!-- Example: Razorpay Button (replace with your gateway as needed) -->
+                <button type="button" class="cta-button" id="pay-btn">Pay with Razorpay</button>
+            </form>
+            <div style="margin-top: 2rem; text-align: center; font-size: 0.95rem; color: #aaa;">
+                <span>We support:</span>
+                <div style="margin-top: 0.5rem;">
+                    <img src="https://img.icons8.com/color/32/razorpay.png" alt="Razorpay" style="vertical-align: middle; margin-right: 8px;">
+                    <img src="https://img.icons8.com/color/32/paytm.png" alt="Paytm" style="vertical-align: middle; margin-right: 8px;">
+                    <img src="https://img.icons8.com/color/32/stripe.png" alt="Stripe" style="vertical-align: middle; margin-right: 8px;">
+                    <img src="https://img.icons8.com/color/32/paypal.png" alt="PayPal" style="vertical-align: middle; margin-right: 8px;">
+                    <img src="https://img.icons8.com/color/32/google-pay-india.png" alt="Google Pay" style="vertical-align: middle;">
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer class="site-footer">
+        <div class="container" style="text-align: center;">
+            <p style="color: #888;">&copy; 2024 eBookPro. All rights reserved.</p>
+        </div>
+    </footer>
+    <!-- Example Razorpay Integration (replace with your live key and logic) -->
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <script>
+        document.getElementById('pay-btn').onclick = function(e){
+            var options = {
+                "key": "YOUR_RAZORPAY_KEY", // Replace with your Razorpay key
+                "amount": 19900, // Amount in paise (₹199)
+                "currency": "INR",
+                "name": "eBookPro",
+                "description": "Premium eBook",
+                "image": "", // Optional: Add your logo URL
+                "handler": function (response){
+                    alert('Payment successful! Payment ID: ' + response.razorpay_payment_id);
+                    // Redirect or show download link here
+                },
+                "theme": {
+                    "color": "#00ffe7"
+                }
+            };
+            var rzp1 = new Razorpay(options);
+            rzp1.open();
+            e.preventDefault();
+        }
+    </script>
+</body>
+</html> 
