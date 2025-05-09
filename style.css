@@ -148,22 +148,25 @@ p {
 }
 
 .neon-text {
-    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-size: clamp(1.8rem, 4vw, 3rem);
     font-weight: 700;
-    color: var(--heading-color);
-    text-shadow: 0 0 10px var(--primary-color),
-                 0 0 20px var(--primary-color),
-                 0 0 30px var(--primary-color);
+    color: #e4e4e4;
+    opacity: 0.85;
+    text-shadow: none;
     margin-bottom: 1.5rem;
-    animation: glow 2s infinite alternate;
-    letter-spacing: 0.03em;
+    line-height: 1.4;
+    letter-spacing: 0.02em;
+    animation: fadeIn 1s ease-out;
 }
 
 .hero .subtitle {
     font-size: clamp(1.1rem, 2vw, 1.5rem);
-    opacity: 0.9;
+    color: #e4e4e4;
+    opacity: 0.75;
     margin-bottom: 2rem;
     line-height: 1.6;
+    font-weight: 400;
+    letter-spacing: 0.01em;
 }
 
 .hero-image {
