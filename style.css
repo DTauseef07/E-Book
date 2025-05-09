@@ -234,7 +234,79 @@ body {
 }
 
 .hero-right {
-    animation: fadeInRight 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 1.2rem;
+    padding: 2rem 0;
+}
+
+.hero-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--text-color);
+    margin-bottom: 0.5rem;
+    line-height: 1.2;
+    letter-spacing: 0.5px;
+}
+
+.limited-offer-timer {
+    margin: 1.2rem 0 0.5rem 0;
+    padding: 1.2rem 1.5rem;
+    background: rgba(0,255,231,0.06);
+    border-radius: 12px;
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--glow-sm);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.7rem;
+    width: 100%;
+    max-width: 340px;
+}
+
+.limited-offer-label {
+    color: var(--accent-primary);
+    font-weight: 600;
+    letter-spacing: 1px;
+    font-size: 1rem;
+}
+
+.timer-hero {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--accent-primary);
+    letter-spacing: 2px;
+}
+
+.timer-separator {
+    color: var(--accent-primary);
+    font-size: 1.5rem;
+    margin: 0 0.2rem;
+}
+
+.offer-price {
+    color: var(--accent-primary);
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-top: 0.2rem;
+}
+
+.offer-price .price {
+    font-size: 1.3rem;
+    color: var(--accent-primary);
+    font-weight: 700;
+    margin: 0 0.3rem;
+}
+
+.offer-price .hurry {
+    color: #ff4444;
+    font-weight: 700;
+    margin-left: 0.5rem;
 }
 
 .feature-card {
@@ -923,6 +995,8 @@ details p {
 
     .hero-right {
         order: 1;
+        align-items: center;
+        text-align: center;
     }
 
     .book-placeholder,
@@ -959,6 +1033,12 @@ details p {
 
     .newsletter-form button {
         width: 100%;
+    }
+
+    .limited-offer-timer {
+        align-items: center;
+        width: 100%;
+        max-width: 100%;
     }
 }
 
