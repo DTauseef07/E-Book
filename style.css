@@ -322,6 +322,9 @@ body {
     align-items: center;
     gap: 1rem;
     box-shadow: var(--shadow-sm);
+    width: 280px;
+    height: 400px;
+    justify-content: center;
 }
 
 .book-placeholder i {
@@ -702,6 +705,7 @@ body {
     align-items: center;
     gap: 1rem;
     margin-top: 2rem;
+    margin-bottom: 3rem;
 }
 
 .time-block {
@@ -918,7 +922,8 @@ details p {
     }
 
     .book-placeholder {
-        max-width: 300px;
+        max-width: 280px;
+        height: 400px;
         margin: 0 auto;
     }
 
