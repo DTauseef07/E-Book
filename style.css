@@ -55,8 +55,8 @@ body {
 
 /* Custom Cursor */
 .cursor {
-    width: 20px;
-    height: 20px;
+    width: 12px;
+    height: 12px;
     background: var(--accent-primary);
     border-radius: 50%;
     position: fixed;
@@ -68,19 +68,22 @@ body {
 }
 
 .cursor::before {
-    content: '📖';
+    content: '';
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    font-size: 14px;
-    opacity: 0.8;
+    width: 20px;
+    height: 20px;
+    border: 1px solid var(--accent-primary);
+    border-radius: 50%;
+    opacity: 0.5;
     transition: all 0.1s ease;
 }
 
 .cursor:hover::before {
     transform: translate(-50%, -50%) scale(1.2);
-    opacity: 1;
+    opacity: 0.3;
 }
 
 /* Custom Scrollbar */
@@ -370,7 +373,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem 0;
+    padding: 1.2rem 0;
 }
 
 .nav-links {
@@ -378,13 +381,6 @@ body {
     gap: 2rem;
     list-style: none;
     align-items: center;
-    margin: 0;
-    padding: 0;
-}
-
-.nav-links li {
-    margin: 0;
-    padding: 0;
 }
 
 .nav-links a {
@@ -393,7 +389,6 @@ body {
     font-weight: 500;
     transition: var(--transition-normal);
     position: relative;
-    display: inline-block;
     padding: 0.5rem 0;
 }
 
@@ -412,7 +407,6 @@ body {
     width: 100%;
 }
 
-/* Navigation CTA Button */
 .nav-cta {
     background: var(--gradient-primary);
     color: var(--bg-color);
@@ -420,12 +414,6 @@ body {
     border-radius: 50px;
     font-weight: 600;
     transition: var(--transition-normal);
-    margin-left: 1rem;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    height: 40px;
-    line-height: 1;
 }
 
 .nav-cta:hover {
@@ -950,28 +938,7 @@ details p {
     }
 
     .nav-links {
-        position: fixed;
-        top: 70px;
-        left: 0;
-        width: 100%;
-        background: var(--bg-color);
-        padding: 20px;
-        flex-direction: column;
-        align-items: center;
-        transform: translateY(-100%);
-        opacity: 0;
-        visibility: hidden;
-        transition: var(--transition-normal);
-    }
-
-    .nav-links li {
-        margin: 10px 0;
-    }
-
-    .nav-cta {
-        margin: 15px 0 0 0;
-        width: 100%;
-        max-width: 200px;
+        display: none;
     }
 
     .timer {
@@ -1196,7 +1163,7 @@ body {
     }
 
     .nav-links li {
-        margin: 10px 0;
+        margin: 15px 0;
     }
 
     .back-to-top {
