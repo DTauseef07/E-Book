@@ -1,908 +1,286 @@
-/* Import Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Urbanist:wght@300;400;500;600;700&display=swap');
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Premium digital eBook - Transform your life with expert insights and proven strategies">
+    <meta name="theme-color" content="#0d0d0d">
+    <title>Premium Digital eBook</title>
 
-/* Custom Properties */
-:root {
-    /* Colors */
-    --bg-color: #0a0a0a;
-    --bg-gradient: linear-gradient(135deg, #0a0a0a, #001a14);
-    --text-color: #e4e4e4;
-    --accent-primary: #00ffe7;
-    --accent-secondary: #3ffff3;
-    --glass-bg: rgba(0, 255, 231, 0.03);
-    --glass-border: rgba(0, 255, 231, 0.15);
+    <!-- Preload Critical Resources -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
-    /* Shadows & Glows */
-    --glow-sm: 0 0 8px rgba(0, 255, 231, 0.2);
-    --glow-md: 0 0 15px rgba(0, 255, 231, 0.3);
-    --glow-lg: 0 0 25px rgba(0, 255, 231, 0.4);
-    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.2);
-    --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.25);
-    --shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.3);
-    
-    /* Transitions */
-    --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-    --transition-normal: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    --transition-slow: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-    
-    /* Gradients */
-    --gradient-primary: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
-    --gradient-border: linear-gradient(135deg, var(--accent-primary), transparent);
-    --gradient-glow: radial-gradient(circle at center, rgba(0, 255, 231, 0.1), transparent 70%);
-    --gradient-avatar: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
-    --gradient-overlay: linear-gradient(to bottom, rgba(10, 10, 10, 0.8), rgba(0, 26, 20, 0.9));
-}
-
-/* Base Styles */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-html {
-    scroll-behavior: smooth;
-}
-
-body {
-    font-family: 'Urbanist', sans-serif;
-    background: var(--bg-gradient);
-    color: var(--text-color);
-    line-height: 1.6;
-    overflow-x: hidden;
-    cursor: none; /* Hide default cursor for custom cursor */
-}
-
-/* Custom Cursor */
-.cursor {
-    width: 20px;
-    height: 20px;
-    border: 2px solid var(--accent-primary);
-    border-radius: 50%;
-    position: fixed;
-    pointer-events: none;
-    z-index: 9999;
-    transition: transform 0.2s ease;
-    mix-blend-mode: difference;
-}
-
-.cursor::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 4px;
-    height: 4px;
-    background: var(--accent-primary);
-    border-radius: 50%;
-    box-shadow: var(--glow-sm);
-}
-
-/* Custom Scrollbar */
-::-webkit-scrollbar {
-    width: 8px;
-}
-
-::-webkit-scrollbar-track {
-    background: var(--bg-color);
-}
-
-::-webkit-scrollbar-thumb {
-    background: var(--accent-primary);
-    border-radius: 4px;
-    transition: var(--transition-normal);
-}
-
-::-webkit-scrollbar-thumb:hover {
-    background: var(--accent-secondary);
-    box-shadow: var(--glow-sm);
-}
-
-/* Utility Classes */
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 1.5rem;
-}
-
-.glass {
-    background: var(--glass-bg);
-    backdrop-filter: blur(15px);
-    border: 1px solid var(--glass-border);
-    border-radius: 16px;
-    transition: box-shadow var(--transition-normal);
-}
-
-.glass:hover {
-    box-shadow: var(--glow-sm);
-}
-
-/* Animation Classes */
-.animate-on-scroll {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: all var(--transition-normal);
-}
-
-.animate-on-scroll.active {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-/* 3D Effects */
-.perspective-3d {
-    transform-style: preserve-3d;
-    perspective: 1000px;
-}
-
-.tilt-element {
-    transition: transform var(--transition-normal);
-    transform-style: preserve-3d;
-}
-
-.tilt-element:hover {
-    transform: rotateY(10deg) scale(1.02);
-}
-
-/* Book Placeholder Styles */
-.book-placeholder {
-    background: rgba(10, 10, 10, 0.8);
-    border: 1px solid var(--glass-border);
-    border-radius: 12px;
-    padding: 2rem;
-    text-align: center;
-    transition: all var(--transition-normal);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1rem;
-    box-shadow: var(--shadow-sm);
-}
-
-.book-placeholder i {
-    color: var(--accent-primary);
-    transition: transform var(--transition-normal);
-}
-
-.book-placeholder .book-title {
-    font-size: 1.2rem;
-    font-weight: 500;
-    color: var(--text-color);
-    opacity: 0.9;
-}
-
-.book-placeholder.thumbnail {
-    padding: 1.5rem;
-    transform: scale(0.95);
-}
-
-.book-placeholder.thumbnail:hover {
-    transform: scale(1);
-    background: rgba(10, 10, 10, 0.9);
-    box-shadow: var(--glow-sm);
-}
-
-/* Header Styles */
-.site-header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 1000;
-    background: rgba(10, 10, 10, 0.95);
-    backdrop-filter: blur(10px);
-    border-bottom: 1px solid var(--glass-border);
-    transition: all var(--transition-normal);
-}
-
-.site-header.scrolled {
-    background: rgba(10, 10, 10, 0.98);
-    box-shadow: var(--shadow-sm);
-}
-
-.main-nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem 0;
-}
-
-.nav-links {
-    display: flex;
-    gap: 2rem;
-    list-style: none;
-}
-
-.nav-links a {
-    color: var(--text-color);
-    text-decoration: none;
-    font-weight: 500;
-    transition: var(--transition-normal);
-    position: relative;
-}
-
-.nav-links a::after {
-    content: '';
-    position: absolute;
-    bottom: -4px;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background: var(--gradient-primary);
-    transition: var(--transition-normal);
-}
-
-.nav-links a:hover::after {
-    width: 100%;
-}
-
-.nav-cta {
-    background: var(--gradient-primary);
-    color: var(--bg-color);
-    padding: 0.8rem 1.8rem;
-    border-radius: 50px;
-    font-weight: 600;
-    transition: var(--transition-normal);
-}
-
-.nav-cta:hover {
-    transform: translateY(-2px);
-    box-shadow: var(--glow-md);
-}
-
-/* Hero Section */
-.hero {
-    min-height: 100vh;
-    padding: 8rem 0 4rem;
-    display: flex;
-    align-items: center;
-    position: relative;
-    overflow: hidden;
-}
-
-.hero::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: var(--gradient-overlay);
-    opacity: 0.7;
-    pointer-events: none;
-}
-
-.hero-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 4rem;
-    align-items: center;
-}
-
-.ebook-wrapper {
-    position: relative;
-    transform-style: preserve-3d;
-    perspective: 1000px;
-    transition: transform var(--transition-normal);
-}
-
-.ebook-wrapper:hover {
-    transform: rotateY(10deg) scale(1.02);
-}
-
-.ebook-wrapper:hover .book-placeholder {
-    box-shadow: var(--glow-md);
-}
-
-.ebook-wrapper:hover .book-placeholder i {
-    transform: scale(1.1);
-    color: var(--accent-secondary);
-}
-
-.hero-right h1 {
-    font-size: clamp(2rem, 4vw, 3.5rem);
-    line-height: 1.3;
-    margin-bottom: 1.5rem;
-    opacity: 0.9;
-    animation: fadeInUp 1s ease-out;
-}
-
-.hero-right .subtitle {
-    font-size: clamp(1.1rem, 1.5vw, 1.3rem);
-    opacity: 0.8;
-    margin-bottom: 2rem;
-    animation: fadeInUp 1s ease-out 0.2s backwards;
-}
-
-/* CTA Button */
-.cta-button {
-    display: inline-block;
-    background: var(--gradient-primary);
-    color: var(--bg-color);
-    padding: 1rem 2.5rem;
-    border-radius: 50px;
-    text-decoration: none;
-    font-weight: 600;
-    transition: var(--transition-normal);
-    position: relative;
-    overflow: hidden;
-    border: none;
-    cursor: none;
-    font-size: 1.1rem;
-    animation: pulse 8s infinite;
-    color: #000000;
-}
-
-.cta-button::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(
-        120deg,
-        transparent,
-        rgba(255, 255, 255, 0.2),
-        transparent
-    );
-    transition: var(--transition-normal);
-}
-
-.cta-button:hover::before {
-    left: 100%;
-}
-
-.cta-button:hover {
-    transform: scale(1.05);
-    box-shadow: var(--glow-md);
-}
-
-.cta-button:active {
-    transform: scale(0.97);
-}
-
-/* Features Section */
-.features {
-    padding: 6rem 0;
-    position: relative;
-}
-
-.features::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: var(--gradient-overlay);
-    opacity: 0.7;
-    pointer-events: none;
-}
-
-.features-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 2rem;
-    margin-top: 3rem;
-}
-
-.feature-card {
-    background: rgba(10, 10, 10, 0.8);
-    border: 1px solid var(--glass-border);
-    border-radius: 16px;
-    padding: 2rem;
-    text-align: center;
-    transition: all var(--transition-normal);
-    transform-style: preserve-3d;
-    perspective: 1000px;
-}
-
-.feature-card:hover {
-    background: rgba(10, 10, 10, 0.9);
-    transform: translateY(-5px) rotateX(5deg);
-    border-color: var(--accent-primary);
-    box-shadow: var(--glow-sm);
-}
-
-.feature-icon {
-    font-size: 2.5rem;
-    color: var(--accent-primary);
-    margin-bottom: 1.5rem;
-    transition: all var(--transition-normal);
-    display: inline-block;
-}
-
-.feature-card:hover .feature-icon {
-    transform: scale(1.1) rotate(5deg);
-    color: var(--accent-secondary);
-}
-
-/* Preview Section */
-.preview {
-    padding: 6rem 0;
-}
-
-.preview-carousel {
-    display: flex;
-    gap: 2rem;
-    overflow-x: auto;
-    padding: 2rem 0;
-    scroll-snap-type: x mandatory;
-    scrollbar-width: none;
-}
-
-.preview-carousel::-webkit-scrollbar {
-    display: none;
-}
-
-.preview-slide {
-    flex: 0 0 300px;
-    scroll-snap-align: start;
-    transition: var(--transition-normal);
-    transform-style: preserve-3d;
-    perspective: 1000px;
-}
-
-.preview-slide img {
-    width: 100%;
-    height: auto;
-    border-radius: 12px;
-    box-shadow: var(--shadow-md);
-    transition: var(--transition-normal);
-}
-
-.preview-slide:hover {
-    transform: rotateY(10deg);
-}
-
-.preview-slide:hover img {
-    box-shadow: var(--glow-md);
-}
-
-/* Testimonials Section */
-.testimonials {
-    padding: 6rem 0;
-    position: relative;
-}
-
-.testimonials::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: var(--gradient-overlay);
-    opacity: 0.7;
-    pointer-events: none;
-}
-
-.testimonial-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-    margin-top: 3rem;
-}
-
-.testimonial-card {
-    background: rgba(10, 10, 10, 0.8);
-    border: 1px solid var(--glass-border);
-    border-radius: 16px;
-    padding: 2rem;
-    transition: all var(--transition-normal);
-}
-
-.testimonial-card:hover {
-    background: rgba(10, 10, 10, 0.9);
-    border-color: var(--accent-primary);
-    box-shadow: var(--glow-sm);
-    transform: translateY(-5px);
-}
-
-.avatar {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    margin: 0 auto 1rem;
-    overflow: hidden;
-    border: 2px solid var(--accent-primary);
-    transition: all var(--transition-normal);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: var(--gradient-avatar);
-}
-
-.initials {
-    font-size: 1.8rem;
-    font-weight: 700;
-    color: var(--bg-color);
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-}
-
-.testimonial-card:hover .avatar {
-    border-color: var(--accent-secondary);
-    transform: scale(1.1);
-    box-shadow: var(--glow-sm);
-}
-
-/* Countdown Section */
-.countdown-offer {
-    padding: 4rem 0;
-    text-align: center;
-    position: relative;
-}
-
-.countdown-offer::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: var(--gradient-overlay);
-    opacity: 0.7;
-    pointer-events: none;
-}
-
-.timer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 1rem;
-    margin-top: 2rem;
-}
-
-.time-block {
-    background: rgba(10, 10, 10, 0.8);
-    border: 1px solid var(--glass-border);
-    padding: 1.5rem;
-    border-radius: 12px;
-    min-width: 100px;
-    transition: all var(--transition-normal);
-}
-
-.time-block:hover {
-    background: rgba(10, 10, 10, 0.9);
-    border-color: var(--accent-primary);
-    box-shadow: var(--glow-sm);
-}
-
-.time-block span {
-    font-size: 2.5rem;
-    font-weight: 700;
-    color: var(--accent-primary);
-    text-shadow: var(--glow-sm);
-    animation: pulse 2s infinite;
-}
-
-.time-separator {
-    font-size: 2.5rem;
-    color: var(--accent-primary);
-    animation: blink 1s infinite;
-}
-
-/* FAQ Section */
-.faq {
-    padding: 6rem 0;
-}
-
-.faq-grid {
-    max-width: 800px;
-    margin: 3rem auto 0;
-}
-
-details {
-    background: rgba(10, 10, 10, 0.8);
-    border: 1px solid var(--glass-border);
-    border-radius: 12px;
-    margin-bottom: 1rem;
-    transition: all var(--transition-normal);
-}
-
-details:hover {
-    background: rgba(10, 10, 10, 0.9);
-    border-color: var(--accent-primary);
-}
-
-details[open] {
-    background: rgba(10, 10, 10, 0.9);
-    box-shadow: var(--glow-sm);
-}
-
-summary {
-    padding: 1.5rem;
-    cursor: none;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-weight: 500;
-}
-
-summary i {
-    transition: transform var(--transition-normal);
-}
-
-details[open] summary i {
-    transform: rotate(180deg);
-}
-
-details p {
-    padding: 0 1.5rem 1.5rem;
-    opacity: 0.8;
-}
-
-/* Footer */
-.site-footer {
-    background: rgba(10, 10, 10, 0.95);
-    border-top: 1px solid var(--glass-border);
-    padding: 4rem 0 2rem;
-}
-
-.footer-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 3rem;
-    margin-bottom: 3rem;
-}
-
-.newsletter-form {
-    display: flex;
-    gap: 1rem;
-    margin-top: 1rem;
-}
-
-.newsletter-form input {
-    flex: 1;
-    padding: 0.8rem 1.2rem;
-    border: 1px solid var(--glass-border);
-    border-radius: 50px;
-    background: rgba(10, 10, 10, 0.8);
-    color: var(--text-color);
-    transition: var(--transition-normal);
-}
-
-.newsletter-form input:focus {
-    outline: none;
-    border-color: var(--accent-primary);
-    background: rgba(10, 10, 10, 0.9);
-    box-shadow: var(--glow-sm);
-}
-
-.newsletter-form button {
-    padding: 0.8rem 1.5rem;
-    background: var(--gradient-primary);
-    color: var(--bg-color);
-    border: none;
-    border-radius: 50px;
-    cursor: none;
-    transition: var(--transition-normal);
-}
-
-.newsletter-form button:hover {
-    transform: translateY(-2px);
-    box-shadow: var(--glow-md);
-}
-
-.social-links {
-    display: flex;
-    gap: 1.5rem;
-}
-
-.social-links a {
-    color: var(--text-color);
-    font-size: 1.5rem;
-    transition: var(--transition-normal);
-    width: 40px;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    border: 1px solid var(--glass-border);
-    background: rgba(10, 10, 10, 0.8);
-}
-
-.social-links a:hover {
-    color: var(--accent-primary);
-    border-color: var(--accent-primary);
-    box-shadow: var(--glow-sm);
-    transform: translateY(-2px);
-    background: rgba(10, 10, 10, 0.9);
-}
-
-/* Animations */
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-@keyframes fadeInLeft {
-    from {
-        opacity: 0;
-        transform: translateX(-20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateX(0);
-    }
-}
-
-@keyframes fadeInRight {
-    from {
-        opacity: 0;
-        transform: translateX(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateX(0);
-    }
-}
-
-@keyframes rotateIn {
-    from {
-        opacity: 0;
-        transform: rotate(-10deg) scale(0.9);
-    }
-    to {
-        opacity: 1;
-        transform: rotate(0) scale(1);
-    }
-}
-
-@keyframes glow {
-    0% { box-shadow: 0 0 5px rgba(0, 255, 231, 0.2); }
-    50% { box-shadow: 0 0 15px rgba(0, 255, 231, 0.3); }
-    100% { box-shadow: 0 0 5px rgba(0, 255, 231, 0.2); }
-}
-
-@keyframes pulse {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.05); }
-    100% { transform: scale(1); }
-}
-
-@keyframes blink {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.5; }
-}
-
-/* Section-specific Animations */
-.hero-left {
-    animation: fadeInLeft 1s ease-out;
-}
-
-.hero-right {
-    animation: fadeInRight 1s ease-out;
-}
-
-.feature-card:nth-child(1) {
-    animation: fadeInUp 0.8s ease-out;
-}
-
-.feature-card:nth-child(2) {
-    animation: fadeInUp 0.8s ease-out 0.2s backwards;
-}
-
-.feature-card:nth-child(3) {
-    animation: fadeInUp 0.8s ease-out 0.4s backwards;
-}
-
-.preview-slide:nth-child(1) {
-    animation: fadeInLeft 0.8s ease-out;
-}
-
-.preview-slide:nth-child(2) {
-    animation: fadeInUp 0.8s ease-out 0.2s backwards;
-}
-
-.preview-slide:nth-child(3) {
-    animation: fadeInRight 0.8s ease-out;
-}
-
-.testimonial-card:nth-child(1) {
-    animation: rotateIn 0.8s ease-out;
-}
-
-.testimonial-card:nth-child(2) {
-    animation: rotateIn 0.8s ease-out 0.2s backwards;
-}
-
-/* Responsive Design */
-@media (max-width: 1440px) {
-    .container {
-        max-width: 1200px;
-    }
-}
-
-@media (max-width: 1024px) {
-    .container {
-        max-width: 960px;
-    }
-    
-    .hero-grid {
-        gap: 3rem;
-    }
-}
-
-@media (max-width: 768px) {
-    .container {
-        padding: 0 1rem;
-    }
-
-    .hero-grid {
-        grid-template-columns: 1fr;
-        text-align: center;
-        gap: 2rem;
-    }
-
-    .hero-left {
-        order: 2;
-    }
-
-    .hero-right {
-        order: 1;
-    }
-
-    .book-placeholder,
-    .feature-card,
-    .testimonial-card,
-    .time-block {
-        background: rgba(10, 10, 10, 0.9);
-    }
-
-    .book-placeholder {
-        max-width: 300px;
-        margin: 0 auto;
-    }
-
-    .nav-links {
-        display: none;
-    }
-
-    .timer {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .time-block {
-        width: 100%;
-        max-width: 200px;
-    }
-
-    .newsletter-form {
-        flex-direction: column;
-    }
-
-    .newsletter-form button {
-        width: 100%;
-    }
-}
-
-@media (max-width: 480px) {
-    .container {
-        padding: 0 0.8rem;
-    }
-
-    .hero {
-        padding: 6rem 0 2rem;
-    }
-
-    .feature-card,
-    .testimonial-card,
-    .time-block {
-        padding: 1.5rem;
-    }
-
-    .social-links {
-        justify-content: center;
-    }
-} 
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.2/vanilla-tilt.min.js"></script>
+</head>
+<body>
+    <!-- Custom Cursor -->
+    <div class="cursor"></div>
+
+    <!-- Header -->
+    <header class="site-header">
+        <nav class="main-nav container">
+            <div class="logo">
+                <i class="fas fa-book-open"></i>
+                <span>eBookPro</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#preview">Preview</a></li>
+                <li><a href="#testimonials">Testimonials</a></li>
+                <li><a href="#faq">FAQ</a></li>
+                <a href="#buy" class="nav-cta">Buy Now</a>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero" id="home">
+            <div class="container hero-grid">
+                <div class="hero-left" data-aos="fade-right" data-aos-duration="1000">
+                    <div class="ebook-wrapper" data-tilt data-tilt-max="10" data-tilt-speed="400">
+                        <div class="book-placeholder">
+                            <i class="fas fa-book-open"></i>
+                            <span class="book-title">Premium eBook</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-right" data-aos="fade-left" data-aos-duration="1000">
+                    <h1>Transform Your Knowledge with Our Premium eBook</h1>
+                    <p class="subtitle">Discover the secrets to success with our comprehensive guide</p>
+                    <a href="#buy" class="cta-button">Buy Now</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="features" id="features">
+            <div class="container">
+                <h2 class="section-title" data-aos="fade-up">Key Features</h2>
+                <div class="features-grid">
+                    <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
+                        <i class="fas fa-lightbulb feature-icon"></i>
+                        <h3>Expert Insights</h3>
+                        <p>Learn from industry experts with years of experience</p>
+                    </div>
+                    <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
+                        <i class="fas fa-bolt feature-icon"></i>
+                        <h3>Quick Learning</h3>
+                        <p>Master concepts faster with our proven methodology</p>
+                    </div>
+                    <div class="feature-card" data-aos="fade-up" data-aos-delay="300">
+                        <i class="fas fa-chart-line feature-icon"></i>
+                        <h3>Proven Results</h3>
+                        <p>Join thousands of successful learners worldwide</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Preview Section -->
+        <section class="preview" id="preview">
+            <div class="container">
+                <h2 class="section-title" data-aos="fade-up">Book Preview</h2>
+                <div class="preview-carousel">
+                    <div class="preview-slide" data-aos="fade-right">
+                        <div class="book-placeholder thumbnail">
+                            <i class="fas fa-book"></i>
+                            <span class="book-title">Chapter 1</span>
+                        </div>
+                    </div>
+                    <div class="preview-slide" data-aos="fade-up">
+                        <div class="book-placeholder thumbnail">
+                            <i class="fas fa-book"></i>
+                            <span class="book-title">Chapter 2</span>
+                        </div>
+                    </div>
+                    <div class="preview-slide" data-aos="fade-left">
+                        <div class="book-placeholder thumbnail">
+                            <i class="fas fa-book"></i>
+                            <span class="book-title">Chapter 3</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials Section -->
+        <section class="testimonials" id="testimonials">
+            <div class="container">
+                <h2 class="section-title" data-aos="fade-up">What Readers Say</h2>
+                <div class="testimonial-grid">
+                    <div class="testimonial-card" data-aos="fade-up" data-aos-delay="100">
+                        <div class="avatar">
+                            <span class="initials">RS</span>
+                        </div>
+                        <h3>Rahul Sharma</h3>
+                        <p>"This eBook transformed my approach to learning. Highly recommended!"</p>
+                    </div>
+                    <div class="testimonial-card" data-aos="fade-up" data-aos-delay="200">
+                        <div class="avatar">
+                            <span class="initials">AP</span>
+                        </div>
+                        <h3>Anita Patel</h3>
+                        <p>"The insights provided are invaluable. A must-read for everyone."</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Countdown Section -->
+        <section class="countdown-offer" id="buy">
+            <div class="container">
+                <h2 class="section-title" data-aos="fade-up">Limited Time Offer</h2>
+                <div class="timer" data-aos="fade-up" data-aos-delay="100">
+                    <div class="time-block">
+                        <span id="hours">24</span>
+                        <p>Hours</p>
+                    </div>
+                    <span class="time-separator">:</span>
+                    <div class="time-block">
+                        <span id="minutes">00</span>
+                        <p>Minutes</p>
+                    </div>
+                    <span class="time-separator">:</span>
+                    <div class="time-block">
+                        <span id="seconds">00</span>
+                        <p>Seconds</p>
+                    </div>
+                </div>
+                <a href="#buy" class="cta-button" data-aos="fade-up" data-aos-delay="200">Buy Now</a>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="faq" id="faq">
+            <div class="container">
+                <h2 class="section-title" data-aos="fade-up">Frequently Asked Questions</h2>
+                <div class="faq-grid">
+                    <details data-aos="fade-up" data-aos-delay="100">
+                        <summary>What's included in the eBook? <i class="fas fa-chevron-down"></i></summary>
+                        <p>Our premium eBook includes comprehensive content, practical examples, and exclusive resources.</p>
+                    </details>
+                    <details data-aos="fade-up" data-aos-delay="200">
+                        <summary>How long will I have access? <i class="fas fa-chevron-down"></i></summary>
+                        <p>You'll have lifetime access to the eBook and all future updates.</p>
+                    </details>
+                    <details data-aos="fade-up" data-aos-delay="300">
+                        <summary>Is there a money-back guarantee? <i class="fas fa-chevron-down"></i></summary>
+                        <p>Yes, we offer a 30-day money-back guarantee if you're not satisfied.</p>
+                    </details>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-info">
+                    <h3>Stay Updated</h3>
+                    <p>Subscribe to our newsletter for the latest updates and offers.</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Enter your email" required>
+                        <button type="submit">Subscribe</button>
+                    </form>
+                </div>
+                <div class="social-links">
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize AOS with reverse animations
+        AOS.init({
+            duration: 1000,
+            once: false,
+            mirror: true,
+            offset: 100,
+            delay: 0,
+            easing: 'ease-in-out-cubic',
+            disable: 'mobile'
+        });
+
+        // Initialize Vanilla Tilt with enhanced 3D effect
+        VanillaTilt.init(document.querySelectorAll("[data-tilt]"), {
+            max: 10,
+            speed: 400,
+            glare: true,
+            "max-glare": 0.2,
+            scale: 1.05,
+            gyroscope: true
+        });
+
+        // Custom cursor
+        const cursor = document.querySelector('.cursor');
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        });
+
+        // Countdown Timer
+        function updateTimer() {
+            const now = new Date();
+            const end = new Date(now.getTime() + 24 * 60 * 60 * 1000);
+            const diff = end - now;
+            
+            const hours = Math.floor(diff / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+            
+            document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+            document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+            document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+        }
+
+        setInterval(updateTimer, 1000);
+        updateTimer();
+
+        // Header scroll effect
+        const header = document.querySelector('.site-header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Handle reverse animations on scroll
+        let lastScrollTop = 0;
+        window.addEventListener('scroll', () => {
+            const st = window.pageYOffset || document.documentElement.scrollTop;
+            const direction = st > lastScrollTop ? 'down' : 'up';
+            
+            document.querySelectorAll('[data-aos]').forEach(element => {
+                const rect = element.getBoundingClientRect();
+                const isInView = rect.top < window.innerHeight && rect.bottom >= 0;
+                
+                if (isInView) {
+                    if (direction === 'down') {
+                        element.style.animationDirection = 'normal';
+                    } else {
+                        element.style.animationDirection = 'reverse';
+                    }
+                }
+            });
+            
+            lastScrollTop = st <= 0 ? 0 : st;
+        });
+    </script>
+</body>
+</html> 
