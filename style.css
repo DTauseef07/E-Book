@@ -122,12 +122,21 @@ body {
 .animate-on-scroll {
     opacity: 0;
     transform: translateY(20px);
-    transition: all var(--transition-normal);
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
     will-change: transform, opacity;
 }
 
 .animate-on-scroll.active {
     opacity: 1;
+    transform: translateY(0);
+}
+
+/* Reverse Animation Classes */
+.animate-on-scroll.reverse {
+    transform: translateY(-20px);
+}
+
+.animate-on-scroll.reverse.active {
     transform: translateY(0);
 }
 
@@ -164,113 +173,127 @@ body {
     will-change: transform, opacity;
     backface-visibility: hidden;
     transform-style: preserve-3d;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* 3D Effects Enhancement */
-.tilt-element {
-    transition: transform var(--transition-normal);
-    transform-style: preserve-3d;
-    will-change: transform;
-}
-
-.tilt-element:hover {
-    transform: rotateY(10deg) scale(1.02);
-}
-
-/* Animation Keyframes Optimization */
+/* Optimized Animation Keyframes */
 @keyframes fadeInUp {
-    from {
+    0% {
         opacity: 0;
-        transform: translateY(30px);
+        transform: translate3d(0, 30px, 0);
     }
-    to {
+    100% {
         opacity: 1;
-        transform: translateY(0);
+        transform: translate3d(0, 0, 0);
     }
 }
 
 @keyframes fadeInLeft {
-    from {
+    0% {
         opacity: 0;
-        transform: translateX(-30px);
+        transform: translate3d(-30px, 0, 0);
     }
-    to {
+    100% {
         opacity: 1;
-        transform: translateX(0);
+        transform: translate3d(0, 0, 0);
     }
 }
 
 @keyframes fadeInRight {
-    from {
+    0% {
         opacity: 0;
-        transform: translateX(30px);
+        transform: translate3d(30px, 0, 0);
     }
-    to {
+    100% {
         opacity: 1;
-        transform: translateX(0);
+        transform: translate3d(0, 0, 0);
     }
 }
 
 @keyframes rotateIn {
-    from {
+    0% {
         opacity: 0;
-        transform: rotate(-15deg) scale(0.9);
+        transform: rotate3d(0, 0, 1, -15deg) scale3d(0.9, 0.9, 0.9);
     }
-    to {
+    100% {
         opacity: 1;
-        transform: rotate(0) scale(1);
+        transform: rotate3d(0, 0, 1, 0) scale3d(1, 1, 1);
     }
 }
 
-/* Section-specific Animations with Reverse */
+/* Optimized Section Animations */
 .hero-left {
-    animation: fadeInLeft 1s ease-out;
-    animation-fill-mode: both;
+    animation: fadeInLeft 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
 
 .hero-right {
-    animation: fadeInRight 1s ease-out;
-    animation-fill-mode: both;
+    animation: fadeInRight 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
 
-.feature-card:nth-child(1) {
-    animation: fadeInUp 0.8s ease-out;
-    animation-fill-mode: both;
+.feature-card {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.feature-card:nth-child(2) {
-    animation: fadeInUp 0.8s ease-out 0.2s backwards;
-    animation-fill-mode: both;
+.feature-card.animate {
+    opacity: 1;
+    transform: translateY(0);
 }
 
-.feature-card:nth-child(3) {
-    animation: fadeInUp 0.8s ease-out 0.4s backwards;
-    animation-fill-mode: both;
+.preview-slide {
+    opacity: 0;
+    transform: translateX(20px);
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.preview-slide:nth-child(1) {
-    animation: fadeInLeft 0.8s ease-out;
-    animation-fill-mode: both;
+.preview-slide.animate {
+    opacity: 1;
+    transform: translateX(0);
 }
 
-.preview-slide:nth-child(2) {
-    animation: fadeInUp 0.8s ease-out 0.2s backwards;
-    animation-fill-mode: both;
+.testimonial-card {
+    opacity: 0;
+    transform: rotate(-5deg) scale(0.95);
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.preview-slide:nth-child(3) {
-    animation: fadeInRight 0.8s ease-out;
-    animation-fill-mode: both;
+.testimonial-card.animate {
+    opacity: 1;
+    transform: rotate(0) scale(1);
 }
 
-.testimonial-card:nth-child(1) {
-    animation: rotateIn 0.8s ease-out;
-    animation-fill-mode: both;
+/* 3D Effect Optimizations */
+.tilt-element {
+    transform-style: preserve-3d;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform;
 }
 
-.testimonial-card:nth-child(2) {
-    animation: rotateIn 0.8s ease-out 0.2s backwards;
-    animation-fill-mode: both;
+.tilt-element:hover {
+    transform: perspective(1000px) rotateY(10deg) scale(1.02);
+}
+
+/* Animation Classes */
+.animate-on-scroll {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform, opacity;
+}
+
+.animate-on-scroll.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Reverse Animation Classes */
+.animate-on-scroll.reverse {
+    transform: translateY(-20px);
+}
+
+.animate-on-scroll.reverse.active {
+    transform: translateY(0);
 }
 
 /* 3D Effects */
