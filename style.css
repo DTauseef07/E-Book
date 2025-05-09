@@ -55,15 +55,16 @@ body {
 
 /* Custom Cursor */
 .cursor {
-    width: 20px;
-    height: 20px;
-    border: 2px solid var(--accent-primary);
+    width: 12px;
+    height: 12px;
+    background: var(--accent-primary);
     border-radius: 50%;
     position: fixed;
     pointer-events: none;
     z-index: 9999;
-    transition: transform 0.2s ease;
+    transition: transform 0.1s ease;
     mix-blend-mode: difference;
+    transform: translate(-50%, -50%);
 }
 
 .cursor::before {
@@ -72,11 +73,17 @@ body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 4px;
-    height: 4px;
-    background: var(--accent-primary);
+    width: 20px;
+    height: 20px;
+    border: 1px solid var(--accent-primary);
     border-radius: 50%;
-    box-shadow: var(--glow-sm);
+    opacity: 0.5;
+    transition: all 0.1s ease;
+}
+
+.cursor:hover::before {
+    transform: translate(-50%, -50%) scale(1.2);
+    opacity: 0.3;
 }
 
 /* Custom Scrollbar */
@@ -956,4 +963,18 @@ details p {
     .social-links {
         justify-content: center;
     }
+}
+
+/* Add pointer cursor to interactive elements */
+a, button, [role="button"], 
+input, select, textarea,
+.nav-links a, .cta-button,
+.newsletter-form button,
+.social-links a {
+    cursor: none;
+}
+
+/* Hide default cursor */
+body {
+    cursor: none;
 } 
