@@ -5,35 +5,52 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Premium Digital eBook - Master Your Success with Our Comprehensive Guide">
     <title>Premium Digital eBook - Your Path to Success</title>
+    
+    <!-- Preload Critical Resources -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" as="style">
+    
+    <!-- Stylesheets -->
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Preload Hero Image -->
+    <link rel="preload" as="image" href="https://placehold.co/400x600/1a1a1a/ffffff?text=Premium+eBook">
 </head>
 <body>
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="particles" id="particles-js"></div>
+    <!-- Preloader -->
+    <div class="preloader" aria-hidden="true">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Header Section -->
+    <header class="hero" role="banner">
+        <div class="particles" id="particles-js" aria-hidden="true"></div>
         <div class="container">
             <div class="hero-content" data-aos="fade-up">
                 <h1 class="neon-text">Master Your Success with Our Premium eBook</h1>
                 <p class="subtitle">Unlock the secrets to achieving your goals with our comprehensive guide</p>
-                <div class="hero-image" data-tilt data-tilt-max="10" data-tilt-speed="500">
-                    <img src="https://placehold.co/400x600/1a1a1a/ffffff?text=Premium+eBook" alt="Premium eBook Cover">
-                </div>
-                <a href="#pricing" class="cta-button glow">Buy Now for ₹199</a>
+                <figure class="hero-image" data-tilt data-tilt-max="10" data-tilt-speed="500" data-tilt-perspective="1000">
+                    <img src="https://placehold.co/400x600/1a1a1a/ffffff?text=Premium+eBook" 
+                         alt="Premium eBook Cover - Master Your Success" 
+                         loading="eager">
+                </figure>
+                <a href="#pricing" class="cta-button glow" role="button" aria-label="Buy Now for ₹199">Buy Now for ₹199</a>
             </div>
         </div>
-    </section>
+    </header>
 
     <!-- Features Section -->
-    <section class="features" data-aos="fade-up">
+    <section class="features" aria-labelledby="features-heading">
         <div class="container">
-            <h2>Why Choose Our eBook?</h2>
+            <h2 id="features-heading">Why Choose Our eBook?</h2>
             <div class="features-grid">
-                <div class="feature-card">
+                <article class="feature-card" data-aos="fade-up" data-aos-delay="100">
                     <div class="card-inner">
                         <div class="card-front">
-                            <i class="fas fa-book-open"></i>
+                            <i class="fas fa-book-open" aria-hidden="true"></i>
                             <h3>Comprehensive Content</h3>
                             <p>200+ pages of valuable insights and strategies</p>
                         </div>
@@ -41,11 +58,11 @@
                             <p>Dive deep into proven techniques and strategies that will transform your approach to success.</p>
                         </div>
                     </div>
-                </div>
-                <div class="feature-card">
+                </article>
+                <article class="feature-card" data-aos="fade-up" data-aos-delay="200">
                     <div class="card-inner">
                         <div class="card-front">
-                            <i class="fas fa-mobile-alt"></i>
+                            <i class="fas fa-mobile-alt" aria-hidden="true"></i>
                             <h3>Mobile Friendly</h3>
                             <p>Read anywhere, anytime on any device</p>
                         </div>
@@ -53,11 +70,11 @@
                             <p>Optimized for all devices with responsive design and easy navigation.</p>
                         </div>
                     </div>
-                </div>
-                <div class="feature-card">
+                </article>
+                <article class="feature-card" data-aos="fade-up" data-aos-delay="300">
                     <div class="card-inner">
                         <div class="card-front">
-                            <i class="fas fa-download"></i>
+                            <i class="fas fa-download" aria-hidden="true"></i>
                             <h3>Instant Download</h3>
                             <p>Get immediate access after purchase</p>
                         </div>
@@ -65,11 +82,11 @@
                             <p>No waiting time - start learning and implementing right away.</p>
                         </div>
                     </div>
-                </div>
-                <div class="feature-card">
+                </article>
+                <article class="feature-card" data-aos="fade-up" data-aos-delay="400">
                     <div class="card-inner">
                         <div class="card-front">
-                            <i class="fas fa-headset"></i>
+                            <i class="fas fa-headset" aria-hidden="true"></i>
                             <h3>24/7 Support</h3>
                             <p>Dedicated customer support team</p>
                         </div>
@@ -77,45 +94,54 @@
                             <p>Get help whenever you need it with our responsive support team.</p>
                         </div>
                     </div>
-                </div>
+                </article>
             </div>
         </div>
     </section>
 
     <!-- Preview Section -->
-    <section class="preview" data-aos="fade-up">
+    <section class="preview" aria-labelledby="preview-heading">
         <div class="container">
-            <h2>Take a Peek Inside</h2>
+            <h2 id="preview-heading">Take a Peek Inside</h2>
             <div class="preview-carousel">
-                <div class="preview-slide">
-                    <img src="https://placehold.co/300x400/1a1a1a/ffffff?text=Sample+Page+1" alt="Sample Page 1">
-                </div>
-                <div class="preview-slide">
-                    <img src="https://placehold.co/300x400/1a1a1a/ffffff?text=Sample+Page+2" alt="Sample Page 2">
-                </div>
-                <div class="preview-slide">
-                    <img src="https://placehold.co/300x400/1a1a1a/ffffff?text=Sample+Page+3" alt="Sample Page 3">
-                </div>
+                <figure class="preview-slide" data-aos="fade-right">
+                    <img src="https://placehold.co/300x400/1a1a1a/ffffff?text=Sample+Page+1" 
+                         alt="Sample Page 1 - Introduction to Success Principles" 
+                         loading="lazy">
+                    <figcaption>Introduction to Success Principles</figcaption>
+                </figure>
+                <figure class="preview-slide" data-aos="fade-up">
+                    <img src="https://placehold.co/300x400/1a1a1a/ffffff?text=Sample+Page+2" 
+                         alt="Sample Page 2 - Advanced Strategies" 
+                         loading="lazy">
+                    <figcaption>Advanced Strategies</figcaption>
+                </figure>
+                <figure class="preview-slide" data-aos="fade-left">
+                    <img src="https://placehold.co/300x400/1a1a1a/ffffff?text=Sample+Page+3" 
+                         alt="Sample Page 3 - Implementation Guide" 
+                         loading="lazy">
+                    <figcaption>Implementation Guide</figcaption>
+                </figure>
             </div>
         </div>
     </section>
 
     <!-- Countdown Section -->
-    <section class="countdown" data-aos="fade-up">
+    <section class="countdown" aria-labelledby="countdown-heading">
         <div class="container">
-            <h2>Limited Time Offer</h2>
-            <div class="timer">
-                <div class="time-block">
+            <h2 id="countdown-heading">Limited Time Offer</h2>
+            <div class="timer" role="timer" aria-label="Countdown timer">
+                <div class="time-block" aria-label="Hours">
                     <span id="hours">24</span>
                     <label>Hours</label>
                 </div>
-                <div class="time-separator">:</div>
-                <div class="time-block">
+                <div class="time-separator" aria-hidden="true">:</div>
+                <div class="time-block" aria-label="Minutes">
                     <span id="minutes">00</span>
                     <label>Minutes</label>
                 </div>
-                <div class="time-separator">:</div>
-                <div class="time-block">
+                <div class="time-separator" aria-hidden="true">:</div>
+                <div class="time-block" aria-label="Seconds">
                     <span id="seconds">00</span>
                     <label>Seconds</label>
                 </div>
@@ -124,89 +150,89 @@
     </section>
 
     <!-- Testimonials Section -->
-    <section class="testimonials" data-aos="fade-up">
+    <section class="testimonials" aria-labelledby="testimonials-heading">
         <div class="container">
-            <h2>What Our Readers Say</h2>
+            <h2 id="testimonials-heading">What Our Readers Say</h2>
             <div class="testimonial-grid">
-                <div class="testimonial-card">
+                <blockquote class="testimonial-card" data-aos="fade-right">
                     <div class="avatar">
-                        <img src="https://placehold.co/100x100/1a1a1a/ffffff?text=RS" alt="Rahul Sharma">
+                        <img src="https://placehold.co/100x100/1a1a1a/ffffff?text=RS" alt="Rahul Sharma's avatar" loading="lazy">
                     </div>
-                    <div class="stars">★★★★★</div>
+                    <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
                     <p>"This eBook transformed my approach to success. Highly recommended!"</p>
-                    <div class="author">- Rahul Sharma</div>
-                </div>
-                <div class="testimonial-card">
+                    <cite>- Rahul Sharma</cite>
+                </blockquote>
+                <blockquote class="testimonial-card" data-aos="fade-up">
                     <div class="avatar">
-                        <img src="https://placehold.co/100x100/1a1a1a/ffffff?text=PP" alt="Priya Patel">
+                        <img src="https://placehold.co/100x100/1a1a1a/ffffff?text=PP" alt="Priya Patel's avatar" loading="lazy">
                     </div>
-                    <div class="stars">★★★★★</div>
+                    <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
                     <p>"The insights are invaluable. Worth every penny!"</p>
-                    <div class="author">- Priya Patel</div>
-                </div>
-                <div class="testimonial-card">
+                    <cite>- Priya Patel</cite>
+                </blockquote>
+                <blockquote class="testimonial-card" data-aos="fade-left">
                     <div class="avatar">
-                        <img src="https://placehold.co/100x100/1a1a1a/ffffff?text=AK" alt="Amit Kumar">
+                        <img src="https://placehold.co/100x100/1a1a1a/ffffff?text=AK" alt="Amit Kumar's avatar" loading="lazy">
                     </div>
-                    <div class="stars">★★★★★</div>
+                    <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
                     <p>"Clear, concise, and actionable advice. A must-read!"</p>
-                    <div class="author">- Amit Kumar</div>
-                </div>
+                    <cite>- Amit Kumar</cite>
+                </blockquote>
             </div>
         </div>
     </section>
 
     <!-- Pricing Section -->
-    <section id="pricing" class="pricing" data-aos="fade-up">
+    <aside id="pricing" class="pricing" aria-labelledby="pricing-heading">
         <div class="container">
-            <h2>Get Your Copy Today</h2>
+            <h2 id="pricing-heading">Get Your Copy Today</h2>
             <div class="price-card">
                 <div class="price-tag">
                     <span class="old-price">₹499</span>
                     <span class="new-price">₹199</span>
                 </div>
-                <p class="offer-expires">Offer expires in: <span id="timer"></span></p>
+                <p class="offer-expires">Offer expires in: <span id="timer" aria-live="polite"></span></p>
                 <ul class="features">
-                    <li><i class="fas fa-check"></i> 200+ Pages of Premium Content</li>
-                    <li><i class="fas fa-check"></i> Instant Digital Download</li>
-                    <li><i class="fas fa-check"></i> Lifetime Access</li>
-                    <li><i class="fas fa-check"></i> Free Updates</li>
+                    <li><i class="fas fa-check" aria-hidden="true"></i> 200+ Pages of Premium Content</li>
+                    <li><i class="fas fa-check" aria-hidden="true"></i> Instant Digital Download</li>
+                    <li><i class="fas fa-check" aria-hidden="true"></i> Lifetime Access</li>
+                    <li><i class="fas fa-check" aria-hidden="true"></i> Free Updates</li>
                 </ul>
-                <a href="#" class="cta-button glow">Buy Now for ₹199</a>
+                <a href="#" class="cta-button glow" role="button" aria-label="Buy Now for ₹199">Buy Now for ₹199</a>
             </div>
         </div>
-    </section>
+    </aside>
 
     <!-- FAQ Section -->
-    <section class="faq" data-aos="fade-up">
+    <section class="faq" aria-labelledby="faq-heading">
         <div class="container">
-            <h2>Frequently Asked Questions</h2>
+            <h2 id="faq-heading">Frequently Asked Questions</h2>
             <div class="faq-grid">
                 <details>
                     <summary>
                         What format is the eBook available in?
-                        <i class="fas fa-chevron-down"></i>
+                        <i class="fas fa-chevron-down" aria-hidden="true"></i>
                     </summary>
                     <p>The eBook is available in PDF format, compatible with all devices and e-readers.</p>
                 </details>
                 <details>
                     <summary>
                         How will I receive the eBook after purchase?
-                        <i class="fas fa-chevron-down"></i>
+                        <i class="fas fa-chevron-down" aria-hidden="true"></i>
                     </summary>
                     <p>You'll receive an instant download link via email after your payment is confirmed.</p>
                 </details>
                 <details>
                     <summary>
                         Is there a money-back guarantee?
-                        <i class="fas fa-chevron-down"></i>
+                        <i class="fas fa-chevron-down" aria-hidden="true"></i>
                     </summary>
                     <p>Yes, we offer a 30-day money-back guarantee if you're not satisfied with your purchase.</p>
                 </details>
                 <details>
                     <summary>
                         Can I access the eBook on multiple devices?
-                        <i class="fas fa-chevron-down"></i>
+                        <i class="fas fa-chevron-down" aria-hidden="true"></i>
                     </summary>
                     <p>Yes, you can access the eBook on any device with your login credentials.</p>
                 </details>
@@ -215,14 +241,14 @@
     </section>
 
     <!-- Trust Section -->
-    <section class="trust" data-aos="fade-up">
+    <section class="trust" aria-labelledby="trust-heading">
         <div class="container">
-            <h2>Secure Payment Methods</h2>
+            <h2 id="trust-heading">Secure Payment Methods</h2>
             <div class="payment-methods">
-                <img src="https://placehold.co/100x50/1a1a1a/ffffff?text=Razorpay" alt="Razorpay">
-                <img src="https://placehold.co/100x50/1a1a1a/ffffff?text=Paytm" alt="Paytm">
-                <img src="https://placehold.co/100x50/1a1a1a/ffffff?text=GPay" alt="GPay">
-                <img src="https://placehold.co/100x50/1a1a1a/ffffff?text=SSL" alt="SSL Secure">
+                <img src="https://placehold.co/100x50/1a1a1a/ffffff?text=Razorpay" alt="Razorpay Payment" loading="lazy">
+                <img src="https://placehold.co/100x50/1a1a1a/ffffff?text=Paytm" alt="Paytm Payment" loading="lazy">
+                <img src="https://placehold.co/100x50/1a1a1a/ffffff?text=GPay" alt="Google Pay" loading="lazy">
+                <img src="https://placehold.co/100x50/1a1a1a/ffffff?text=SSL" alt="SSL Secure" loading="lazy">
             </div>
         </div>
     </section>
@@ -231,14 +257,17 @@
     <footer>
         <div class="container">
             <div class="footer-content">
-                <div class="footer-links">
+                <nav class="footer-links" aria-label="Footer navigation">
                     <a href="#">Privacy Policy</a>
                     <a href="#">Terms of Service</a>
                     <a href="#">Contact Us</a>
-                </div>
+                </nav>
                 <p class="copyright">© 2024 Premium eBook. All rights reserved.</p>
             </div>
         </div>
+        <button id="scroll-top" class="scroll-top" aria-label="Scroll to top">
+            <i class="fas fa-arrow-up" aria-hidden="true"></i>
+        </button>
     </footer>
 
     <!-- Scripts -->
@@ -249,7 +278,8 @@
         // Initialize AOS
         AOS.init({
             duration: 800,
-            once: true
+            once: true,
+            offset: 100
         });
 
         // Initialize tilt effect
@@ -336,6 +366,32 @@
                     behavior: 'smooth'
                 });
             });
+        });
+
+        // Scroll to top button
+        const scrollTopBtn = document.getElementById('scroll-top');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                scrollTopBtn.classList.add('show');
+            } else {
+                scrollTopBtn.classList.remove('show');
+            }
+        });
+
+        scrollTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Preloader
+        window.addEventListener('load', () => {
+            document.querySelector('.preloader').classList.add('fade-out');
+            setTimeout(() => {
+                document.querySelector('.preloader').style.display = 'none';
+            }, 500);
         });
     </script>
 </body>
