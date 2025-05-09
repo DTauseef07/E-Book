@@ -8,6 +8,83 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
       body { cursor: auto !important; }
+      /* Modal Overlay */
+      #payment-modal {
+        display: none;
+        position: fixed;
+        top: 0; left: 0; width: 100vw; height: 100vh;
+        background: rgba(0, 26, 20, 0.65);
+        z-index: 9999;
+        align-items: center;
+        justify-content: center;
+        animation: fadeInModalBg 0.3s;
+      }
+      #payment-modal.active {
+        display: flex;
+      }
+      @keyframes fadeInModalBg {
+        from { opacity: 0; }
+        to { opacity: 1; }
+      }
+      /* Modal Box */
+      #payment-modal .modal-box {
+        background: rgba(10, 30, 25, 0.85);
+        backdrop-filter: blur(18px) saturate(1.2);
+        border: 1.5px solid var(--glass-border);
+        border-radius: 20px;
+        box-shadow: 0 8px 32px rgba(0,255,231,0.10), 0 2px 8px rgba(0,0,0,0.18);
+        min-width: 320px;
+        max-width: 95vw;
+        padding: 2.2rem 2.5rem 2rem 2.5rem;
+        text-align: center;
+        animation: modalPopIn 0.35s cubic-bezier(0.4,0,0.2,1);
+        transform: scale(0.95);
+      }
+      @keyframes modalPopIn {
+        0% { opacity: 0; transform: scale(0.85); }
+        100% { opacity: 1; transform: scale(1); }
+      }
+      #payment-modal h2 {
+        color: var(--accent-primary);
+        margin-bottom: 1.2rem;
+        font-size: 1.3rem;
+        font-weight: 700;
+        letter-spacing: 0.5px;
+      }
+      #payment-modal .pay-option {
+        margin: 0 auto;
+        width: 100%;
+        max-width: 320px;
+        border-radius: 12px;
+        font-size: 1.08rem;
+        font-weight: 600;
+        padding: 0.85rem 1.2rem;
+        transition: box-shadow 0.2s, transform 0.2s;
+        box-shadow: 0 2px 8px rgba(0,255,231,0.07);
+        outline: none;
+      }
+      #payment-modal .pay-option:focus, #payment-modal .pay-option:hover {
+        box-shadow: 0 0 0 2px var(--accent-primary), 0 2px 8px rgba(0,255,231,0.13);
+        transform: translateY(-2px) scale(1.03);
+      }
+      #payment-modal #close-modal {
+        margin-top: 1.5rem;
+        background: none;
+        color: #aaa;
+        border: none;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: color 0.2s;
+      }
+      #payment-modal #close-modal:hover {
+        color: var(--accent-primary);
+      }
+      @media (max-width: 600px) {
+        #payment-modal .modal-box {
+          min-width: 0;
+          padding: 1.2rem 0.7rem 1.2rem 0.7rem;
+        }
+      }
     </style>
 </head>
 <body>
@@ -30,17 +107,17 @@
             <form id="payment-form">
                 <button type="button" class="cta-button" id="pay-btn">Pay With</button>
             </form>
-            <div id="payment-modal" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.6); z-index:9999; align-items:center; justify-content:center;">
-                <div style="background:#101c1a; border-radius:16px; padding:2rem 2.5rem; min-width:300px; max-width:90vw; box-shadow:0 8px 32px rgba(0,0,0,0.3); text-align:center;">
-                    <h2 style="color:var(--accent-primary); margin-bottom:1.2rem; font-size:1.3rem;">Choose Payment Method</h2>
+            <div id="payment-modal">
+                <div class="modal-box">
+                    <h2>Choose Payment Method</h2>
                     <div style="display:flex; flex-direction:column; gap:1rem;">
-                        <button class="pay-option" data-method="razorpay" style="background:var(--accent-primary); color:#000; border:none; border-radius:8px; padding:0.8rem 1.2rem; font-size:1.1rem; font-weight:600; cursor:pointer;">Razorpay</button>
-                        <button class="pay-option" data-method="paytm" style="background:#00baf2; color:#fff; border:none; border-radius:8px; padding:0.8rem 1.2rem; font-size:1.1rem; font-weight:600; cursor:pointer;">Paytm</button>
-                        <button class="pay-option" data-method="stripe" style="background:#635bff; color:#fff; border:none; border-radius:8px; padding:0.8rem 1.2rem; font-size:1.1rem; font-weight:600; cursor:pointer;">Stripe</button>
-                        <button class="pay-option" data-method="paypal" style="background:#ffc439; color:#111; border:none; border-radius:8px; padding:0.8rem 1.2rem; font-size:1.1rem; font-weight:600; cursor:pointer;">PayPal</button>
-                        <button class="pay-option" data-method="gpay" style="background:#fff; color:#111; border:1px solid #eee; border-radius:8px; padding:0.8rem 1.2rem; font-size:1.1rem; font-weight:600; cursor:pointer; display:flex; align-items:center; justify-content:center;"><img src='https://img.icons8.com/color/24/google-pay-india.png' alt='GPay' style='margin-right:8px;'>Google Pay</button>
+                        <button class="pay-option" data-method="razorpay" style="background:var(--accent-primary); color:#000; border:none;">Razorpay</button>
+                        <button class="pay-option" data-method="paytm" style="background:#00baf2; color:#fff; border:none;">Paytm</button>
+                        <button class="pay-option" data-method="stripe" style="background:#635bff; color:#fff; border:none;">Stripe</button>
+                        <button class="pay-option" data-method="paypal" style="background:#ffc439; color:#111; border:none;">PayPal</button>
+                        <button class="pay-option" data-method="gpay" style="background:#fff; color:#111; border:1px solid #eee; display:flex; align-items:center; justify-content:center;"><img src='https://img.icons8.com/color/24/google-pay-india.png' alt='GPay' style='margin-right:8px;'>Google Pay</button>
                     </div>
-                    <button id="close-modal" style="margin-top:1.5rem; background:none; color:#aaa; border:none; font-size:1rem; cursor:pointer;">Cancel</button>
+                    <button id="close-modal">Cancel</button>
                 </div>
             </div>
             <div style="margin-top: 2rem; text-align: center; font-size: 0.95rem; color: #aaa;">
@@ -64,15 +141,16 @@
     <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
     <script>
         document.getElementById('pay-btn').onclick = function(e){
-            document.getElementById('payment-modal').style.display = 'flex';
+            var modal = document.getElementById('payment-modal');
+            modal.classList.add('active');
         };
         document.getElementById('close-modal').onclick = function(){
-            document.getElementById('payment-modal').style.display = 'none';
+            document.getElementById('payment-modal').classList.remove('active');
         };
         Array.from(document.querySelectorAll('.pay-option')).forEach(function(btn){
             btn.onclick = function(){
                 var method = btn.getAttribute('data-method');
-                document.getElementById('payment-modal').style.display = 'none';
+                document.getElementById('payment-modal').classList.remove('active');
                 if(method === 'razorpay'){
                     var options = {
                         "key": "YOUR_RAZORPAY_KEY",
