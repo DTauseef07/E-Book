@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Premium digital eBook - Transform your life with expert insights and proven strategies">
     <meta name="theme-color" content="#0d0d0d">
-    <title>Premium Digital eBook | Transform Your Life</title>
+    <title>Premium Digital eBook</title>
 
     <!-- Preload Critical Resources -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -16,236 +16,207 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.2/vanilla-tilt.min.js"></script>
 </head>
 <body>
     <!-- Custom Cursor -->
     <div class="cursor"></div>
 
     <!-- Header -->
-    <header class="site-header" role="banner">
-        <div class="container">
-            <nav class="main-nav" aria-label="Main navigation">
-                <a href="/" class="logo" aria-label="Home">
-                    <i class="fas fa-book-open"></i>
-                </a>
-                <ul class="nav-links">
-                    <li><a href="#features" aria-label="View features">Features</a></li>
-                    <li><a href="#preview" aria-label="Preview content">Preview</a></li>
-                    <li><a href="#buy" class="nav-cta" aria-label="Purchase eBook">Buy Now</a></li>
-                </ul>
-            </nav>
-        </div>
+    <header class="site-header">
+        <nav class="main-nav container">
+            <div class="logo">
+                <i class="fas fa-book-open"></i>
+                <span>eBookPro</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#preview">Preview</a></li>
+                <li><a href="#testimonials">Testimonials</a></li>
+                <li><a href="#faq">FAQ</a></li>
+                <a href="#buy" class="nav-cta">Buy Now</a>
+            </ul>
+        </nav>
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero" aria-labelledby="hero-heading">
-        <div class="container">
-            <div class="hero-grid">
-                <div class="hero-left" data-aos="fade-right" data-aos-once="false" data-aos-mirror="true">
-                    <div class="ebook-wrapper perspective-3d" data-tilt data-tilt-max="10" data-tilt-speed="400">
-                        <div class="book-cover-wrapper">
-                            <div class="book-placeholder">
-                                <i class="fas fa-book-open fa-6x"></i>
-                                <span class="book-title">Premium eBook</span>
-                            </div>
+    <main>
+        <!-- Hero Section -->
+        <section class="hero" id="home">
+            <div class="container hero-grid">
+                <div class="hero-left" data-aos="fade-right" data-aos-duration="1000">
+                    <div class="ebook-wrapper" data-tilt data-tilt-max="10" data-tilt-speed="400">
+                        <div class="book-placeholder">
+                            <i class="fas fa-book-open"></i>
+                            <span class="book-title">Premium eBook</span>
                         </div>
                     </div>
                 </div>
-                <div class="hero-right" data-aos="fade-left" data-aos-once="false" data-aos-mirror="true">
-                    <h1 id="hero-heading" class="animate-text">Unlock Limitless Potential<br>with the Ultimate eBook</h1>
-                    <p class="subtitle animate-text" data-aos-delay="200">Discover the secrets to achieving mastery and building the future you deserve.</p>
-                    <a href="#buy" class="cta-button animate-text" role="button" aria-label="Buy Now for ₹199" data-aos-delay="400">
-                        Buy Now for ₹199
-                    </a>
+                <div class="hero-right" data-aos="fade-left" data-aos-duration="1000">
+                    <h1>Transform Your Knowledge with Our Premium eBook</h1>
+                    <p class="subtitle">Discover the secrets to success with our comprehensive guide</p>
+                    <a href="#buy" class="cta-button">Get Started Now</a>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Features Section -->
-    <section id="features" class="features" aria-labelledby="features-heading">
-        <div class="container">
-            <h2 id="features-heading" class="section-title" data-aos="fade-up" data-aos-once="false" data-aos-mirror="true">Why Choose Our eBook?</h2>
-            <div class="features-grid">
-                <article class="feature-card" data-aos="fade-up" data-aos-delay="100" data-aos-once="false" data-aos-mirror="true">
-                    <i class="fas fa-lightbulb feature-icon" aria-hidden="true"></i>
-                    <h3>Comprehensive Content</h3>
-                    <p>200+ pages of valuable insights and strategies</p>
-                </article>
-                <article class="feature-card" data-aos="fade-up" data-aos-delay="200" data-aos-once="false" data-aos-mirror="true">
-                    <i class="fas fa-mobile-alt feature-icon" aria-hidden="true"></i>
-                    <h3>Mobile Friendly</h3>
-                    <p>Read anywhere, anytime on any device</p>
-                </article>
-                <article class="feature-card" data-aos="fade-up" data-aos-delay="300" data-aos-once="false" data-aos-mirror="true">
-                    <i class="fas fa-bolt feature-icon" aria-hidden="true"></i>
-                    <h3>Instant Download</h3>
-                    <p>Get immediate access after purchase</p>
-                </article>
+        <!-- Features Section -->
+        <section class="features" id="features">
+            <div class="container">
+                <h2 class="section-title" data-aos="fade-up">Key Features</h2>
+                <div class="features-grid">
+                    <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
+                        <i class="fas fa-lightbulb feature-icon"></i>
+                        <h3>Expert Insights</h3>
+                        <p>Learn from industry experts with years of experience</p>
+                    </div>
+                    <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
+                        <i class="fas fa-bolt feature-icon"></i>
+                        <h3>Quick Learning</h3>
+                        <p>Master concepts faster with our proven methodology</p>
+                    </div>
+                    <div class="feature-card" data-aos="fade-up" data-aos-delay="300">
+                        <i class="fas fa-chart-line feature-icon"></i>
+                        <h3>Proven Results</h3>
+                        <p>Join thousands of successful learners worldwide</p>
+                    </div>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Preview Section -->
-    <section id="preview" class="preview" aria-labelledby="preview-heading">
-        <div class="container">
-            <h2 id="preview-heading" class="section-title" data-aos="fade-up" data-aos-once="false" data-aos-mirror="true">Take a Peek Inside</h2>
-            <div class="preview-carousel">
-                <figure class="preview-slide" data-aos="fade-right" data-aos-once="false" data-aos-mirror="true">
-                    <div class="ebook-wrapper tilt-element">
+        <!-- Preview Section -->
+        <section class="preview" id="preview">
+            <div class="container">
+                <h2 class="section-title" data-aos="fade-up">Book Preview</h2>
+                <div class="preview-carousel">
+                    <div class="preview-slide" data-aos="fade-right">
                         <div class="book-placeholder thumbnail">
-                            <i class="fas fa-file-alt fa-4x"></i>
-                            <span class="book-title">Introduction</span>
+                            <i class="fas fa-book"></i>
+                            <span class="book-title">Chapter 1</span>
                         </div>
                     </div>
-                    <figcaption>Introduction to Success Principles</figcaption>
-                </figure>
-                <figure class="preview-slide" data-aos="fade-up" data-aos-once="false" data-aos-mirror="true">
-                    <div class="ebook-wrapper tilt-element">
+                    <div class="preview-slide" data-aos="fade-up">
                         <div class="book-placeholder thumbnail">
-                            <i class="fas fa-chart-line fa-4x"></i>
-                            <span class="book-title">Strategies</span>
+                            <i class="fas fa-book"></i>
+                            <span class="book-title">Chapter 2</span>
                         </div>
                     </div>
-                    <figcaption>Advanced Strategies</figcaption>
-                </figure>
-                <figure class="preview-slide" data-aos="fade-left" data-aos-once="false" data-aos-mirror="true">
-                    <div class="ebook-wrapper tilt-element">
+                    <div class="preview-slide" data-aos="fade-left">
                         <div class="book-placeholder thumbnail">
-                            <i class="fas fa-tasks fa-4x"></i>
-                            <span class="book-title">Guide</span>
+                            <i class="fas fa-book"></i>
+                            <span class="book-title">Chapter 3</span>
                         </div>
                     </div>
-                    <figcaption>Implementation Guide</figcaption>
-                </figure>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Testimonials Section -->
-    <section class="testimonials" aria-labelledby="testimonials-heading">
-        <div class="container">
-            <h2 id="testimonials-heading" class="section-title" data-aos="fade-up" data-aos-once="false" data-aos-mirror="true">What Our Readers Say</h2>
-            <div class="testimonial-grid">
-                <blockquote class="testimonial-card" data-aos="fade-right" data-aos-once="false" data-aos-mirror="true">
-                    <div class="avatar">
-                        <span class="initials">RS</span>
+        <!-- Testimonials Section -->
+        <section class="testimonials" id="testimonials">
+            <div class="container">
+                <h2 class="section-title" data-aos="fade-up">What Readers Say</h2>
+                <div class="testimonial-grid">
+                    <div class="testimonial-card" data-aos="fade-up" data-aos-delay="100">
+                        <div class="avatar">
+                            <span class="initials">RS</span>
+                        </div>
+                        <h3>Rahul Sharma</h3>
+                        <p>"This eBook transformed my approach to learning. Highly recommended!"</p>
                     </div>
-                    <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
-                    <p>"This eBook transformed my approach to success. Highly recommended!"</p>
-                    <cite>- Rahul Sharma</cite>
-                </blockquote>
-                <blockquote class="testimonial-card" data-aos="fade-up" data-aos-once="false" data-aos-mirror="true">
-                    <div class="avatar">
-                        <span class="initials">PP</span>
+                    <div class="testimonial-card" data-aos="fade-up" data-aos-delay="200">
+                        <div class="avatar">
+                            <span class="initials">AP</span>
+                        </div>
+                        <h3>Anita Patel</h3>
+                        <p>"The insights provided are invaluable. A must-read for everyone."</p>
                     </div>
-                    <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
-                    <p>"The insights are invaluable. Worth every penny!"</p>
-                    <cite>- Priya Patel</cite>
-                </blockquote>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Countdown Section -->
-    <section class="countdown-offer" aria-labelledby="countdown-heading">
-        <div class="container">
-            <h2 id="countdown-heading" class="section-title" data-aos="fade-up" data-aos-once="false" data-aos-mirror="true">Limited Time Offer</h2>
-            <div class="timer" role="timer" aria-label="Countdown timer" data-aos="fade-up" data-aos-once="false" data-aos-mirror="true">
-                <div class="time-block" aria-label="Hours">
-                    <span id="hours">24</span>
-                    <label>Hours</label>
+        <!-- Countdown Section -->
+        <section class="countdown-offer" id="buy">
+            <div class="container">
+                <h2 class="section-title" data-aos="fade-up">Limited Time Offer</h2>
+                <div class="timer" data-aos="fade-up" data-aos-delay="100">
+                    <div class="time-block">
+                        <span id="hours">24</span>
+                        <p>Hours</p>
+                    </div>
+                    <span class="time-separator">:</span>
+                    <div class="time-block">
+                        <span id="minutes">00</span>
+                        <p>Minutes</p>
+                    </div>
+                    <span class="time-separator">:</span>
+                    <div class="time-block">
+                        <span id="seconds">00</span>
+                        <p>Seconds</p>
+                    </div>
                 </div>
-                <div class="time-separator" aria-hidden="true">:</div>
-                <div class="time-block" aria-label="Minutes">
-                    <span id="minutes">00</span>
-                    <label>Minutes</label>
-                </div>
-                <div class="time-separator" aria-hidden="true">:</div>
-                <div class="time-block" aria-label="Seconds">
-                    <span id="seconds">00</span>
-                    <label>Seconds</label>
-                </div>
+                <a href="#buy" class="cta-button" data-aos="fade-up" data-aos-delay="200">Get Your Copy Now</a>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- FAQ Section -->
-    <section class="faq" aria-labelledby="faq-heading">
-        <div class="container">
-            <h2 id="faq-heading" class="section-title" data-aos="fade-up" data-aos-once="false" data-aos-mirror="true">Frequently Asked Questions</h2>
-            <div class="faq-grid">
-                <details data-aos="fade-up" data-aos-once="false" data-aos-mirror="true">
-                    <summary>
-                        What format is the eBook available in?
-                        <i class="fas fa-chevron-down" aria-hidden="true"></i>
-                    </summary>
-                    <p>The eBook is available in PDF format, compatible with all devices and e-readers.</p>
-                </details>
-                <details data-aos="fade-up" data-aos-delay="100" data-aos-once="false" data-aos-mirror="true">
-                    <summary>
-                        How will I receive the eBook after purchase?
-                        <i class="fas fa-chevron-down" aria-hidden="true"></i>
-                    </summary>
-                    <p>You'll receive an instant download link via email after your payment is confirmed.</p>
-                </details>
-                <details data-aos="fade-up" data-aos-delay="200" data-aos-once="false" data-aos-mirror="true">
-                    <summary>
-                        Is there a money-back guarantee?
-                        <i class="fas fa-chevron-down" aria-hidden="true"></i>
-                    </summary>
-                    <p>Yes, we offer a 30-day money-back guarantee if you're not satisfied with your purchase.</p>
-                </details>
+        <!-- FAQ Section -->
+        <section class="faq" id="faq">
+            <div class="container">
+                <h2 class="section-title" data-aos="fade-up">Frequently Asked Questions</h2>
+                <div class="faq-grid">
+                    <details data-aos="fade-up" data-aos-delay="100">
+                        <summary>What's included in the eBook? <i class="fas fa-chevron-down"></i></summary>
+                        <p>Our premium eBook includes comprehensive content, practical examples, and exclusive resources.</p>
+                    </details>
+                    <details data-aos="fade-up" data-aos-delay="200">
+                        <summary>How long will I have access? <i class="fas fa-chevron-down"></i></summary>
+                        <p>You'll have lifetime access to the eBook and all future updates.</p>
+                    </details>
+                    <details data-aos="fade-up" data-aos-delay="300">
+                        <summary>Is there a money-back guarantee? <i class="fas fa-chevron-down"></i></summary>
+                        <p>Yes, we offer a 30-day money-back guarantee if you're not satisfied.</p>
+                    </details>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
+    </main>
 
     <!-- Footer -->
-    <footer class="site-footer" role="contentinfo">
+    <footer class="site-footer">
         <div class="container">
             <div class="footer-grid">
-                <div class="footer-newsletter">
+                <div class="footer-info">
                     <h3>Stay Updated</h3>
-                    <form class="newsletter-form" aria-label="Newsletter subscription">
-                        <input type="email" placeholder="Enter your email" required aria-label="Email address">
-                        <button type="submit" aria-label="Subscribe to newsletter">Subscribe</button>
+                    <p>Subscribe to our newsletter for the latest updates and offers.</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Enter your email" required>
+                        <button type="submit">Subscribe</button>
                     </form>
                 </div>
-                <nav class="footer-links" aria-label="Footer navigation">
-                    <a href="#" aria-label="Privacy Policy">Privacy Policy</a>
-                    <a href="#" aria-label="Terms of Service">Terms of Service</a>
-                    <a href="#" aria-label="Contact Us">Contact Us</a>
-                </nav>
                 <div class="social-links">
-                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
                     <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
                     <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
                 </div>
             </div>
-            <p class="copyright">© 2024 Premium eBook. All rights reserved.</p>
         </div>
     </footer>
 
-    <!-- Scripts -->
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.2/vanilla-tilt.min.js"></script>
     <script>
-        // Initialize AOS with mirror effect for reverse animations
+        // Initialize AOS
         AOS.init({
-            duration: 800,
-            once: false,
-            offset: 100,
-            mirror: true,
-            easing: 'ease-in-out-cubic'
+            duration: 1000,
+            once: true,
+            mirror: true
         });
 
-        // Initialize Vanilla Tilt with enhanced 3D effect
+        // Initialize Vanilla Tilt
         VanillaTilt.init(document.querySelectorAll("[data-tilt]"), {
             max: 10,
             speed: 400,
             glare: true,
-            "max-glare": 0.2,
-            scale: 1.05
+            "max-glare": 0.2
         });
 
         // Custom cursor
@@ -257,53 +228,30 @@
 
         // Countdown Timer
         function updateTimer() {
-            const hours = document.getElementById('hours');
-            const minutes = document.getElementById('minutes');
-            const seconds = document.getElementById('seconds');
+            const now = new Date();
+            const end = new Date(now.getTime() + 24 * 60 * 60 * 1000);
+            const diff = end - now;
             
-            let h = parseInt(hours.textContent);
-            let m = parseInt(minutes.textContent);
-            let s = parseInt(seconds.textContent);
+            const hours = Math.floor(diff / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
             
-            setInterval(() => {
-                s--;
-                if (s < 0) {
-                    s = 59;
-                    m--;
-                }
-                if (m < 0) {
-                    m = 59;
-                    h--;
-                }
-                if (h < 0) {
-                    h = 23;
-                }
-                
-                hours.textContent = h.toString().padStart(2, '0');
-                minutes.textContent = m.toString().padStart(2, '0');
-                seconds.textContent = s.toString().padStart(2, '0');
-            }, 1000);
+            document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+            document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+            document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
         }
-        
+
+        setInterval(updateTimer, 1000);
         updateTimer();
 
-        // Continuous animation for elements
-        const animateElements = document.querySelectorAll('.animate-text');
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('animate');
-                } else {
-                    entry.target.classList.remove('animate');
-                }
-            });
-        }, { 
-            threshold: 0.1,
-            rootMargin: '0px'
-        });
-
-        animateElements.forEach(element => {
-            observer.observe(element);
+        // Header scroll effect
+        const header = document.querySelector('.site-header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
         });
     </script>
 </body>
