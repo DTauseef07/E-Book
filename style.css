@@ -55,9 +55,10 @@ body {
 
 /* Custom Cursor */
 .cursor {
-    width: 24px;
-    height: 24px;
-    background: transparent;
+    width: 20px;
+    height: 20px;
+    background: var(--accent-primary);
+    border-radius: 50%;
     position: fixed;
     pointer-events: none;
     z-index: 9999;
@@ -67,21 +68,19 @@ body {
 }
 
 .cursor::before {
-    content: '📚';
+    content: '📖';
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    font-size: 20px;
-    opacity: 0.9;
+    font-size: 14px;
+    opacity: 0.8;
     transition: all 0.1s ease;
-    filter: drop-shadow(0 0 2px var(--accent-primary));
 }
 
 .cursor:hover::before {
     transform: translate(-50%, -50%) scale(1.2);
     opacity: 1;
-    filter: drop-shadow(0 0 4px var(--accent-primary));
 }
 
 /* Custom Scrollbar */
@@ -417,24 +416,21 @@ body {
 .nav-cta {
     background: var(--gradient-primary);
     color: var(--bg-color);
-    padding: 0.8rem 2.2rem;
+    padding: 0.8rem 1.8rem;
     border-radius: 50px;
     font-weight: 600;
     transition: var(--transition-normal);
-    margin-left: 1.5rem;
+    margin-left: 1rem;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    height: 45px;
+    height: 40px;
     line-height: 1;
-    min-width: 140px;
-    text-align: center;
 }
 
 .nav-cta:hover {
     transform: translateY(-2px);
     box-shadow: var(--glow-md);
-    padding: 0.8rem 2.4rem;
 }
 
 /* Hero Section */
@@ -975,9 +971,7 @@ details p {
     .nav-cta {
         margin: 15px 0 0 0;
         width: 100%;
-        max-width: 240px;
-        height: 50px;
-        padding: 0.8rem 2.5rem;
+        max-width: 200px;
     }
 
     .timer {
