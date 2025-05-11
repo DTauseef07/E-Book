@@ -15,12 +15,12 @@
         top: 0; left: 0; width: 100vw; height: 100vh;
         background: linear-gradient(135deg, rgba(5,15,10,0.98) 60%, rgba(0,20,15,0.98) 100%);
         z-index: 9999;
-        align-items: center;
-        justify-content: center;
         backdrop-filter: blur(4px);
       }
       #payment-modal.active {
         display: flex;
+        align-items: center;
+        justify-content: center;
       }
       .modal-content {
         background: linear-gradient(135deg, #0a1e19 80%, #07120e 100%);
@@ -31,10 +31,7 @@
         min-width: 320px;
         max-width: 95vw;
         text-align: center;
-        position: absolute;
-        left: 50%;
-        top: 50%;
-        transform: translate(-50%, -50%);
+        position: relative;
         opacity: 1;
       }
       .modal-content h2 {
