@@ -63,10 +63,15 @@
         flex-direction: column;
         align-items: center;
         animation: boardIn var(--transition);
+        transition: box-shadow 0.35s cubic-bezier(.4,0,.2,1), transform 0.5s cubic-bezier(.4,0,.2,1);
       }
       @keyframes boardIn {
         from { opacity: 0; transform: scale(0.92) translateY(40px); }
         to { opacity: 1; transform: scale(1) translateY(0); }
+      }
+      .book-board:hover {
+        box-shadow: 0 16px 48px 0 #00ffb399, 0 1.5px 8px 0 #00ffb308;
+        transform: perspective(800px) rotateY(-4deg) scale(1.025);
       }
       .book-cover {
         width: 110px;
@@ -113,15 +118,15 @@
         margin-top: 0.5rem;
         margin-bottom: 0.5rem;
         box-shadow: 0 2px 16px 0 #00ffb31a;
-        transition: transform 0.18s, box-shadow 0.18s, background 0.18s;
+        transition: transform 0.28s cubic-bezier(.4,0,.2,1), box-shadow 0.28s cubic-bezier(.4,0,.2,1), background 0.28s cubic-bezier(.4,0,.2,1);
         letter-spacing: 0.5px;
         outline: none;
         will-change: transform;
       }
       .buy-btn:hover, .buy-btn:focus {
-        transform: scale(1.045) perspective(600px) rotateY(-2deg);
-        box-shadow: 0 0 24px 0 #00ffb388;
-        background: linear-gradient(90deg, #00ffb3 80%, #009e60 100%);
+        transform: scale(1.07) perspective(600px) rotateY(-4deg);
+        box-shadow: 0 0 32px 0 #00ffb388, 0 2px 8px 0 #00ffb344;
+        background: linear-gradient(90deg, #00ffb3 90%, #009e60 100%);
       }
       /* Modal */
       #payment-modal {
@@ -133,7 +138,7 @@
         backdrop-filter: blur(8px);
         align-items: center;
         justify-content: center;
-        animation: fadeInBg 0.4s cubic-bezier(.4,0,.2,1);
+        animation: fadeInBg 0.6s cubic-bezier(.4,0,.2,1);
       }
       #payment-modal.active {
         display: flex;
@@ -157,11 +162,11 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        animation: modalIn 0.45s cubic-bezier(.4,0,.2,1);
+        animation: modalIn 0.6s cubic-bezier(.4,0,.2,1);
         will-change: transform, opacity;
       }
       @keyframes modalIn {
-        from { opacity: 0; transform: scale(0.85) perspective(800px) rotateX(12deg); }
+        from { opacity: 0; transform: scale(0.85) perspective(800px) rotateX(16deg); }
         to { opacity: 1; transform: scale(1) perspective(800px) rotateX(0deg); }
       }
       .modal-content h2 {
@@ -186,7 +191,7 @@
         font-size: 1.05rem;
         font-weight: 600;
         box-shadow: 0 2px 8px 0 #00ffb31a;
-        transition: transform 0.18s, box-shadow 0.18s, background 0.18s;
+        transition: transform 0.28s cubic-bezier(.4,0,.2,1), box-shadow 0.28s cubic-bezier(.4,0,.2,1), background 0.28s cubic-bezier(.4,0,.2,1), border 0.28s cubic-bezier(.4,0,.2,1);
         background: rgba(0,255,179,0.08);
         color: var(--text-main);
         cursor: pointer;
@@ -228,9 +233,9 @@
         background: #fff;
       }
       .pay-option:hover, .pay-option:focus {
-        transform: translateY(-3px) scale(1.04) perspective(600px) rotateY(-2deg);
-        box-shadow: 0 0 18px 0 #00ffb388;
-        background: rgba(0,255,179,0.16);
+        transform: translateY(-4px) scale(1.07) perspective(600px) rotateY(-6deg);
+        box-shadow: 0 0 32px 0 #00ffb388, 0 2px 8px 0 #00ffb344;
+        background: rgba(0,255,179,0.22);
         border: 1.5px solid var(--accent);
         color: var(--accent);
       }
@@ -267,7 +272,7 @@
             <div class="book-title">The Art of Minimal UI</div>
             <div class="book-author">by John Doe</div>
             <div class="book-price">₹199</div>
-            <button class="buy-btn" id="pay-btn">Buy Now</button>
+            <button class="buy-btn" id="pay-btn">Pay With</button>
         </div>
         <div id="payment-modal">
             <div class="modal-content">
