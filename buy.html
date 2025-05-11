@@ -13,22 +13,18 @@
         display: none;
         position: fixed;
         top: 0; left: 0; width: 100vw; height: 100vh;
-        background: linear-gradient(135deg, rgba(10,20,15,0.98) 60%, rgba(0,26,20,0.98) 100%);
+        background: linear-gradient(135deg, rgba(5,15,10,0.98) 60%, rgba(0,20,15,0.98) 100%);
         z-index: 9999;
         align-items: center;
         justify-content: center;
-        animation: fadeInModalBg 0.4s cubic-bezier(0.4,0,0.2,1);
+        display: flex;
         backdrop-filter: blur(4px);
       }
-      #payment-modal.active {
-        display: flex;
-      }
-      @keyframes fadeInModalBg {
-        from { opacity: 0; }
-        to { opacity: 1; }
+      #payment-modal:not(.active) {
+        display: none;
       }
       .modal-content {
-        background: rgba(10, 30, 25, 0.92);
+        background: linear-gradient(135deg, #0a1e19 80%, #07120e 100%);
         border-radius: 22px;
         box-shadow: 0 8px 40px 0 rgba(0,255,231,0.10), 0 1.5px 8px 0 rgba(0,255,231,0.08);
         border: 1.5px solid rgba(0,255,231,0.13);
@@ -37,20 +33,9 @@
         max-width: 95vw;
         text-align: center;
         position: relative;
-        transform: scale(0.85) perspective(800px) rotateX(8deg);
-        opacity: 0;
-        animation: modalIn 0.45s cubic-bezier(0.4,0,0.2,1) forwards;
+        transform: none;
+        opacity: 1;
         box-shadow: 0 0 32px 0 #00ffe7a0, 0 2px 16px 0 #001a14a0;
-      }
-      @keyframes modalIn {
-        from {
-          opacity: 0;
-          transform: scale(0.7) perspective(800px) rotateX(18deg);
-        }
-        to {
-          opacity: 1;
-          transform: scale(1) perspective(800px) rotateX(0deg);
-        }
       }
       .modal-content h2 {
         color: var(--accent-primary);
