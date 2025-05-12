@@ -285,8 +285,14 @@
             <div class="modal-content">
                 <h2>Select Payment Method</h2>
                 <div class="pay-options">
-                    <button class="pay-option" data-method="upi-id">Pay with UPI ID</button>
-                    <button class="pay-option" data-method="qr-code">Pay with QR Code</button>
+                    <button class="pay-option" data-method="upi-id">
+                        <span class="pay-icon"><i class="fas fa-mobile-alt"></i></span>
+                        Pay with UPI ID
+                    </button>
+                    <button class="pay-option" data-method="qr-code">
+                        <span class="pay-icon"><i class="fas fa-qrcode"></i></span>
+                        Pay with QR Code
+                    </button>
                 </div>
                 <div class="payment-details upi-details" style="display: none;">
                     <h3>UPI Payment Details</h3>
@@ -296,7 +302,12 @@
                             <i class="fas fa-copy"></i>
                         </button>
                     </div>
-                    <a href="https://wa.me/917875967130?text=Hi! I have made the payment for the eBook." class="whatsapp-button">
+                    <div class="payment-steps">
+                        <p>1. Copy UPI ID</p>
+                        <p>2. Open your UPI app & pay ₹199</p>
+                        <p>3. Click below after payment</p>
+                    </div>
+                    <a href="https://wa.me/917875967130?text=Hi! I have made the payment of Rs.199 for the eBook. Please provide access." class="whatsapp-button">
                         <i class="fab fa-whatsapp"></i> I Have Done Payment
                     </a>
                 </div>
@@ -304,12 +315,15 @@
                     <h3>Scan QR Code</h3>
                     <div class="qr-placeholder">
                         <p>QR Code Coming Soon</p>
+                        <p class="qr-note">Scan & pay ₹199</p>
                     </div>
-                    <a href="https://wa.me/917875967130?text=Hi! I have made the payment for the eBook." class="whatsapp-button">
+                    <a href="https://wa.me/917875967130?text=Hi! I have made the payment of Rs.199 for the eBook. Please provide access." class="whatsapp-button">
                         <i class="fab fa-whatsapp"></i> I Have Done Payment
                     </a>
                 </div>
-                <button class="close-modal">Close</button>
+                <button class="close-modal">
+                    <i class="fas fa-times"></i>
+                </button>
             </div>
         </div>
     </div>
@@ -347,6 +361,7 @@
             };
         });
 
+        // Add styles for payment interface
         const style = document.createElement('style');
         style.textContent = `
             .payment-details {
@@ -355,26 +370,36 @@
                 background: var(--glass-bg);
                 border-radius: 12px;
                 border: 1px solid var(--modal-border);
+                opacity: 0;
+                transform: translateY(10px);
+                transition: opacity 0.3s ease, transform 0.3s ease;
+            }
+            .payment-details.fade-in {
+                opacity: 1;
+                transform: translateY(0);
             }
             .payment-details h3 {
                 color: var(--accent);
                 margin-bottom: 1rem;
                 font-size: 1.1rem;
+                letter-spacing: 0.5px;
             }
             .upi-id-container {
                 display: flex;
                 align-items: center;
                 justify-content: center;
                 gap: 1rem;
-                margin-bottom: 1.5rem;
+                margin-bottom: 1rem;
                 background: rgba(0,0,0,0.2);
-                padding: 0.8rem;
+                padding: 1rem;
                 border-radius: 8px;
+                border: 1px solid rgba(0,255,231,0.1);
             }
             .upi-id {
-                font-size: 1.1rem;
-                color: var(--text-main);
-                font-weight: 500;
+                font-size: 1.2rem;
+                color: var(--accent);
+                font-weight: 600;
+                letter-spacing: 0.5px;
             }
             .copy-upi {
                 background: transparent;
@@ -384,18 +409,36 @@
                 border-radius: 6px;
                 cursor: pointer;
                 transition: all 0.3s ease;
+                width: 35px;
+                height: 35px;
             }
             .copy-upi:hover {
                 background: var(--accent);
                 color: var(--bg-black);
+                transform: translateY(-2px);
+            }
+            .payment-steps {
+                margin: 1.5rem 0;
+                text-align: left;
+                color: var(--text-muted);
+            }
+            .payment-steps p {
+                margin: 0.5rem 0;
+                font-size: 0.95rem;
             }
             .qr-placeholder {
                 background: rgba(0,0,0,0.2);
                 padding: 3rem;
                 border-radius: 12px;
-                margin-bottom: 1.5rem;
+                margin-bottom: 1rem;
                 text-align: center;
                 color: var(--text-muted);
+                border: 1px solid rgba(0,255,231,0.1);
+            }
+            .qr-note {
+                margin-top: 1rem;
+                font-size: 0.9rem;
+                color: var(--accent);
             }
             .whatsapp-button {
                 display: flex;
@@ -404,31 +447,76 @@
                 gap: 0.5rem;
                 background: #25D366;
                 color: #fff;
-                padding: 0.8rem 1.5rem;
+                padding: 1rem 1.5rem;
                 border-radius: 8px;
                 text-decoration: none;
                 font-weight: 600;
                 transition: all 0.3s ease;
                 border: none;
                 width: 100%;
+                font-size: 1rem;
+                letter-spacing: 0.5px;
             }
             .whatsapp-button:hover {
                 background: #22bf5b;
                 transform: translateY(-2px);
+                box-shadow: 0 4px 12px rgba(37, 211, 102, 0.2);
+            }
+            .close-modal {
+                position: absolute;
+                top: 1rem;
+                right: 1rem;
+                background: transparent;
+                border: none;
+                color: var(--text-muted);
+                font-size: 1.2rem;
+                cursor: pointer;
+                padding: 0.5rem;
+                border-radius: 50%;
+                width: 35px;
+                height: 35px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                transition: all 0.3s ease;
+            }
+            .close-modal:hover {
+                color: var(--accent);
+                transform: rotate(90deg);
+            }
+            .pay-option.active {
+                background: rgba(0,255,179,0.15);
+                border: 1.5px solid var(--accent);
+                transform: translateY(-2px);
+                box-shadow: 0 4px 12px rgba(0,255,179,0.1);
             }
         `;
         document.head.appendChild(style);
 
         Array.from(document.querySelectorAll('.pay-option')).forEach(function(btn){
             btn.onclick = function(){
+                // Remove active class from all buttons
+                document.querySelectorAll('.pay-option').forEach(b => {
+                    b.classList.remove('active');
+                });
+                
+                // Add active class to clicked button
+                this.classList.add('active');
+                
+                // Hide all payment details
                 document.querySelectorAll('.payment-details').forEach(detail => {
                     detail.style.display = 'none';
                 });
 
+                // Show relevant payment details with animation
                 if(this.dataset.method === 'upi-id'){
-                    document.querySelector('.upi-details').style.display = 'block';
+                    const upiDetails = document.querySelector('.upi-details');
+                    upiDetails.style.display = 'block';
+                    upiDetails.classList.add('fade-in');
                 } else if(this.dataset.method === 'qr-code'){
-                    document.querySelector('.qr-details').style.display = 'block';
+                    const qrDetails = document.querySelector('.qr-details');
+                    qrDetails.style.display = 'block';
+                    qrDetails.classList.add('fade-in');
                 }
             };
         });
