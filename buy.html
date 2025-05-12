@@ -329,12 +329,31 @@
     </div>
     <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
     <script>
+        // Open modal
         document.getElementById('pay-btn').onclick = function(e){
             var modal = document.getElementById('payment-modal');
             modal.classList.add('active');
+            // Reset payment details when opening modal
+            document.querySelectorAll('.payment-details').forEach(detail => {
+                detail.style.display = 'none';
+                detail.classList.remove('fade-in');
+            });
+            document.querySelectorAll('.pay-option').forEach(btn => {
+                btn.classList.remove('active');
+            });
         };
-        document.getElementById('close-modal').onclick = function(){
+
+        // Close modal
+        document.querySelector('.close-modal').onclick = function(e){
+            e.stopPropagation();
             document.getElementById('payment-modal').classList.remove('active');
+        };
+
+        // Close modal when clicking outside
+        document.getElementById('payment-modal').onclick = function(e){
+            if (e.target === this) {
+                this.classList.remove('active');
+            }
         };
         Array.from(document.querySelectorAll('.pay-option')).forEach(function(btn){
             btn.onclick = function(){
@@ -493,6 +512,7 @@
         `;
         document.head.appendChild(style);
 
+        // Payment option click handler
         Array.from(document.querySelectorAll('.pay-option')).forEach(function(btn){
             btn.onclick = function(){
                 // Remove active class from all buttons
@@ -503,22 +523,35 @@
                 // Add active class to clicked button
                 this.classList.add('active');
                 
-                // Hide all payment details
+                // Hide all payment details first
                 document.querySelectorAll('.payment-details').forEach(detail => {
                     detail.style.display = 'none';
+                    detail.classList.remove('fade-in');
                 });
 
                 // Show relevant payment details with animation
                 if(this.dataset.method === 'upi-id'){
                     const upiDetails = document.querySelector('.upi-details');
                     upiDetails.style.display = 'block';
-                    upiDetails.classList.add('fade-in');
+                    // Small delay for smooth animation
+                    setTimeout(() => {
+                        upiDetails.classList.add('fade-in');
+                    }, 50);
                 } else if(this.dataset.method === 'qr-code'){
                     const qrDetails = document.querySelector('.qr-details');
                     qrDetails.style.display = 'block';
-                    qrDetails.classList.add('fade-in');
+                    setTimeout(() => {
+                        qrDetails.classList.add('fade-in');
+                    }, 50);
                 }
             };
+        });
+
+        // Keep modal open when clicking inside payment details
+        document.querySelectorAll('.payment-details').forEach(detail => {
+            detail.addEventListener('click', function(e) {
+                e.stopPropagation();
+            });
         });
 
         function copyUPIId() {
