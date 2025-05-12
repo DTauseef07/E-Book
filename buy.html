@@ -410,21 +410,71 @@
                 transform: translateY(10px);
                 transition: opacity 0.3s ease, transform 0.3s ease;
             }
-            .payment-details.fade-in {
-                opacity: 1;
-                transform: translateY(0);
-            }
-            .payment-details h3 {
-                color: var(--accent-primary);
-                margin-bottom: 1rem;
-                font-size: 1.1rem;
-                letter-spacing: 0.5px;
-            }
-            .upi-id-container {
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                gap: 1rem;
+          }
+        </style>
+    </head>
+    <body>
+        <div class="center-board">
+            <div class="book-board">
+                <img class="book-cover" src="https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=400&q=80" alt="Book Cover">
+                <div class="book-title">The Art of Minimal UI</div>
+                <div class="book-author">by John Doe</div>
+                <div class="book-price">₹199</div>
+                <button class="buy-btn" id="pay-btn">Pay With</button>
+            </div>
+            <div id="payment-modal">
+                <div class="modal-content">
+                    <h2 style="color: #e4e4e4;">Select Payment Method</h2>
+                    <div class="pay-options">
+                        <button class="pay-option" data-method="upi-id">
+                            <span class="pay-icon"><i class="fas fa-mobile-alt"></i></span>
+                            Pay with UPI ID
+                        </button>
+                        <button class="pay-option" data-method="qr-code">
+                            <span class="pay-icon"><i class="fas fa-qrcode"></i></span>
+                            Pay with QR Code
+                        </button>
+                    </div>
+                    <div class="payment-details upi-details" style="display: none;">
+                        <h2 style="color: #e4e4e4;">UPI Payment Details</h2>
+                        <div class="upi-id-container">
+                            <span class="upi-id">7875967130@fam</span>
+                            <button class="copy-upi" onclick="copyUPIId()">
+                                <i class="fas fa-copy"></i>
+                            </button>
+                        </div>
+                        <div class="payment-steps">
+                            <p>1. Copy UPI ID</p>
+                            <p>2. Open your UPI app & pay ₹199</p>
+                            <p>3. Click below after payment</p>
+                        </div>
+                        <a href="https://wa.me/917875967130?text=Hi! I have made the payment of Rs.199 for the eBook. I am sending the payment screenshot for verification. Please provide the E-Book." class="whatsapp-button">
+                            <i class="fab fa-whatsapp"></i> I Have Done Payment
+                        </a>
+                    </div>
+                    <div class="payment-details qr-details" style="display: none;">
+                        <h2 style="color: #e4e4e4;">Scan QR Code</h2>
+                        <div class="qr-placeholder">
+                            <p>QR Code Coming Soon</p>
+                            <p class="qr-note">Scan & pay ₹199</p>
+                        </div>
+                        <a href="https://wa.me/917875967130?text=Hi! I have made the payment of Rs.199 for the eBook. I am sending the payment screenshot for verification. Please provide the E-Book." class="whatsapp-button">
+                            <i class="fab fa-whatsapp"></i> I Have Done Payment
+                        </a>
+                    </div>
+                    <button class="close-modal">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+        <script>
+            // Open modal
+            document.getElementById('pay-btn').onclick = function(e){
+                var modal = document.getElementById('payment-modal');
+                modal.classList.add('active');
+                // Reset payment details when opening modal
                 margin-bottom: 1rem;
                 background: rgba(0,0,0,0.3);
                 padding: 1rem;
@@ -536,27 +586,27 @@
                 gap: 0.8rem;
                 padding: 1rem;
                 border: none;
-                background: rgba(255, 255, 255, 0.08);
-                color: var(--text-color);
+                background: linear-gradient(135deg, #00ffe7, #3ffff3);
+                color: #000;
                 border-radius: 12px;
                 cursor: pointer;
                 transition: all 0.3s ease;
                 width: 100%;
                 font-size: 1rem;
-                border: 1px solid rgba(255, 255, 255, 0.15);
                 position: relative;
                 overflow: hidden;
-                backdrop-filter: blur(5px);
+                background-size: 200% auto;
+                font-weight: 600;
+                box-shadow: 0 2px 10px rgba(0, 255, 231, 0.2);
             }
             .pay-option:hover {
-                background: rgba(255, 255, 255, 0.1);
-                border-color: rgba(255, 255, 255, 0.2);
+                background-position: right center;
                 transform: translateY(-2px);
+                box-shadow: var(--glow-md);
             }
             .pay-option.active {
-                background: rgba(255, 255, 255, 0.12);
-                border-color: rgba(255, 255, 255, 0.25);
-                box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+                background: linear-gradient(135deg, var(--accent-secondary), var(--accent-primary));
+                box-shadow: var(--glow-lg);
             }
         `;
         document.head.appendChild(style);
