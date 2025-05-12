@@ -283,16 +283,33 @@
         </div>
         <div id="payment-modal">
             <div class="modal-content">
-                <h2>Choose Payment Method</h2>
+                <h2>Select Payment Method</h2>
                 <div class="pay-options">
-                    <button class="pay-option" data-method="upi"><span class="pay-icon"><img src='https://img.icons8.com/color/28/upi.png' alt='UPI'></span>UPI</button>
-                    <button class="pay-option" data-method="razorpay"><span class="pay-icon"><img src='https://img.icons8.com/color/28/razorpay.png' alt='Razorpay'></span>Razorpay</button>
-                    <button class="pay-option" data-method="paytm"><span class="pay-icon"><img src='https://img.icons8.com/color/28/paytm.png' alt='Paytm'></span>Paytm</button>
-                    <button class="pay-option" data-method="stripe"><span class="pay-icon"><img src='https://img.icons8.com/color/28/stripe.png' alt='Stripe'></span>Stripe</button>
-                    <button class="pay-option" data-method="paypal"><span class="pay-icon"><img src='https://img.icons8.com/color/28/paypal.png' alt='PayPal'></span>PayPal</button>
-                    <button class="pay-option" data-method="gpay"><span class="pay-icon"><img src='https://img.icons8.com/color/28/google-pay-india.png' alt='GPay'></span>Google Pay</button>
+                    <button class="pay-option" data-method="upi-id">Pay with UPI ID</button>
+                    <button class="pay-option" data-method="qr-code">Pay with QR Code</button>
                 </div>
-                <button id="close-modal">Cancel</button>
+                <div class="payment-details upi-details" style="display: none;">
+                    <h3>UPI Payment Details</h3>
+                    <div class="upi-id-container">
+                        <span class="upi-id">7875967130@fam</span>
+                        <button class="copy-upi" onclick="copyUPIId()">
+                            <i class="fas fa-copy"></i>
+                        </button>
+                    </div>
+                    <a href="https://wa.me/917875967130?text=Hi! I have made the payment for the eBook." class="whatsapp-button">
+                        <i class="fab fa-whatsapp"></i> I Have Done Payment
+                    </a>
+                </div>
+                <div class="payment-details qr-details" style="display: none;">
+                    <h3>Scan QR Code</h3>
+                    <div class="qr-placeholder">
+                        <p>QR Code Coming Soon</p>
+                    </div>
+                    <a href="https://wa.me/917875967130?text=Hi! I have made the payment for the eBook." class="whatsapp-button">
+                        <i class="fab fa-whatsapp"></i> I Have Done Payment
+                    </a>
+                </div>
+                <button class="close-modal">Close</button>
             </div>
         </div>
     </div>
@@ -329,6 +346,104 @@
                 }
             };
         });
+
+        const style = document.createElement('style');
+        style.textContent = `
+            .payment-details {
+                margin-top: 1.5rem;
+                padding: 1.5rem;
+                background: var(--glass-bg);
+                border-radius: 12px;
+                border: 1px solid var(--modal-border);
+            }
+            .payment-details h3 {
+                color: var(--accent);
+                margin-bottom: 1rem;
+                font-size: 1.1rem;
+            }
+            .upi-id-container {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 1rem;
+                margin-bottom: 1.5rem;
+                background: rgba(0,0,0,0.2);
+                padding: 0.8rem;
+                border-radius: 8px;
+            }
+            .upi-id {
+                font-size: 1.1rem;
+                color: var(--text-main);
+                font-weight: 500;
+            }
+            .copy-upi {
+                background: transparent;
+                border: 1px solid var(--accent);
+                color: var(--accent);
+                padding: 0.5rem;
+                border-radius: 6px;
+                cursor: pointer;
+                transition: all 0.3s ease;
+            }
+            .copy-upi:hover {
+                background: var(--accent);
+                color: var(--bg-black);
+            }
+            .qr-placeholder {
+                background: rgba(0,0,0,0.2);
+                padding: 3rem;
+                border-radius: 12px;
+                margin-bottom: 1.5rem;
+                text-align: center;
+                color: var(--text-muted);
+            }
+            .whatsapp-button {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 0.5rem;
+                background: #25D366;
+                color: #fff;
+                padding: 0.8rem 1.5rem;
+                border-radius: 8px;
+                text-decoration: none;
+                font-weight: 600;
+                transition: all 0.3s ease;
+                border: none;
+                width: 100%;
+            }
+            .whatsapp-button:hover {
+                background: #22bf5b;
+                transform: translateY(-2px);
+            }
+        `;
+        document.head.appendChild(style);
+
+        Array.from(document.querySelectorAll('.pay-option')).forEach(function(btn){
+            btn.onclick = function(){
+                document.querySelectorAll('.payment-details').forEach(detail => {
+                    detail.style.display = 'none';
+                });
+
+                if(this.dataset.method === 'upi-id'){
+                    document.querySelector('.upi-details').style.display = 'block';
+                } else if(this.dataset.method === 'qr-code'){
+                    document.querySelector('.qr-details').style.display = 'block';
+                }
+            };
+        });
+
+        function copyUPIId() {
+            const upiId = document.querySelector('.upi-id').textContent;
+            navigator.clipboard.writeText(upiId).then(() => {
+                const copyBtn = document.querySelector('.copy-upi');
+                copyBtn.innerHTML = '<i class="fas fa-check"></i>';
+                setTimeout(() => {
+                    copyBtn.innerHTML = '<i class="fas fa-copy"></i>';
+                }, 2000);
+            });
+        }
+        window.copyUPIId = copyUPIId;
     </script>
 </body>
-</html> 
+</html>
