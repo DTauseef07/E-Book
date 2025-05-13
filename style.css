@@ -982,13 +982,22 @@ details p {
 
 @media (max-width: 768px) {
     body {
-        font-weight: 400;
+        font-weight: 500;
         letter-spacing: 0.3px;
-        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+        text-shadow: 0 0 2px rgba(255, 255, 255, 0.4),
+                   0 0 4px rgba(255, 255, 255, 0.2);
+        color: #ffffff;
+    }
+
+    p, li, span:not(.mobile-menu-btn span) {
+        color: #ffffff;
+        text-shadow: 0 0 3px rgba(255, 255, 255, 0.3);
     }
 
     h1, h2, h3, h4, h5, h6 {
-        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+        color: #ffffff;
+        text-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
+        font-weight: 600;
     }
 
     .section-title {
@@ -1012,13 +1021,26 @@ details p {
         width: 80%;
         max-width: 300px;
         height: 100vh;
-        background: var(--bg-color);
+        background: rgba(10, 10, 10, 0.98);
         flex-direction: column;
         padding: 5rem 2rem;
-        transition: all 0.3s ease;
-        backdrop-filter: blur(10px);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        backdrop-filter: blur(15px);
         border-left: 1px solid var(--glass-border);
-        box-shadow: var(--shadow-lg);
+        box-shadow: var(--shadow-lg), 
+                  0 0 30px rgba(0, 255, 231, 0.15),
+                  inset 0 0 30px rgba(0, 255, 231, 0.05);
+        z-index: 999;
+    }
+
+    .nav-links a {
+        color: #ffffff;
+        font-weight: 500;
+        text-shadow: 0 0 8px rgba(255, 255, 255, 0.4),
+                   0 0 16px rgba(0, 255, 231, 0.3);
+        letter-spacing: 0.5px;
+        font-size: 1.1rem;
+        padding: 10px 0;
     }
 
     .nav-links.active {
@@ -1038,31 +1060,40 @@ details p {
         display: flex;
         flex-direction: column;
         gap: 6px;
-        background: transparent;
-        border: none;
+        background: rgba(0, 0, 0, 0.3);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 8px;
         cursor: pointer;
         z-index: 1000;
-        padding: 10px;
+        padding: 12px;
+        position: relative;
+        right: 0;
+        margin-right: 5px;
+        backdrop-filter: blur(5px);
+        box-shadow: 0 0 10px rgba(0, 255, 231, 0.2);
     }
 
     .mobile-menu-btn span {
         display: block;
-        width: 25px;
+        width: 24px;
         height: 2px;
-        background: var(--text-color);
+        background: #ffffff;
+        border-radius: 2px;
         transition: all 0.3s ease;
+        box-shadow: 0 0 8px rgba(255, 255, 255, 0.8),
+                  0 0 15px rgba(0, 255, 231, 0.4);
     }
 
     .mobile-menu-btn.active span:nth-child(1) {
-        transform: rotate(45deg) translate(6px, 6px);
+        transform: rotate(45deg) translate(5px, 5px);
     }
 
     .mobile-menu-btn.active span:nth-child(2) {
-        transform: rotate(-45deg);
+        opacity: 0;
     }
 
     .mobile-menu-btn.active span:nth-child(3) {
-        opacity: 0;
+        transform: rotate(-45deg) translate(5px, -5px);
     }
 
     .hero-grid {
@@ -1088,14 +1119,17 @@ details p {
         font-size: 2.5rem;
         line-height: 1.2;
         margin-bottom: 1rem;
-        text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+        color: #ffffff;
+        text-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
+        font-weight: 700;
     }
 
     .hero-subtitle {
         font-size: 1.1rem;
         line-height: 1.6;
-        opacity: 0.95;
-        text-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+        color: #ffffff;
+        text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+        font-weight: 500;
     }
 
     .features-grid {
