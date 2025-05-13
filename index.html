@@ -202,6 +202,17 @@
         </section>
     </main>
 
+    <!-- Sales Notification -->
+    <div class="sales-notification" id="salesNotification">
+        <div class="notification-icon">
+            <i class="fas fa-shopping-cart"></i>
+        </div>
+        <div class="notification-content">
+            <p class="notification-text"></p>
+            <small class="notification-time">Just now</small>
+        </div>
+    </div>
+
     <!-- Back to Top Button -->
     <button class="back-to-top" aria-label="Back to top">
         <i class="fas fa-arrow-up"></i>
@@ -443,6 +454,108 @@
                 setInterval(updateHeroTimer, 1000);
             }
         })();
+        // Sales Notification System
+        const purchaseData = [
+            { name: 'Rajesh Kumar', city: 'Mumbai, Maharashtra' },
+            { name: 'Priya Sharma', city: 'Delhi, NCR' },
+            { name: 'Amit Patel', city: 'Ahmedabad, Gujarat' },
+            { name: 'Deepika Singh', city: 'Bangalore, Karnataka' },
+            { name: 'Suresh Reddy', city: 'Hyderabad, Telangana' },
+            { name: 'Meera Iyer', city: 'Chennai, Tamil Nadu' },
+            { name: 'Arjun Nair', city: 'Kochi, Kerala' },
+            { name: 'Neha Verma', city: 'Jaipur, Rajasthan' },
+            { name: 'Sanjay Mehta', city: 'Pune, Maharashtra' },
+            { name: 'Anjali Das', city: 'Kolkata, West Bengal' },
+            { name: 'Vikram Singh', city: 'Chandigarh, Punjab' },
+            { name: 'Pooja Gupta', city: 'Lucknow, Uttar Pradesh' },
+            { name: 'Rahul Khanna', city: 'Indore, Madhya Pradesh' },
+            { name: 'Kavita Rao', city: 'Mysore, Karnataka' },
+            { name: 'Arun Joshi', city: 'Nagpur, Maharashtra' },
+            { name: 'Sunita Patel', city: 'Surat, Gujarat' },
+            { name: 'Kiran Kumar', city: 'Visakhapatnam, Andhra Pradesh' },
+            { name: 'Divya Menon', city: 'Trivandrum, Kerala' },
+            { name: 'Manoj Shah', city: 'Vadodara, Gujarat' },
+            { name: 'Ritu Malhotra', city: 'Bhopal, Madhya Pradesh' }
+        ];
+
+        let lastIndex = -1;
+
+        function showSalesNotification() {
+            const notification = document.getElementById('salesNotification');
+            const notificationText = notification.querySelector('.notification-text');
+
+            // Get random index different from last one
+            let randomIndex;
+            do {
+                randomIndex = Math.floor(Math.random() * purchaseData.length);
+            } while (randomIndex === lastIndex);
+            lastIndex = randomIndex;
+
+            const purchase = purchaseData[randomIndex];
+            notificationText.textContent = `${purchase.name} from ${purchase.city} just purchased this eBook!`;
+
+            // Show notification
+            notification.classList.add('show');
+
+            // Hide after 4 seconds
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 4000);
+        }
+
+        // Show first notification after 5 seconds
+        setTimeout(() => {
+            showSalesNotification();
+            // Then show every 20 seconds
+            setInterval(showSalesNotification, 20000);
+        }, 5000);
     </script>
+    <style>
+        .sales-notification {
+            position: fixed;
+            bottom: 20px;
+            left: -400px; /* Start off-screen */
+            background: #fff;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            border-radius: 8px;
+            padding: 12px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            z-index: 1000;
+            transition: transform 0.5s ease;
+            max-width: 320px;
+        }
+
+        .sales-notification.show {
+            transform: translateX(420px); /* Slide in */
+        }
+
+        .notification-icon {
+            background: #4CAF50;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .notification-content {
+            flex: 1;
+        }
+
+        .notification-text {
+            margin: 0;
+            font-size: 14px;
+            color: #333;
+        }
+
+        .notification-time {
+            color: #666;
+            font-size: 12px;
+        }
+    </style>
 </body>
 </html> 
