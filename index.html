@@ -410,29 +410,43 @@
         const menuBtn = document.querySelector('.mobile-menu-btn');
         const navigationLinks = document.querySelector('.nav-links');
         const navigationItems = document.querySelectorAll('.nav-links a');
+        let isMenuOpen = false;
 
-        menuBtn.addEventListener('click', () => {
-            menuBtn.classList.toggle('active');
-            navigationLinks.classList.toggle('active');
+        function toggleMenu(open) {
+            isMenuOpen = open;
+            menuBtn.classList.toggle('active', open);
+            navigationLinks.classList.toggle('active', open);
+            document.body.style.overflow = open ? 'hidden' : '';
+        }
+
+        menuBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            toggleMenu(!isMenuOpen);
         });
 
         // Close menu when clicking a link
         navigationItems.forEach(link => {
             link.addEventListener('click', () => {
-                menuBtn.classList.remove('active');
-                navigationLinks.classList.remove('active');
+                toggleMenu(false);
             });
         });
 
         // Close menu when clicking outside
         document.addEventListener('click', (e) => {
-            if (!menuBtn.contains(e.target) && 
-                !navigationLinks.contains(e.target) && 
-                navigationLinks.classList.contains('active')) {
-                menuBtn.classList.remove('active');
-                navigationLinks.classList.remove('active');
+            if (isMenuOpen && !menuBtn.contains(e.target) && !navigationLinks.contains(e.target)) {
+                toggleMenu(false);
             }
         });
+
+        // Close menu when scrolling
+        let lastScrollTop = 0;
+        window.addEventListener('scroll', () => {
+            const st = window.pageYOffset || document.documentElement.scrollTop;
+            if (isMenuOpen && Math.abs(st - lastScrollTop) > 30) {
+                toggleMenu(false);
+            }
+            lastScrollTop = st;
+        }, { passive: true });
 
         // Header scroll effect
         const header = document.querySelector('.site-header');
