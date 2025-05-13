@@ -72,7 +72,7 @@
                     <div class="limited-offer-timer">
                         <span class="limited-offer-label">Limited Time Offer</span>
                         <div class="timer-hero">
-                            <span id="hero-minutes">30</span><span class="timer-separator">:</span><span id="hero-seconds">00</span>
+                            <span id="hero-minutes">10</span><span class="timer-separator">:</span><span id="hero-seconds">00</span>
                         </div>
                         <div class="offer-price">Only <span class="price">₹199</span> <span class="hurry">Hurry Up!</span></div>
                     </div>
@@ -426,9 +426,9 @@
             parallaxBg.style.transform = `translateY(${scrolled * 0.5}px)`;
         });
 
-        // 30-min Hero Timer
+        // 10-min Hero Timer
         (function() {
-            var totalSeconds = 30 * 60;
+            var totalSeconds = 600; // 10 minutes;
             var minEl = document.getElementById('hero-minutes');
             var secEl = document.getElementById('hero-seconds');
             function updateHeroTimer() {
