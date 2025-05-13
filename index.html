@@ -1,33 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en">
 <head>
-    <!-- PWA Support -->
-    <link rel="manifest" href="manifest.json">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <link rel="apple-touch-icon" href="icons/icon-192x192.png">
-    <meta name="theme-color" content="#0a0a0a">
-    
-    <!-- SEO Meta Tags -->
-    <meta name="robots" content="index, follow">
-    <meta name="author" content="Your Name">
-    <meta property="og:title" content="Premium eBook - Transform Your Life">
-    <meta property="og:description" content="Transform your life with expert insights and proven strategies in our premium eBook.">
-    <meta property="og:image" content="path/to/og-image.jpg">
-    <meta property="og:url" content="https://your-domain.com">
-    <meta name="twitter:card" content="summary_large_image">
-    
-    <!-- Preload Critical Assets -->
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Urbanist:wght@300;400;500;600;700&display=swap" as="style">
-    <link rel="preload" href="style.css" as="style">
-    <link rel="preconnect" href="https://cdn.jsdelivr.net">
-    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
-    <!-- Particles.js for background effects -->
-    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-    <!-- GSAP for animations -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <!-- Vanilla-tilt for 3D effects -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.0/vanilla-tilt.min.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Premium digital eBook - Transform your life with expert insights and proven strategies">
@@ -45,135 +18,8 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.2/vanilla-tilt.min.js"></script>
-    <!-- Schema.org Markup -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "Product",
-        "name": "Premium eBook",
-        "description": "Transform your life with expert insights and proven strategies",
-        "offers": {
-            "@type": "Offer",
-            "price": "29.99",
-            "priceCurrency": "USD"
-        }
-    }
-    </script>
-
-    <!-- Service Worker Registration -->
-    <script>
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', () => {
-                navigator.serviceWorker.register('/sw.js')
-                    .then(registration => console.log('ServiceWorker registered'))
-                    .catch(err => console.log('ServiceWorker registration failed'));
-            });
-        }
-    </script>
 </head>
 <body>
-    <!-- Accessibility Skip Links -->
-    <nav class="skip-links" aria-label="Skip links">
-        <a href="#main-content" class="skip-link">Skip to main content</a>
-        <a href="#footer" class="skip-link">Skip to footer</a>
-    </nav>
-
-    <!-- Keyboard Shortcuts Modal -->
-    <div class="shortcuts-modal" role="dialog" aria-labelledby="shortcuts-title" aria-hidden="true">
-        <div class="modal-content">
-            <h2 id="shortcuts-title">Keyboard Shortcuts</h2>
-            <ul class="shortcuts-list">
-                <li><kbd>?</kbd> Show this dialog</li>
-                <li><kbd>/</kbd> Search</li>
-                <li><kbd>Esc</kbd> Close dialog</li>
-                <li><kbd>t</kbd> Toggle theme</li>
-                <li><kbd>b</kbd> Back to top</li>
-            </ul>
-        </div>
-    </div>
-
-    <!-- Search Modal -->
-    <div class="search-modal" role="dialog" aria-labelledby="search-title" aria-hidden="true">
-        <div class="modal-content">
-            <h2 id="search-title">Search</h2>
-            <input type="search" class="search-input" placeholder="Search..." aria-label="Search">
-            <div class="search-results" aria-live="polite"></div>
-        </div>
-    </div>
-
-    <!-- Offline Notification -->
-    <div class="offline-notification" role="alert" aria-hidden="true">
-        You are currently offline. Some features may be limited.
-    </div>
-
-    <!-- Print Preview Button -->
-    <button class="print-button" aria-label="Print page">
-        <i class="fas fa-print"></i>
-    </button>
-
-    <!-- Page Load Progress -->
-    <div class="page-load-progress" aria-hidden="true">
-        <div class="progress-bar">
-            <div class="progress-value"></div>
-        </div>
-    </div>
-
-    <!-- Dynamic Content Cache Status -->
-    <div class="cache-status" aria-hidden="true">
-        <i class="fas fa-sync"></i> Content updated
-    </div>
-    <!-- Loading Screen -->
-    <div class="loading-screen">
-        <div class="loader">
-            <svg class="book-icon" viewBox="0 0 24 24">
-                <path d="M21,5c-1.11-0.35-2.33-0.5-3.5-0.5c-1.95,0-4.05,0.4-5.5,1.5c-1.45-1.1-3.55-1.5-5.5-1.5S2.45,4.9,1,6v14.65c0,0.25,0.25,0.5,0.5,0.5c0.1,0,0.15-0.05,0.25-0.05C3.1,20.45,5.05,20,6.5,20c1.95,0,4.05,0.4,5.5,1.5c1.35-0.85,3.8-1.5,5.5-1.5c1.65,0,3.35,0.3,4.75,1.05c0.1,0.05,0.15,0.05,0.25,0.05c0.25,0,0.5-0.25,0.5-0.5V6C22.4,5.55,21.75,5.25,21,5z M21,18.5c-1.1-0.35-2.3-0.5-3.5-0.5c-1.7,0-4.15,0.65-5.5,1.5V8c1.35-0.85,3.8-1.5,5.5-1.5c1.2,0,2.4,0.15,3.5,0.5V18.5z"/>
-            </svg>
-            <div class="progress-bar">
-                <div class="progress"></div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Theme Toggle & Settings -->
-    <div class="settings-panel">
-        <button class="theme-toggle" aria-label="Toggle theme">
-            <i class="fas fa-moon dark-icon"></i>
-            <i class="fas fa-sun light-icon"></i>
-        </button>
-        <button class="font-size-toggle" aria-label="Adjust font size">
-            <i class="fas fa-text-height"></i>
-        </button>
-        <div class="font-size-popup">
-            <button data-size="small">A</button>
-            <button data-size="medium">A</button>
-            <button data-size="large">A</button>
-        </div>
-        <select class="language-select">
-            <option value="en">English</option>
-            <option value="hi">हिंदी</option>
-            <option value="es">Español</option>
-        </select>
-    </div>
-
-    <!-- Cookie Consent -->
-    <div class="cookie-consent">
-        <p>We use cookies to enhance your experience. By continuing to visit this site you agree to our use of cookies.</p>
-        <button class="accept-cookies">Accept</button>
-    </div>
-
-    <!-- Back to Top Button -->
-    <button class="back-to-top" aria-label="Back to top">
-        <i class="fas fa-arrow-up"></i>
-    </button>
-
-    <!-- Progress Bar -->
-    <div class="scroll-progress"></div>
-
-    <!-- Particles Background -->
-    <div id="particles-js"></div>
-
-    <!-- Mouse Trail -->
-    <canvas id="mouse-trail"></canvas>
     <!-- Skip Navigation -->
     <a href="#main-content" class="skip-nav">Skip to main content</a>
 
@@ -201,6 +47,7 @@
                 <a href="buy.html" class="nav-cta" aria-label="Buy now">Buy Now</a>
             </ul>
             <button class="mobile-menu-btn" aria-label="Toggle mobile menu">
+                <span></span>
                 <span></span>
                 <span></span>
                 <span></span>
@@ -560,6 +407,34 @@
         setInterval(updateTimer, 1000);
         updateTimer();
 
+        // Mobile Menu
+        const menuBtn = document.querySelector('.mobile-menu-btn');
+        const navigationLinks = document.querySelector('.nav-links');
+        const navigationItems = document.querySelectorAll('.nav-links a');
+
+        menuBtn.addEventListener('click', () => {
+            menuBtn.classList.toggle('active');
+            navigationLinks.classList.toggle('active');
+        });
+
+        // Close menu when clicking a link
+        navigationItems.forEach(link => {
+            link.addEventListener('click', () => {
+                menuBtn.classList.remove('active');
+                navigationLinks.classList.remove('active');
+            });
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!menuBtn.contains(e.target) && 
+                !navigationLinks.contains(e.target) && 
+                navigationLinks.classList.contains('active')) {
+                menuBtn.classList.remove('active');
+                navigationLinks.classList.remove('active');
+            }
+        });
+
         // Header scroll effect
         const header = document.querySelector('.site-header');
         let lastHeaderScroll = window.scrollY;
@@ -752,186 +627,5 @@
             font-family: 'Urbanist', sans-serif;
         }
     </style>
-    <!-- Share Buttons -->
-    <div class="share-buttons">
-        <button class="share-btn" data-platform="facebook">
-            <i class="fab fa-facebook-f"></i>
-        </button>
-        <button class="share-btn" data-platform="twitter">
-            <i class="fab fa-twitter"></i>
-        </button>
-        <button class="share-btn" data-platform="linkedin">
-            <i class="fab fa-linkedin-in"></i>
-        </button>
-        <button class="share-btn" data-platform="whatsapp">
-            <i class="fab fa-whatsapp"></i>
-        </button>
-    </div>
-
-    <script>
-        // Loading Screen
-        window.addEventListener('load', () => {
-            const loader = document.querySelector('.loading-screen');
-            const progress = document.querySelector('.progress');
-            let width = 0;
-            const interval = setInterval(() => {
-                if (width >= 100) {
-                    clearInterval(interval);
-                    loader.style.opacity = '0';
-                    setTimeout(() => {
-                        loader.style.display = 'none';
-                    }, 500);
-                } else {
-                    width++;
-                    progress.style.width = width + '%';
-                }
-            }, 20);
-        });
-
-        // Theme Toggle
-        const themeToggle = document.querySelector('.theme-toggle');
-        themeToggle.addEventListener('click', () => {
-            document.documentElement.setAttribute('data-theme', 
-                document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark'
-            );
-        });
-
-        // Font Size Adjustment
-        const fontButtons = document.querySelectorAll('.font-size-popup button');
-        fontButtons.forEach(btn => {
-            btn.addEventListener('click', () => {
-                document.body.setAttribute('data-font-size', btn.dataset.size);
-            });
-        });
-
-
-
-        // Scroll Progress
-        const scrollProgress = document.querySelector('.scroll-progress');
-        window.addEventListener('scroll', () => {
-            const height = document.documentElement.scrollHeight - window.innerHeight;
-            const progress = (window.scrollY / height) * 100;
-            scrollProgress.style.width = progress + '%';
-        });
-
-        // Particles Background
-        particlesJS('particles-js', {
-            particles: {
-                number: { value: 80, density: { enable: true, value_area: 800 } },
-                color: { value: '#00ffe7' },
-                shape: { type: 'circle' },
-                opacity: { value: 0.2, random: true },
-                size: { value: 3, random: true },
-                move: { enable: true, speed: 2, direction: 'none', random: true }
-            }
-        });
-
-        // Mouse Trail
-        const canvas = document.getElementById('mouse-trail');
-        const ctx = canvas.getContext('2d');
-        let points = [];
-
-        function resizeCanvas() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        }
-        resizeCanvas();
-        window.addEventListener('resize', resizeCanvas);
-
-        window.addEventListener('mousemove', e => {
-            points.push({ x: e.clientX, y: e.clientY, age: 0 });
-        });
-
-        function animate() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            points = points.filter(point => point.age < 20);
-            
-            points.forEach(point => {
-                point.age++;
-                ctx.beginPath();
-                ctx.arc(point.x, point.y, 3, 0, Math.PI * 2);
-                ctx.fillStyle = `rgba(0, 255, 231, ${1 - point.age / 20})`;
-                ctx.fill();
-            });
-            
-            requestAnimationFrame(animate);
-        }
-        animate();
-
-        // 3D Tilt Effect
-        VanillaTilt.init(document.querySelectorAll('.feature-card, .testimonial-card, .pricing-card'), {
-            max: 5,
-            speed: 400,
-            glare: true,
-            'max-glare': 0.2
-        });
-
-        // Animated Statistics
-        const stats = document.querySelectorAll('.stat-number');
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const target = parseInt(entry.target.dataset.target);
-                    let count = 0;
-                    const interval = setInterval(() => {
-                        entry.target.textContent = count;
-                        count++;
-                        if (count > target) clearInterval(interval);
-                    }, 2000 / target);
-                    observer.unobserve(entry.target);
-                }
-            });
-        });
-        stats.forEach(stat => observer.observe(stat));
-
-        // Share Buttons
-        document.querySelectorAll('.share-btn').forEach(btn => {
-            btn.addEventListener('click', () => {
-                const platform = btn.dataset.platform;
-                const url = encodeURIComponent(window.location.href);
-                const text = encodeURIComponent(document.title);
-                let shareUrl = '';
-                
-                switch(platform) {
-                    case 'facebook':
-                        shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${url}`;
-                        break;
-                    case 'twitter':
-                        shareUrl = `https://twitter.com/intent/tweet?url=${url}&text=${text}`;
-                        break;
-                    case 'linkedin':
-                        shareUrl = `https://www.linkedin.com/shareArticle?mini=true&url=${url}&title=${text}`;
-                        break;
-                    case 'whatsapp':
-                        shareUrl = `https://api.whatsapp.com/send?text=${text}%20${url}`;
-                        break;
-                }
-                
-                window.open(shareUrl, '_blank', 'width=600,height=400');
-            });
-        });
-
-        // Cookie Consent
-        const cookieConsent = document.querySelector('.cookie-consent');
-        const acceptCookies = document.querySelector('.accept-cookies');
-        
-        if (!localStorage.getItem('cookiesAccepted')) {
-            cookieConsent.classList.add('show');
-        }
-        
-        acceptCookies.addEventListener('click', () => {
-            localStorage.setItem('cookiesAccepted', 'true');
-            cookieConsent.classList.remove('show');
-        });
-
-        // Reading Time Estimate
-        const content = document.querySelector('main').textContent;
-        const wordCount = content.split(/\s+/).length;
-        const readingTime = Math.ceil(wordCount / 200); // Assuming 200 words per minute
-        const readingTimeElement = document.createElement('div');
-        readingTimeElement.classList.add('reading-time');
-        readingTimeElement.innerHTML = `<i class="far fa-clock"></i> ${readingTime} min read`;
-        document.querySelector('main').prepend(readingTimeElement);
-    </script>
 </body>
 </html> 
