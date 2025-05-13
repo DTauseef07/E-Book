@@ -1019,15 +1019,16 @@ details p {
         height: 100vh;
         background: rgba(10, 10, 10, 0.98);
         flex-direction: column;
-        padding: 6rem 2rem 2rem;
+        padding: 6rem 1rem 2rem;
         transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        backdrop-filter: blur(10px);
+        backdrop-filter: blur(15px);
         border-left: 1px solid var(--glass-border);
-        box-shadow: var(--shadow-lg);
-        z-index: 999;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        z-index: 1000;
         display: flex;
-        align-items: center;
-        gap: 1.5rem;
+        align-items: stretch;
+        gap: 1rem;
+        overscroll-behavior: contain;
     }
 
     .nav-links.active {
@@ -1035,17 +1036,31 @@ details p {
     }
 
     .nav-links li {
-        margin: 0.5rem 0;
+        margin: 0.3rem 0;
         width: 100%;
         text-align: center;
+        border-radius: 8px;
+        transition: background 0.2s ease;
+    }
+
+    .nav-links li:hover {
+        background: rgba(255, 255, 255, 0.1);
     }
 
     .nav-links a {
-        font-size: 1.2rem;
+        font-size: 1.1rem;
         font-weight: 500;
-        padding: 0.8rem;
+        padding: 0.8rem 1rem;
         width: 100%;
         display: inline-block;
+        color: #ffffff;
+        text-decoration: none;
+        border-radius: 8px;
+        transition: color 0.2s ease;
+    }
+
+    .nav-links a:active {
+        color: var(--accent-primary);
     }
 
     .nav-links .nav-cta {
@@ -1057,17 +1072,22 @@ details p {
     .mobile-menu-btn {
         display: flex;
         flex-direction: column;
-        justify-content: space-between;
-        width: 30px;
-        height: 20px;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
         background: transparent;
         border: none;
         cursor: pointer;
-        z-index: 1000;
-        padding: 15px;
+        z-index: 1100;
+        padding: 10px;
         position: relative;
         margin-left: auto;
-        margin-right: -10px;
+        border-radius: 50%;
+        transition: background 0.2s ease;
+    }
+
+    .mobile-menu-btn:active {
+        background: rgba(255, 255, 255, 0.1);
     }
 
     .mobile-menu-btn span {
