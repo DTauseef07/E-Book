@@ -1,6 +1,27 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="dark">
 <head>
+    <!-- PWA Support -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon" href="icons/icon-192x192.png">
+    <meta name="theme-color" content="#0a0a0a">
+    
+    <!-- SEO Meta Tags -->
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="Your Name">
+    <meta property="og:title" content="Premium eBook - Transform Your Life">
+    <meta property="og:description" content="Transform your life with expert insights and proven strategies in our premium eBook.">
+    <meta property="og:image" content="path/to/og-image.jpg">
+    <meta property="og:url" content="https://your-domain.com">
+    <meta name="twitter:card" content="summary_large_image">
+    
+    <!-- Preload Critical Assets -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Urbanist:wght@300;400;500;600;700&display=swap" as="style">
+    <link rel="preload" href="style.css" as="style">
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
     <!-- Particles.js for background effects -->
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <!-- GSAP for animations -->
@@ -24,8 +45,83 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.2/vanilla-tilt.min.js"></script>
+    <!-- Schema.org Markup -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Product",
+        "name": "Premium eBook",
+        "description": "Transform your life with expert insights and proven strategies",
+        "offers": {
+            "@type": "Offer",
+            "price": "29.99",
+            "priceCurrency": "USD"
+        }
+    }
+    </script>
+
+    <!-- Service Worker Registration -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js')
+                    .then(registration => console.log('ServiceWorker registered'))
+                    .catch(err => console.log('ServiceWorker registration failed'));
+            });
+        }
+    </script>
 </head>
 <body>
+    <!-- Accessibility Skip Links -->
+    <nav class="skip-links" aria-label="Skip links">
+        <a href="#main-content" class="skip-link">Skip to main content</a>
+        <a href="#footer" class="skip-link">Skip to footer</a>
+    </nav>
+
+    <!-- Keyboard Shortcuts Modal -->
+    <div class="shortcuts-modal" role="dialog" aria-labelledby="shortcuts-title" aria-hidden="true">
+        <div class="modal-content">
+            <h2 id="shortcuts-title">Keyboard Shortcuts</h2>
+            <ul class="shortcuts-list">
+                <li><kbd>?</kbd> Show this dialog</li>
+                <li><kbd>/</kbd> Search</li>
+                <li><kbd>Esc</kbd> Close dialog</li>
+                <li><kbd>t</kbd> Toggle theme</li>
+                <li><kbd>b</kbd> Back to top</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Search Modal -->
+    <div class="search-modal" role="dialog" aria-labelledby="search-title" aria-hidden="true">
+        <div class="modal-content">
+            <h2 id="search-title">Search</h2>
+            <input type="search" class="search-input" placeholder="Search..." aria-label="Search">
+            <div class="search-results" aria-live="polite"></div>
+        </div>
+    </div>
+
+    <!-- Offline Notification -->
+    <div class="offline-notification" role="alert" aria-hidden="true">
+        You are currently offline. Some features may be limited.
+    </div>
+
+    <!-- Print Preview Button -->
+    <button class="print-button" aria-label="Print page">
+        <i class="fas fa-print"></i>
+    </button>
+
+    <!-- Page Load Progress -->
+    <div class="page-load-progress" aria-hidden="true">
+        <div class="progress-bar">
+            <div class="progress-value"></div>
+        </div>
+    </div>
+
+    <!-- Dynamic Content Cache Status -->
+    <div class="cache-status" aria-hidden="true">
+        <i class="fas fa-sync"></i> Content updated
+    </div>
     <!-- Loading Screen -->
     <div class="loading-screen">
         <div class="loader">
