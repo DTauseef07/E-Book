@@ -497,10 +497,10 @@
             // Show notification
             notification.classList.add('show');
 
-            // Hide after 4 seconds
+            // Hide after 6 seconds
             setTimeout(() => {
                 notification.classList.remove('show');
-            }, 4000);
+            }, 6000);
         }
 
         // Show first notification after 5 seconds
@@ -515,16 +515,18 @@
             position: fixed;
             bottom: 20px;
             left: -400px; /* Start off-screen */
-            background: #fff;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-            border-radius: 8px;
-            padding: 12px;
+            background: var(--bg-color);
+            border: 1px solid var(--glass-border);
+            box-shadow: var(--shadow-md), var(--glow-sm);
+            border-radius: 12px;
+            padding: 16px;
             display: flex;
             align-items: center;
             gap: 12px;
             z-index: 1000;
-            transition: transform 0.5s ease;
+            transition: all var(--transition-normal);
             max-width: 320px;
+            backdrop-filter: blur(10px);
         }
 
         .sales-notification.show {
@@ -532,14 +534,15 @@
         }
 
         .notification-icon {
-            background: #4CAF50;
-            color: white;
+            background: var(--gradient-primary);
+            color: var(--bg-color);
             width: 40px;
             height: 40px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
+            box-shadow: var(--glow-sm);
         }
 
         .notification-content {
@@ -549,12 +552,14 @@
         .notification-text {
             margin: 0;
             font-size: 14px;
-            color: #333;
+            color: var(--text-color);
+            font-family: 'Urbanist', sans-serif;
         }
 
         .notification-time {
-            color: #666;
+            color: var(--accent-primary);
             font-size: 12px;
+            font-family: 'Urbanist', sans-serif;
         }
     </style>
 </body>
