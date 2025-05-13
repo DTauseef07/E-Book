@@ -475,7 +475,37 @@
             { name: 'Kiran Kumar', city: 'Visakhapatnam, Andhra Pradesh' },
             { name: 'Divya Menon', city: 'Trivandrum, Kerala' },
             { name: 'Manoj Shah', city: 'Vadodara, Gujarat' },
-            { name: 'Ritu Malhotra', city: 'Bhopal, Madhya Pradesh' }
+            { name: 'Ritu Malhotra', city: 'Bhopal, Madhya Pradesh' },
+            { name: 'Anand Krishnan', city: 'Coimbatore, Tamil Nadu' },
+            { name: 'Sneha Reddy', city: 'Secunderabad, Telangana' },
+            { name: 'Rajiv Malhotra', city: 'Amritsar, Punjab' },
+            { name: 'Nandini Patel', city: 'Rajkot, Gujarat' },
+            { name: 'Aditya Sharma', city: 'Noida, Uttar Pradesh' },
+            { name: 'Lakshmi Menon', city: 'Thrissur, Kerala' },
+            { name: 'Vivek Singhania', city: 'Guwahati, Assam' },
+            { name: 'Shweta Kapoor', city: 'Dehradun, Uttarakhand' },
+            { name: 'Rohit Verma', city: 'Patna, Bihar' },
+            { name: 'Ananya Chatterjee', city: 'Siliguri, West Bengal' },
+            { name: 'Kartik Mehra', city: 'Gurgaon, Haryana' },
+            { name: 'Priyanka Desai', city: 'Nashik, Maharashtra' },
+            { name: 'Varun Nambiar', city: 'Mangalore, Karnataka' },
+            { name: 'Shreya Ghosh', city: 'Bhubaneswar, Odisha' },
+            { name: 'Nikhil Menon', city: 'Calicut, Kerala' },
+            { name: 'Aarti Saxena', city: 'Kanpur, Uttar Pradesh' },
+            { name: 'Prakash Iyer', city: 'Salem, Tamil Nadu' },
+            { name: 'Jyoti Sharma', city: 'Jodhpur, Rajasthan' },
+            { name: 'Mohan Rao', city: 'Vijayawada, Andhra Pradesh' },
+            { name: 'Sarita Kumari', city: 'Ranchi, Jharkhand' },
+            { name: 'Deepak Shetty', city: 'Udupi, Karnataka' },
+            { name: 'Roshni Patel', city: 'Bhavnagar, Gujarat' },
+            { name: 'Alok Mishra', city: 'Varanasi, Uttar Pradesh' },
+            { name: 'Meenakshi Sundaram', city: 'Madurai, Tamil Nadu' },
+            { name: 'Gaurav Malhotra', city: 'Ludhiana, Punjab' },
+            { name: 'Shalini Reddy', city: 'Warangal, Telangana' },
+            { name: 'Vinod Nair', city: 'Palakkad, Kerala' },
+            { name: 'Preeti Joshi', city: 'Raipur, Chhattisgarh' },
+            { name: 'Sameer Khan', city: 'Aurangabad, Maharashtra' },
+            { name: 'Kavya Krishnan', city: 'Ernakulam, Kerala' }
         ];
 
         let lastIndex = -1;
@@ -506,8 +536,15 @@
         // Show first notification after 5 seconds
         setTimeout(() => {
             showSalesNotification();
-            // Then show every 20 seconds
-            setInterval(showSalesNotification, 20000);
+            // Then show every 22-27 seconds
+            function scheduleNextNotification() {
+                const delay = Math.floor(Math.random() * (27000 - 22000 + 1)) + 22000; // Random between 22-27 seconds
+                setTimeout(() => {
+                    showSalesNotification();
+                    scheduleNextNotification();
+                }, delay);
+            }
+            scheduleNextNotification();
         }, 5000);
     </script>
     <style>
