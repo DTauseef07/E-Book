@@ -416,8 +416,25 @@
             isMenuOpen = open;
             menuBtn.classList.toggle('active', open);
             navigationLinks.classList.toggle('active', open);
-            document.body.style.overflow = open ? 'hidden' : '';
+            
+            // Prevent background scroll
+            if (open) {
+                document.body.style.position = 'fixed';
+                document.body.style.width = '100%';
+                document.body.style.top = `-${window.scrollY}px`;
+            } else {
+                const scrollY = document.body.style.top;
+                document.body.style.position = '';
+                document.body.style.width = '';
+                document.body.style.top = '';
+                window.scrollTo(0, parseInt(scrollY || '0') * -1);
+            }
         }
+
+        // Prevent touch move on menu when open
+        navigationLinks.addEventListener('touchmove', (e) => {
+            if (isMenuOpen) e.preventDefault();
+        }, { passive: false });
 
         menuBtn.addEventListener('click', (e) => {
             e.stopPropagation();
@@ -426,8 +443,14 @@
 
         // Close menu when clicking a link
         navigationItems.forEach(link => {
-            link.addEventListener('click', () => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
                 toggleMenu(false);
+                
+                // Navigate after menu closes
+                setTimeout(() => {
+                    window.location.href = link.getAttribute('href');
+                }, 300);
             });
         });
 
