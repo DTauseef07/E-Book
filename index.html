@@ -416,6 +416,7 @@
             isMenuOpen = open;
             menuBtn.classList.toggle('active', open);
             navigationLinks.classList.toggle('active', open);
+            document.body.classList.toggle('menu-open', open);
             
             // Prevent background scroll
             if (open) {
@@ -560,24 +561,11 @@
             { name: 'Jyoti Sharma', city: 'Jodhpur, Rajasthan' },
             { name: 'Mohan Rao', city: 'Vijayawada, Andhra Pradesh' },
             { name: 'Sarita Kumari', city: 'Ranchi, Jharkhand' },
-            { name: 'Deepak Shetty', city: 'Udupi, Karnataka' },
-            { name: 'Roshni Patel', city: 'Bhavnagar, Gujarat' },
-            { name: 'Alok Mishra', city: 'Varanasi, Uttar Pradesh' },
-            { name: 'Meenakshi Sundaram', city: 'Madurai, Tamil Nadu' },
-            { name: 'Gaurav Malhotra', city: 'Ludhiana, Punjab' },
-            { name: 'Shalini Reddy', city: 'Warangal, Telangana' },
-            { name: 'Vinod Nair', city: 'Palakkad, Kerala' },
-            { name: 'Preeti Joshi', city: 'Raipur, Chhattisgarh' },
-            { name: 'Sameer Khan', city: 'Aurangabad, Maharashtra' },
-            { name: 'Kavya Krishnan', city: 'Ernakulam, Kerala' }
         ];
 
         let lastIndex = -1;
 
-        function showSalesNotification() {
-            const notification = document.getElementById('salesNotification');
-            const notificationText = notification.querySelector('.notification-text');
-
+        function showRandomPurchase() {
             // Get random index different from last one
             let randomIndex;
             do {
@@ -586,25 +574,85 @@
             lastIndex = randomIndex;
 
             const purchase = purchaseData[randomIndex];
-            notificationText.textContent = `${purchase.name} from ${purchase.city} just purchased this eBook!`;
+            const message = `${purchase.name} from ${purchase.city} just purchased this eBook!`;
+            showNotification(message);
+        }
 
-            // Show notification
-            notification.classList.add('show');
-
-            // Hide after 6 seconds
+        function showNotification(message) {
+            const notification = document.createElement('div');
+            notification.className = 'notification';
+            notification.innerHTML = `
+                <div class="notification-content">${message}</div>
+                <div class="notification-swipe-hint">← Swipe to dismiss</div>
+            `;
+            document.body.appendChild(notification);
+            
+            // Add swipe functionality
+            let startX = 0;
+            let currentX = 0;
+            
+            notification.addEventListener('touchstart', (e) => {
+                startX = e.touches[0].clientX;
+            }, {passive: true});
+            
+            notification.addEventListener('touchmove', (e) => {
+                currentX = e.touches[0].clientX;
+                const diffX = currentX - startX;
+                
+                if (diffX < 0) {
+                    notification.style.transform = `translateX(${diffX}px)`;
+                }
+            }, {passive: true});
+            
+            notification.addEventListener('touchend', () => {
+                if (startX - currentX > 50) {
+                    // Swiped left enough to dismiss
+                    notification.style.transform = 'translateX(-100%)';
+                    setTimeout(() => {
+                        document.body.removeChild(notification);
+                    }, 300);
+                } else {
+                    // Reset position
+                    notification.style.transform = '';
+                }
+            });
+            
+            // Also allow click to dismiss
+            notification.addEventListener('click', () => {
+                notification.style.transform = 'translateX(-100%)';
+                setTimeout(() => {
+                    if (document.body.contains(notification)) {
+                        document.body.removeChild(notification);
+                    }
+                }, 300);
+            });
+            
+            // Show notification with animation
             setTimeout(() => {
-                notification.classList.remove('show');
-            }, 6000);
+                notification.classList.add('show');
+            }, 100);
+            
+            // Auto-dismiss after delay
+            setTimeout(() => {
+                if (document.body.contains(notification)) {
+                    notification.classList.remove('show');
+                    setTimeout(() => {
+                        if (document.body.contains(notification)) {
+                            document.body.removeChild(notification);
+                        }
+                    }, 500);
+                }
+            }, 5000);
         }
 
         // Show first notification after 5 seconds
         setTimeout(() => {
-            showSalesNotification();
+            showRandomPurchase();
             // Then show every 22-27 seconds
             function scheduleNextNotification() {
                 const delay = Math.floor(Math.random() * (27000 - 22000 + 1)) + 22000; // Random between 22-27 seconds
                 setTimeout(() => {
-                    showSalesNotification();
+                    showRandomPurchase();
                     scheduleNextNotification();
                 }, delay);
             }
@@ -612,37 +660,28 @@
         }, 5000);
     </script>
     <style>
-        .sales-notification {
+        .notification {
             position: fixed;
             bottom: 20px;
-            left: -400px; /* Start off-screen */
-            background: var(--bg-color);
-            border: 1px solid var(--glass-border);
-            box-shadow: var(--shadow-md), var(--glow-sm);
-            border-radius: 12px;
-            padding: 16px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
+            left: 20px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.95);
+            color: white;
+            padding: 15px 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            transform: translateY(100px);
+            opacity: 0;
+            transition: transform 0.3s ease, opacity 0.3s ease;
             z-index: 1000;
-            transition: all var(--transition-normal);
-            max-width: 320px;
+            max-width: 90%;
+            margin: 0 auto;
             backdrop-filter: blur(10px);
-        }
-
-        .sales-notification.show {
-            transform: translateX(420px); /* Slide in */
-        }
-
-        .notification-icon {
-            background: var(--gradient-primary);
-            color: var(--bg-color);
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
+            border: 1px solid var(--glass-border);
             display: flex;
-            align-items: center;
-            justify-content: center;
+            flex-direction: column;
+            gap: 8px;
+            touch-action: pan-x;
             box-shadow: var(--glow-sm);
         }
 
