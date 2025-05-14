@@ -1220,41 +1220,6 @@ details p {
         font-size: 1.5rem;
     }
 
-    .countdown-label {
-        font-size: 0.8rem;
-    }
-
-    .book-placeholder,
-    .feature-card,
-    .testimonial-card,
-    .time-block {
-        background: rgba(10, 10, 10, 0.9);
-    }
-
-    .book-placeholder {
-        width: 260px;
-        height: 390px;
-        margin: 0 auto;
-    }
-
-    .ebook-wrapper {
-        width: 260px;
-        margin: 0 auto;
-    }
-
-    .timer {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .time-block {
-        width: 100%;
-        max-width: 200px;
-    }
-
-    .newsletter-form {
-        flex-direction: column;
-    }
 
     .newsletter-form button {
         width: 100%;
@@ -1441,6 +1406,49 @@ body {
 }
 
 /* Mobile Responsive */
+@media (max-width: 768px) {
+    .mobile-menu-btn {
+        display: block;
+    }
+
+    .nav-links {
+        position: fixed;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        background: var(--bg-color);
+        padding: 20px;
+        flex-direction: column;
+        align-items: center;
+        transform: translateY(-100%);
+        opacity: 0;
+        visibility: hidden;
+        transition: var(--transition-normal);
+    }
+
+    .nav-links.active {
+        transform: translateY(0);
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .nav-links li {
+        margin: 15px 0;
+    }
+
+    .back-to-top {
+        bottom: 20px;
+        right: 20px;
+        width: 40px;
+        height: 40px;
+    }
+}
+
+/* Focus States */
+a:focus,
+button:focus,
+input:focus,
+select:focus,
 textarea:focus {
     outline: 2px solid var(--accent-primary);
     outline-offset: 2px;
