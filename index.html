@@ -568,11 +568,75 @@
             // Show notification
             notification.classList.add('show');
 
-            // Hide after 6 seconds
-            setTimeout(() => {
+            // Hide after 6 seconds (auto)
+            if (notification.hideTimeout) clearTimeout(notification.hideTimeout);
+            notification.hideTimeout = setTimeout(() => {
                 notification.classList.remove('show');
             }, 6000);
         }
+
+        // Swipe/drag to dismiss notification (mobile and desktop)
+        (function addNotificationDismissGesture() {
+            const notification = document.getElementById('salesNotification');
+            let startX = null;
+            let currentX = null;
+            let isDragging = false;
+
+            // Desktop: mouse drag
+            notification.addEventListener('mousedown', function(e) {
+                isDragging = true;
+                startX = e.clientX;
+                notification.style.transition = 'none';
+            });
+            document.addEventListener('mousemove', function(e) {
+                if (!isDragging) return;
+                currentX = e.clientX;
+                const deltaX = currentX - startX;
+                if (Math.abs(deltaX) > 0) {
+                    notification.style.transform = `translateX(${420 + deltaX}px)`;
+                }
+            });
+            document.addEventListener('mouseup', function(e) {
+                if (!isDragging) return;
+                isDragging = false;
+                notification.style.transition = '';
+                const deltaX = e.clientX - startX;
+                if (Math.abs(deltaX) > 80) {
+                    notification.classList.remove('show');
+                    notification.style.transform = '';
+                } else {
+                    notification.style.transform = 'translateX(420px)';
+                }
+            });
+
+            // Mobile: touch swipe
+            notification.addEventListener('touchstart', function(e) {
+                if (e.touches.length !== 1) return;
+                isDragging = true;
+                startX = e.touches[0].clientX;
+                notification.style.transition = 'none';
+            });
+            notification.addEventListener('touchmove', function(e) {
+                if (!isDragging || e.touches.length !== 1) return;
+                currentX = e.touches[0].clientX;
+                const deltaX = currentX - startX;
+                if (Math.abs(deltaX) > 0) {
+                    notification.style.transform = `translateX(${420 + deltaX}px)`;
+                }
+            });
+            notification.addEventListener('touchend', function(e) {
+                if (!isDragging) return;
+                isDragging = false;
+                notification.style.transition = '';
+                const deltaX = currentX - startX;
+                if (Math.abs(deltaX) > 60) {
+                    notification.classList.remove('show');
+                    notification.style.transform = '';
+                } else {
+                    notification.style.transform = 'translateX(420px)';
+                }
+            });
+        })();
 
         // Show first notification after 5 seconds
         setTimeout(() => {
