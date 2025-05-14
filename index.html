@@ -448,10 +448,33 @@
                 e.preventDefault();
                 toggleMenu(false);
                 
-                // Navigate after menu closes
-                setTimeout(() => {
-                    window.location.href = link.getAttribute('href');
-                }, 300);
+                // Get the target section ID from href
+                const targetId = link.getAttribute('href');
+                
+                // Only scroll if it's an anchor link (starts with #)
+                if (targetId && targetId.startsWith('#')) {
+                    // Get the target element
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if (targetElement) {
+                        // Wait for menu animation to complete
+                        setTimeout(() => {
+                            // Scroll to the element
+                            targetElement.scrollIntoView({
+                                behavior: 'smooth',
+                                block: 'start'
+                            });
+                            
+                            // Update URL without reloading
+                            history.pushState(null, null, targetId);
+                        }, 300);
+                    }
+                } else {
+                    // For non-anchor links (like buy.html), navigate normally
+                    setTimeout(() => {
+                        window.location.href = targetId;
+                    }, 300);
+                }
             });
         });
 
