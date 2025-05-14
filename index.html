@@ -252,6 +252,123 @@
             disable: 'mobile'
         });
 
+        // Sales Notification System
+        const salesNotification = document.getElementById('salesNotification');
+        const notificationText = salesNotification.querySelector('.notification-text');
+        
+        const purchaseData = [
+            { name: 'Rajesh Kumar', city: 'Mumbai, Maharashtra' },
+            { name: 'Priya Sharma', city: 'Delhi, NCR' },
+            { name: 'Amit Patel', city: 'Ahmedabad, Gujarat' },
+            { name: 'Deepika Singh', city: 'Bangalore, Karnataka' },
+            { name: 'Suresh Reddy', city: 'Hyderabad, Telangana' },
+            { name: 'Meera Iyer', city: 'Chennai, Tamil Nadu' },
+            { name: 'Arjun Nair', city: 'Kochi, Kerala' },
+            { name: 'Neha Verma', city: 'Jaipur, Rajasthan' },
+            { name: 'Sanjay Mehta', city: 'Pune, Maharashtra' }
+        ];
+
+        let lastIndex = -1;
+
+        function showSalesNotification() {
+            // Get random index different from last one
+            let randomIndex;
+            do {
+                randomIndex = Math.floor(Math.random() * purchaseData.length);
+            } while (randomIndex === lastIndex);
+            lastIndex = randomIndex;
+
+            const purchase = purchaseData[randomIndex];
+            notificationText.textContent = `${purchase.name} from ${purchase.city} just purchased this eBook!`;
+
+            // Show notification
+            salesNotification.classList.add('show');
+
+            // Hide after 6 seconds
+            setTimeout(() => {
+                salesNotification.classList.remove('show');
+            }, 6000);
+        }
+
+        // Swipe functionality
+        let startX = 0;
+        let currentX = 0;
+        
+        salesNotification.addEventListener('touchstart', (e) => {
+            startX = e.touches[0].clientX;
+            currentX = startX;
+        }, {passive: true});
+        
+        salesNotification.addEventListener('touchmove', (e) => {
+            currentX = e.touches[0].clientX;
+            const diffX = currentX - startX;
+            
+            if (diffX < 0) {
+                salesNotification.style.transform = `translateX(${420 + diffX}px)`;
+            }
+        }, {passive: true});
+        
+        salesNotification.addEventListener('touchend', () => {
+            if (startX - currentX > 50) {
+                // Swiped left enough to dismiss
+                salesNotification.style.transform = 'translateX(-100px)';
+                setTimeout(() => {
+                    salesNotification.classList.remove('show');
+                    salesNotification.style.transform = '';
+                }, 300);
+            } else {
+                // Reset position
+                salesNotification.style.transform = 'translateX(420px)';
+            }
+        });
+
+        // Schedule notifications
+        setTimeout(() => {
+            showSalesNotification();
+            
+            function scheduleNextNotification() {
+                const delay = Math.floor(Math.random() * (27000 - 22000 + 1)) + 22000; // Random between 22-27 seconds
+                setTimeout(() => {
+                    showSalesNotification();
+                    scheduleNextNotification();
+                }, delay);
+            }
+            scheduleNextNotification();
+        }, 5000);
+        
+        // Add swipe functionality to sales notification
+        const salesNotification = document.getElementById('salesNotification');
+        let startX = 0;
+        let currentX = 0;
+        
+        salesNotification.addEventListener('touchstart', (e) => {
+            startX = e.touches[0].clientX;
+            currentX = startX;
+        }, {passive: true});
+        
+        salesNotification.addEventListener('touchmove', (e) => {
+            currentX = e.touches[0].clientX;
+            const diffX = currentX - startX;
+            
+            if (diffX < 0) {
+                salesNotification.style.transform = `translateX(${420 + diffX}px)`;
+            }
+        }, {passive: true});
+        
+        salesNotification.addEventListener('touchend', () => {
+            if (startX - currentX > 50) {
+                // Swiped left enough to dismiss
+                salesNotification.style.transform = 'translateX(-100px)';
+                setTimeout(() => {
+                    salesNotification.classList.remove('show');
+                    salesNotification.style.transform = '';
+                }, 300);
+            } else {
+                // Reset position
+                salesNotification.style.transform = 'translateX(420px)';
+            }
+        });
+
         // Initialize Vanilla Tilt with optimized settings
         VanillaTilt.init(document.querySelectorAll("[data-tilt]"), {
             max: 8,
@@ -548,134 +665,157 @@
             { name: 'Priya Sharma', city: 'Delhi, NCR' },
             { name: 'Amit Patel', city: 'Ahmedabad, Gujarat' },
             { name: 'Deepika Singh', city: 'Bangalore, Karnataka' },
-            { name: 'Suresh Reddy', city: 'Hyderabad, Telangana' },
-            { name: 'Meera Iyer', city: 'Chennai, Tamil Nadu' },
-            { name: 'Arjun Nair', city: 'Kochi, Kerala' },
-            { name: 'Neha Verma', city: 'Jaipur, Rajasthan' },
-            { name: 'Sanjay Mehta', city: 'Pune, Maharashtra' },
-            { name: 'Anjali Das', city: 'Kolkata, West Bengal' },
-            { name: 'Vikram Singh', city: 'Chandigarh, Punjab' },
-            { name: 'Pooja Gupta', city: 'Lucknow, Uttar Pradesh' },
-            { name: 'Rahul Khanna', city: 'Indore, Madhya Pradesh' },
-            { name: 'Kavita Rao', city: 'Mysore, Karnataka' },
-            { name: 'Arun Joshi', city: 'Nagpur, Maharashtra' },
-            { name: 'Sunita Patel', city: 'Surat, Gujarat' },
-            { name: 'Kiran Kumar', city: 'Visakhapatnam, Andhra Pradesh' },
-            { name: 'Divya Menon', city: 'Trivandrum, Kerala' },
-            { name: 'Manoj Shah', city: 'Vadodara, Gujarat' },
-            { name: 'Ritu Malhotra', city: 'Bhopal, Madhya Pradesh' },
-            { name: 'Anand Krishnan', city: 'Coimbatore, Tamil Nadu' },
-            { name: 'Sneha Reddy', city: 'Secunderabad, Telangana' },
-            { name: 'Rajiv Malhotra', city: 'Amritsar, Punjab' },
-            { name: 'Nandini Patel', city: 'Rajkot, Gujarat' },
-            { name: 'Aditya Sharma', city: 'Noida, Uttar Pradesh' },
-            { name: 'Lakshmi Menon', city: 'Thrissur, Kerala' },
-            { name: 'Vivek Singhania', city: 'Guwahati, Assam' },
-            { name: 'Shweta Kapoor', city: 'Dehradun, Uttarakhand' },
-            { name: 'Rohit Verma', city: 'Patna, Bihar' },
-            { name: 'Ananya Chatterjee', city: 'Siliguri, West Bengal' },
-            { name: 'Kartik Mehra', city: 'Gurgaon, Haryana' },
-            { name: 'Priyanka Desai', city: 'Nashik, Maharashtra' },
-            { name: 'Varun Nambiar', city: 'Mangalore, Karnataka' },
-            { name: 'Shreya Ghosh', city: 'Bhubaneswar, Odisha' },
-            { name: 'Nikhil Menon', city: 'Calicut, Kerala' },
-            { name: 'Aarti Saxena', city: 'Kanpur, Uttar Pradesh' },
-            { name: 'Prakash Iyer', city: 'Salem, Tamil Nadu' },
-            { name: 'Jyoti Sharma', city: 'Jodhpur, Rajasthan' },
-            { name: 'Mohan Rao', city: 'Vijayawada, Andhra Pradesh' },
-            { name: 'Sarita Kumari', city: 'Ranchi, Jharkhand' },
-        ];
-
-        let lastIndex = -1;
-
-        function showRandomPurchase() {
-            // Get random index different from last one
-            let randomIndex;
-            do {
-                randomIndex = Math.floor(Math.random() * purchaseData.length);
-            } while (randomIndex === lastIndex);
-            lastIndex = randomIndex;
-
-            const purchase = purchaseData[randomIndex];
-            const message = `${purchase.name} from ${purchase.city} just purchased this eBook!`;
-            showNotification(message);
-        }
-
-        function showNotification(message) {
-            const notification = document.createElement('div');
-            notification.className = 'notification';
-            notification.innerHTML = `
-                <div class="notification-content">${message}</div>
-                <div class="notification-swipe-hint">← Swipe to dismiss</div>
-            `;
-            document.body.appendChild(notification);
-            
-            // Add swipe functionality
-            let startX = 0;
-            let currentX = 0;
-            
-            notification.addEventListener('touchstart', (e) => {
-                startX = e.touches[0].clientX;
-            }, {passive: true});
-            
-            notification.addEventListener('touchmove', (e) => {
-                currentX = e.touches[0].clientX;
-                const diffX = currentX - startX;
-                
-                if (diffX < 0) {
-                    notification.style.transform = `translateX(${diffX}px)`;
-                }
-            }, {passive: true});
-            
-            notification.addEventListener('touchend', () => {
-                if (startX - currentX > 50) {
-                    // Swiped left enough to dismiss
-                    notification.style.transform = 'translateX(-100%)';
-                    setTimeout(() => {
-                        document.body.removeChild(notification);
-                    }, 300);
-                } else {
-                    // Reset position
-                    notification.style.transform = '';
-                }
-            });
-            
-            // Also allow click to dismiss
-            notification.addEventListener('click', () => {
-                notification.style.transform = 'translateX(-100%)';
-                setTimeout(() => {
-                    if (document.body.contains(notification)) {
-                        document.body.removeChild(notification);
-                    }
                 }, 300);
-            });
-            
-            // Show notification with animation
+            }
+        } else {
+            // For non-anchor links (like buy.html), navigate normally
             setTimeout(() => {
-                notification.classList.add('show');
-            }, 100);
-            
-            // Auto-dismiss after delay
-            setTimeout(() => {
-                if (document.body.contains(notification)) {
-                    notification.classList.remove('show');
-                    setTimeout(() => {
-                        if (document.body.contains(notification)) {
-                            document.body.removeChild(notification);
-                        }
-                    }, 500);
-                }
-            }, 5000);
+                window.location.href = targetId;
+            }, 300);
         }
+    });
+});
 
-        // Show first notification after 5 seconds
+// Close menu when clicking outside
+document.addEventListener('click', (e) => {
+    if (isMenuOpen && !menuBtn.contains(e.target) && !navigationLinks.contains(e.target)) {
+        toggleMenu(false);
+    }
+});
+
+// Close menu when scrolling
+let lastScrollTop = 0;
+window.addEventListener('scroll', () => {
+    const st = window.pageYOffset || document.documentElement.scrollTop;
+    if (isMenuOpen && Math.abs(st - lastScrollTop) > 30) {
+        toggleMenu(false);
+    }
+    lastScrollTop = st;
+}, { passive: true });
+
+// Header scroll effect
+const header = document.querySelector('.site-header');
+let lastHeaderScroll = window.scrollY;
+
+function updateHeader() {
+    const currentScroll = window.scrollY;
+    
+    if (currentScroll > 50) {
+        header.classList.add('scrolled');
+    } else {
+        header.classList.remove('scrolled');
+    }
+    
+    lastHeaderScroll = currentScroll;
+}
+
+window.addEventListener('scroll', () => {
+    if (!ticking) {
+        window.requestAnimationFrame(updateHeader);
+        ticking = true;
+    }
+});
+
+// Parallax effect
+window.addEventListener('scroll', () => {
+    const parallaxBg = document.querySelector('.parallax-bg');
+    const scrolled = window.pageYOffset;
+    parallaxBg.style.transform = `translateY(${scrolled * 0.5}px)`;
+});
+
+// 10-min Hero Timer
+(function() {
+    var totalSeconds = 600; // 10 minutes;
+    var minEl = document.getElementById('hero-minutes');
+    var secEl = document.getElementById('hero-seconds');
+    function updateHeroTimer() {
+        var mins = Math.floor(totalSeconds / 60);
+        var secs = totalSeconds % 60;
+        minEl.textContent = mins.toString().padStart(2, '0');
+        secEl.textContent = secs.toString().padStart(2, '0');
+        if (totalSeconds > 0) totalSeconds--;
+    }
+    if (minEl && secEl) {
+        updateHeroTimer();
+        setInterval(updateHeroTimer, 1000);
+    }
+})();
+
+// Sales Notification System
+const purchaseData = [
+    { name: 'Rajesh Kumar', city: 'Mumbai, Maharashtra' },
+    { name: 'Priya Sharma', city: 'Delhi, NCR' },
+    { name: 'Amit Patel', city: 'Ahmedabad, Gujarat' },
+    { name: 'Deepika Singh', city: 'Bangalore, Karnataka' },
+    { name: 'Suresh Reddy', city: 'Hyderabad, Telangana' },
+    { name: 'Meera Iyer', city: 'Chennai, Tamil Nadu' },
+    { name: 'Arjun Nair', city: 'Kochi, Kerala' },
+    { name: 'Neha Verma', city: 'Jaipur, Rajasthan' },
+    { name: 'Sanjay Mehta', city: 'Pune, Maharashtra' },
+    { name: 'Anita Gupta', city: 'Lucknow, Uttar Pradesh' },
+    { name: 'Vikram Singh', city: 'Chandigarh, Punjab' },
+    { name: 'Pooja Desai', city: 'Indore, Madhya Pradesh' },
+    { name: 'Kavita Rao', city: 'Mysore, Karnataka' },
+    { name: 'Arun Joshi', city: 'Nagpur, Maharashtra' },
+    { name: 'Sunita Patel', city: 'Surat, Gujarat' },
+    { name: 'Kiran Kumar', city: 'Visakhapatnam, Andhra Pradesh' },
+    { name: 'Divya Menon', city: 'Trivandrum, Kerala' },
+    { name: 'Manoj Shah', city: 'Vadodara, Gujarat' },
+    { name: 'Ritu Malhotra', city: 'Bhopal, Madhya Pradesh' },
+    { name: 'Anand Krishnan', city: 'Coimbatore, Tamil Nadu' },
+    { name: 'Sneha Reddy', city: 'Secunderabad, Telangana' },
+    { name: 'Rajiv Malhotra', city: 'Amritsar, Punjab' },
+    { name: 'Nandini Patel', city: 'Rajkot, Gujarat' },
+    { name: 'Aditya Sharma', city: 'Noida, Uttar Pradesh' },
+    { name: 'Lakshmi Menon', city: 'Thrissur, Kerala' },
+    { name: 'Vivek Singhania', city: 'Guwahati, Assam' },
+    { name: 'Shweta Kapoor', city: 'Dehradun, Uttarakhand' },
+    { name: 'Rohit Verma', city: 'Patna, Bihar' },
+    { name: 'Ananya Chatterjee', city: 'Siliguri, West Bengal' },
+    { name: 'Kartik Mehra', city: 'Gurgaon, Haryana' },
+    { name: 'Priyanka Desai', city: 'Nashik, Maharashtra' },
+    { name: 'Varun Nambiar', city: 'Mangalore, Karnataka' },
+    { name: 'Shreya Ghosh', city: 'Bhubaneswar, Odisha' },
+    { name: 'Nikhil Menon', city: 'Calicut, Kerala' },
+    { name: 'Aarti Saxena', city: 'Kanpur, Uttar Pradesh' },
+    { name: 'Prakash Iyer', city: 'Salem, Tamil Nadu' },
+    { name: 'Jyoti Sharma', city: 'Jodhpur, Rajasthan' },
+    { name: 'Mohan Rao', city: 'Vijayawada, Andhra Pradesh' },
+    { name: 'Sarita Kumari', city: 'Ranchi, Jharkhand' }
+];
+
+let lastIndex = -1;
+
+function showSalesNotification() {
+    const notification = document.getElementById('salesNotification');
+    const notificationText = notification.querySelector('.notification-text');
+    
+    // Get random index different from last one
+    let randomIndex;
+    do {
+        randomIndex = Math.floor(Math.random() * purchaseData.length);
+    } while (randomIndex === lastIndex);
+    lastIndex = randomIndex;
+
+    const purchase = purchaseData[randomIndex];
+    notificationText.textContent = `${purchase.name} from ${purchase.city} just purchased this eBook!`;
+
+    // Show notification
+    notification.classList.add('show');
+
+    // Hide after 6 seconds
+    setTimeout(() => {
+        notification.classList.remove('show');
+    }, 6000);
+}      // Show first notification after 5 seconds
+setTimeout(() => {
+    showSalesNotification();
+    // Then show every 22-27 seconds
+    function scheduleNextNotification() {
+        const delay = Math.floor(Math.random() * (27000 - 22000 + 1)) + 22000; // Random between 22-27 seconds
         setTimeout(() => {
-            showRandomPurchase();
-            // Then show every 22-27 seconds
-            function scheduleNextNotification() {
-                const delay = Math.floor(Math.random() * (27000 - 22000 + 1)) + 22000; // Random between 22-27 seconds
-                setTimeout(() => {
-                    showRandomPurchase();
+            showSalesNotification();
+                    showSalesNotification();
                     scheduleNextNotification();
                 }, delay);
             }
@@ -683,28 +823,38 @@
         }, 5000);
     </script>
     <style>
-        .notification {
+        .sales-notification {
             position: fixed;
             bottom: 20px;
-            left: 20px;
-            right: 20px;
-            background: rgba(0, 0, 0, 0.95);
-            color: white;
-            padding: 15px 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-            transform: translateY(100px);
-            opacity: 0;
-            transition: transform 0.3s ease, opacity 0.3s ease;
-            z-index: 1000;
-            max-width: 90%;
-            margin: 0 auto;
-            backdrop-filter: blur(10px);
+            left: -400px; /* Start off-screen */
+            background: var(--bg-color);
             border: 1px solid var(--glass-border);
+            box-shadow: var(--shadow-md), var(--glow-sm);
+            border-radius: 12px;
+            padding: 16px;
             display: flex;
-            flex-direction: column;
-            gap: 8px;
+            align-items: center;
+            gap: 12px;
+            z-index: 1000;
+            transition: all var(--transition-normal);
+            max-width: 320px;
+            backdrop-filter: blur(10px);
             touch-action: pan-x;
+        }
+
+        .sales-notification.show {
+            transform: translateX(420px); /* Slide in */
+        }
+
+        .notification-icon {
+            background: var(--gradient-primary);
+            color: var(--bg-color);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             box-shadow: var(--glow-sm);
         }
 
