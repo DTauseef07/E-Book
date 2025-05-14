@@ -38,14 +38,16 @@
                 <i class="fas fa-book-open"></i>
                 <span>eBookPro</span>
             </div>
-            <ul class="nav-links">
-                <li><a href="#home" aria-label="Go to home section">Home</a></li>
-                <li><a href="#features" aria-label="View features">Features</a></li>
-                <li><a href="#preview" aria-label="Preview the book">Preview</a></li>
-                <li><a href="#testimonials" aria-label="Read testimonials">Testimonials</a></li>
-                <li><a href="#faq" aria-label="View frequently asked questions">FAQ</a></li>
-                <a href="buy.html" class="nav-cta" aria-label="Buy now">Buy Now</a>
-            </ul>
+            <div class="mobile-menu-overlay" id="mobileMenuOverlay">
+                <ul class="nav-links">
+                    <li><a href="#home" aria-label="Go to home section">Home</a></li>
+                    <li><a href="#features" aria-label="View features">Features</a></li>
+                    <li><a href="#preview" aria-label="Preview the book">Preview</a></li>
+                    <li><a href="#testimonials" aria-label="Read testimonials">Testimonials</a></li>
+                    <li><a href="#faq" aria-label="View frequently asked questions">FAQ</a></li>
+                    <a href="buy.html" class="nav-cta" aria-label="Buy now">Buy Now</a>
+                </ul>
+            </div>
             <button class="mobile-menu-btn" aria-label="Toggle mobile menu">
                 <span></span>
                 <span></span>
@@ -406,47 +408,50 @@
         setInterval(updateTimer, 1000);
         updateTimer();
 
-        // Mobile Menu
+        });
+
+        // --- MOBILE MENU LOGIC (NEW) ---
         const menuBtn = document.querySelector('.mobile-menu-btn');
         const navigationLinks = document.querySelector('.nav-links');
         const navigationItems = document.querySelectorAll('.nav-links a');
+        const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
         let isMenuOpen = false;
 
-        function toggleMenu(open) {
-            isMenuOpen = open;
-            menuBtn.classList.toggle('active', open);
-            navigationLinks.classList.toggle('active', open);
-            document.body.style.overflow = open ? 'hidden' : '';
+        function openMobileMenu() {
+            menuBtn.classList.add('active');
+            navigationLinks.classList.add('active');
+            mobileMenuOverlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            isMenuOpen = true;
         }
-
+        function closeMobileMenu() {
+            menuBtn.classList.remove('active');
+            navigationLinks.classList.remove('active');
+            mobileMenuOverlay.classList.remove('active');
+            document.body.style.overflow = '';
+            isMenuOpen = false;
+        }
         menuBtn.addEventListener('click', (e) => {
             e.stopPropagation();
-            toggleMenu(!isMenuOpen);
+            if (isMenuOpen) {
+                closeMobileMenu();
+            } else {
+                openMobileMenu();
+            }
         });
-
-        // Close menu when clicking a link
+        // Close on click outside nav-links
+        mobileMenuOverlay.addEventListener('click', (e) => {
+            if (e.target === mobileMenuOverlay) {
+                closeMobileMenu();
+            }
+        });
+        // Close on menu item click
         navigationItems.forEach(link => {
             link.addEventListener('click', () => {
-                toggleMenu(false);
+                closeMobileMenu();
             });
         });
-
-        // Close menu when clicking outside
-        document.addEventListener('click', (e) => {
-            if (isMenuOpen && !menuBtn.contains(e.target) && !navigationLinks.contains(e.target)) {
-                toggleMenu(false);
-            }
-        });
-
-        // Close menu when scrolling
-        let lastScrollTop = 0;
-        window.addEventListener('scroll', () => {
-            const st = window.pageYOffset || document.documentElement.scrollTop;
-            if (isMenuOpen && Math.abs(st - lastScrollTop) > 30) {
-                toggleMenu(false);
-            }
-            lastScrollTop = st;
-        }, { passive: true });
+        // --- END MOBILE MENU LOGIC ---
 
         // Header scroll effect
         const header = document.querySelector('.site-header');
