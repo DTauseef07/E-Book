@@ -530,28 +530,24 @@ body {
 }
 
 .ebook-wrapper {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    /* removed all styles */
+}
+
+.ebook-mockup-img {
     width: 260px;
     height: 390px;
+    border-radius: 12px;
+    box-shadow: 0 12px 48px 0 rgba(0,255,231,0.18), 0 8px 32px 0 rgba(0,255,231,0.22), 0 1.5px 8px 0 #00ffb308;
+    object-fit: cover;
+    background: none;
+    display: block;
     margin: 0 auto;
-    background: transparent !important;
-    box-shadow: none !important;
-    border-radius: 0 !important;
+    transition: box-shadow 0.35s cubic-bezier(.4,0,.2,1), transform 0.5s cubic-bezier(.4,0,.2,1);
+    will-change: transform, box-shadow;
 }
-
-.ebook-wrapper:hover {
-    transform: rotateY(10deg) scale(1.02);
-}
-
-.ebook-wrapper:hover .book-placeholder {
-    box-shadow: var(--glow-md);
-}
-
-.ebook-wrapper:hover .book-placeholder i {
-    transform: scale(1.1);
-    color: var(--accent-secondary);
+.ebook-mockup-img:hover, .ebook-mockup-img:focus {
+    box-shadow: 0 16px 64px 0 rgba(0,255,231,0.28), 0 12px 48px 0 rgba(0,255,231,0.22), 0 1.5px 8px 0 #00ffb308;
+    transform: perspective(800px) rotateY(-4deg) scale(1.025);
 }
 
 /* CTA Button */
@@ -1520,16 +1516,4 @@ textarea:focus {
     width: 0 !important;
     position: absolute !important;
   }
-}
-
-.ebook-mockup-img {
-    width: 260px;
-    height: 390px;
-    border-radius: 12px;
-    box-shadow: 0 12px 48px 0 rgba(0,255,231,0.18), 0 8px 32px 0 rgba(0,255,231,0.22), 0 1.5px 8px 0 #00ffb308;
-    object-fit: cover;
-    background: none;
-    display: block;
-    margin: 0 auto;
-    transition: box-shadow 0.35s cubic-bezier(.4,0,.2,1), transform 0.5s cubic-bezier(.4,0,.2,1);
 }
