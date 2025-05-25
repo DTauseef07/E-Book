@@ -558,7 +558,7 @@ body {
     position: relative;
     overflow: hidden;
     border: none;
-    cursor: none;
+    cursor: pointer;
     font-size: 1.1rem;
     animation: pulse 8s infinite;
     color: #000000;
