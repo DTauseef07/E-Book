@@ -1518,3 +1518,24 @@ textarea:focus {
     position: absolute !important;
   }
 }
+
+.ebook-mockup-img {
+    width: 260px;
+    height: 390px;
+    border-radius: 12px;
+    box-shadow: 0 8px 32px 0 #0008, 0 1.5px 8px 0 #00ffb308;
+    object-fit: cover;
+    background: #fff;
+    display: block;
+    margin: 0 auto;
+    transition: box-shadow 0.35s cubic-bezier(.4,0,.2,1), transform 0.5s cubic-bezier(.4,0,.2,1);
+}
+
+.ebook-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 260px;
+    height: 390px;
+    margin: 0 auto;
+}
