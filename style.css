@@ -541,8 +541,14 @@ body {
     background: none;
     display: block;
     margin: 0 auto;
-    box-shadow: none !important;
-    transition: none !important;
+    box-shadow: 0 16px 48px 0 rgba(0,0,0,0.18), 0 2px 8px 0 rgba(0,0,0,0.10);
+    transition: box-shadow 0.35s cubic-bezier(.4,0,.2,1), transform 0.5s cubic-bezier(.4,0,.2,1);
+    will-change: transform, box-shadow;
+}
+
+.ebook-mockup-img:hover, .ebook-mockup-img:focus {
+    box-shadow: 0 32px 64px 0 rgba(0,0,0,0.28), 0 8px 32px 0 rgba(0,0,0,0.18);
+    transform: perspective(800px) rotateY(-8deg) scale(1.035);
 }
 
 /* CTA Button */
