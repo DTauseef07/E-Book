@@ -536,7 +536,7 @@ body {
     width: 260px;
     height: 390px;
     margin: 0 auto;
-    background: none !important;
+    background: transparent !important;
     box-shadow: none !important;
     border-radius: 0 !important;
 }
