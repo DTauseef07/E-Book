@@ -536,6 +536,9 @@ body {
     transition: transform var(--transition-normal);
     width: 260px;
     margin: 0 auto;
+    background: none;
+    box-shadow: 0 12px 48px 0 rgba(0,255,231,0.18), 0 2px 8px 0 #00ffe733;
+    border-radius: 0;
 }
 
 .ebook-wrapper:hover {
@@ -1523,9 +1526,9 @@ textarea:focus {
     width: 260px;
     height: 390px;
     border-radius: 12px;
-    box-shadow: 0 8px 32px 0 #0008, 0 1.5px 8px 0 #00ffb308;
+    box-shadow: 0 8px 32px 0 rgba(0,255,231,0.22), 0 1.5px 8px 0 #00ffb308;
     object-fit: cover;
-    background: #fff;
+    background: none;
     display: block;
     margin: 0 auto;
     transition: box-shadow 0.35s cubic-bezier(.4,0,.2,1), transform 0.5s cubic-bezier(.4,0,.2,1);
@@ -1538,4 +1541,7 @@ textarea:focus {
     width: 260px;
     height: 390px;
     margin: 0 auto;
+    background: none;
+    box-shadow: 0 12px 48px 0 rgba(0,255,231,0.18), 0 2px 8px 0 #00ffe733;
+    border-radius: 0;
 }
