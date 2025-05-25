@@ -487,12 +487,19 @@ body {
 }
 
 .nav-cta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     background: var(--gradient-primary);
     color: var(--bg-color);
-    padding: 0.8rem 1.8rem;
+    padding: 0.7rem 2.1rem;
     border-radius: 50px;
     font-weight: 600;
     transition: var(--transition-normal);
+    margin-top: 0;
+    font-size: 1.08rem;
+    text-align: center;
+    box-sizing: border-box;
 }
 
 .nav-cta:hover {
