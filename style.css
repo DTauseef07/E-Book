@@ -732,10 +732,17 @@ body {
     align-items: center;
     flex-wrap: nowrap;
     overflow-x: auto;
-    padding: 2rem 0 2rem 0;
+    padding: 2rem 0 2rem 0 !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
     scrollbar-width: none;
     scroll-snap-type: x mandatory;
-    scroll-padding-left: 0;
+    scroll-padding-left: 0 !important;
+    box-sizing: border-box;
+}
+.book-placeholder.thumbnail {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
 }
 .preview-cards-row > .book-placeholder.thumbnail {
     scroll-snap-align: start;
