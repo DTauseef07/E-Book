@@ -1519,3 +1519,11 @@ textarea:focus {
     position: absolute !important;
   }
 }
+
+.testimonial-carousel {
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+}
+.testimonial-carousel::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
+}
