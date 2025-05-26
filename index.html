@@ -818,11 +818,11 @@
                 let starsHtml = '';
                 for (let i = 1; i <= 5; i++) {
                     if (rating >= i) {
-                        starsHtml += '<i class="fa-solid fa-star-sharp"></i>';
+                        starsHtml += '<i class="fa-solid fa-star"></i>';
                     } else if (rating >= i - 0.5) {
                         starsHtml += '<i class="fa-solid fa-star-half-stroke"></i>';
                     } else {
-                        starsHtml += '<i class="fa-regular fa-star-sharp"></i>';
+                        starsHtml += '<i class="fa-regular fa-star"></i>';
                     }
                 }
                 const starsDiv = card.querySelector('.testimonial-stars');
