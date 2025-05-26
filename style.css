@@ -732,19 +732,13 @@ body {
     align-items: center;
     flex-wrap: nowrap;
     overflow-x: auto;
-    padding: 2rem 2vw 2rem 2vw;
-    scrollbar-width: thin;
+    padding: 2rem 0 2rem 0;
+    scrollbar-width: none;
     scroll-snap-type: x mandatory;
 }
 
 .preview-cards-row::-webkit-scrollbar {
-    height: 8px;
-    background: var(--bg-color);
-}
-
-.preview-cards-row::-webkit-scrollbar-thumb {
-    background: var(--accent-primary);
-    border-radius: 4px;
+    display: none;
 }
 
 .preview-slide {
