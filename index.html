@@ -386,6 +386,566 @@
         </form>
     </div>
 
+    <script>
+        // Initialize AOS with optimized settings
+        AOS.init({
+            duration: 600,
+            once: false,
+            mirror: true,
+            offset: 50,
+            delay: 0,
+            easing: 'cubic-bezier(0.4, 0, 0.2, 1)',
+            disable: 'mobile'
+        });
+
+        // Initialize Vanilla Tilt with optimized settings
+        VanillaTilt.init(document.querySelectorAll("[data-tilt]"), {
+            max: 8,
+            speed: 350,
+            glare: true,
+            "max-glare": 0.15,
+            scale: 1.03,
+            gyroscope: false
+        });
+
+        // Custom cursor with natural movement
+        const cursor = document.querySelector('.cursor');
+        let mouseX = 0;
+        let mouseY = 0;
+
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+        });
+
+        function updateCursor() {
+            cursor.style.left = mouseX + 'px';
+            cursor.style.top = mouseY + 'px';
+            requestAnimationFrame(updateCursor);
+        }
+        updateCursor();
+
+        // Loading indicator
+        window.addEventListener('load', () => {
+            document.querySelector('.loading-indicator').classList.add('hidden');
+        });
+
+        // Back to top button
+        const backToTop = document.querySelector('.back-to-top');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        });
+
+        backToTop.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Mobile menu
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const navLinks = document.querySelector('.nav-links');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenuBtn.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        });
+
+        // Touch-enabled carousel
+        const carousel = document.querySelector('.preview-carousel');
+        let isDown = false;
+        let startX;
+        let scrollLeft;
+
+        carousel.addEventListener('mousedown', (e) => {
+            isDown = true;
+            carousel.classList.add('active');
+            startX = e.pageX - carousel.offsetLeft;
+            scrollLeft = carousel.scrollLeft;
+        });
+
+        carousel.addEventListener('mouseleave', () => {
+            isDown = false;
+            carousel.classList.remove('active');
+        });
+
+        carousel.addEventListener('mouseup', () => {
+            isDown = false;
+            carousel.classList.remove('active');
+        });
+
+        carousel.addEventListener('mousemove', (e) => {
+            if (!isDown) return;
+            e.preventDefault();
+            const x = e.pageX - carousel.offsetLeft;
+            const walk = (x - startX) * 2;
+            carousel.scrollLeft = scrollLeft - walk;
+        });
+
+        // Form validation
+        const newsletterForm = document.querySelector('.newsletter-form');
+        newsletterForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const email = newsletterForm.querySelector('input[type="email"]');
+            if (email.validity.valid) {
+                // Handle form submission
+                email.value = '';
+                alert('Thank you for subscribing!');
+            }
+        });
+
+        // Optimized scroll animations
+        const animatedElements = document.querySelectorAll('.feature-card, .preview-slide, .testimonial-card');
+        let lastScrollY = window.scrollY;
+        let ticking = false;
+
+        function updateAnimations() {
+            const scrollY = window.scrollY;
+            const direction = scrollY > lastScrollY ? 'down' : 'up';
+            
+            animatedElements.forEach(element => {
+                const rect = element.getBoundingClientRect();
+                const isInView = rect.top < window.innerHeight && rect.bottom >= 0;
+                
+                if (isInView) {
+                    if (direction === 'down') {
+                        element.classList.add('animate');
+                        element.classList.remove('reverse');
+                    } else {
+                        element.classList.add('animate', 'reverse');
+                    }
+                } else {
+                    element.classList.remove('animate');
+                }
+            });
+            
+            lastScrollY = scrollY;
+            ticking = false;
+        }
+
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                window.requestAnimationFrame(updateAnimations);
+                ticking = true;
+            }
+        });
+
+        // Simple 10-minute countdown timer for both hero and bottom offer
+        function startSimpleTimer(durationSeconds, onHeroUpdate, onBottomUpdate) {
+            let remaining = durationSeconds;
+            function tick() {
+                // Hero timer (mm:ss)
+                if (onHeroUpdate) {
+                    let mins = Math.floor(remaining / 60);
+                    let secs = remaining % 60;
+                    onHeroUpdate(mins, secs);
+                }
+                // Bottom timer (hh:mm:ss)
+                if (onBottomUpdate) {
+                    let hours = Math.floor(remaining / 3600);
+                    let minutes = Math.floor((remaining % 3600) / 60);
+                    let seconds = remaining % 60;
+                    onBottomUpdate(hours, minutes, seconds);
+                }
+                if (remaining > 0) {
+                    remaining--;
+                } else {
+                    clearInterval(timerInterval);
+                }
+            }
+            tick();
+            const timerInterval = setInterval(tick, 1000);
+        }
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('TIMER SCRIPT RUNNING');
+            startSimpleTimer(600,
+                function(mins, secs) {
+                    var minEl = document.getElementById('hero-minutes');
+                    var secEl = document.getElementById('hero-seconds');
+                    if (minEl && secEl) {
+                        minEl.textContent = mins.toString().padStart(2, '0');
+                        secEl.textContent = secs.toString().padStart(2, '0');
+                    }
+                },
+                function(hours, minutes, seconds) {
+                    var hoursEl = document.getElementById('hours');
+                    var minutesEl = document.getElementById('minutes');
+                    var secondsEl = document.getElementById('seconds');
+                    if (hoursEl && minutesEl && secondsEl) {
+                        hoursEl.textContent = hours.toString().padStart(2, '0');
+                        minutesEl.textContent = minutes.toString().padStart(2, '0');
+                        secondsEl.textContent = seconds.toString().padStart(2, '0');
+                    }
+                }
+            );
+        });
+
+        // Mobile Menu
+        const menuBtn = document.querySelector('.mobile-menu-btn');
+        const navigationLinks = document.querySelector('.nav-links');
+        const navigationItems = document.querySelectorAll('.nav-links a');
+        let isMenuOpen = false;
+
+        function toggleMenu(open) {
+            isMenuOpen = open;
+            menuBtn.classList.toggle('active', open);
+            navigationLinks.classList.toggle('active', open);
+            document.body.style.overflow = open ? 'hidden' : '';
+        }
+
+        menuBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            toggleMenu(!isMenuOpen);
+        });
+
+        // Close menu when clicking a link
+        navigationItems.forEach(link => {
+            link.addEventListener('click', () => {
+                toggleMenu(false);
+            });
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (isMenuOpen && !menuBtn.contains(e.target) && !navigationLinks.contains(e.target)) {
+                toggleMenu(false);
+            }
+        });
+
+        // Close menu when scrolling
+        let lastScrollTop = 0;
+        window.addEventListener('scroll', () => {
+            const st = window.pageYOffset || document.documentElement.scrollTop;
+            if (isMenuOpen && Math.abs(st - lastScrollTop) > 30) {
+                toggleMenu(false);
+            }
+            lastScrollTop = st;
+        }, { passive: true });
+
+        // Header scroll effect
+        const header = document.querySelector('.site-header');
+        let lastHeaderScroll = window.scrollY;
+
+        function updateHeader() {
+            const currentScroll = window.scrollY;
+            
+            if (currentScroll > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+            
+            lastHeaderScroll = currentScroll;
+        }
+
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                window.requestAnimationFrame(updateHeader);
+                ticking = true;
+            }
+        });
+
+        // Parallax effect
+        window.addEventListener('scroll', () => {
+            const parallaxBg = document.querySelector('.parallax-bg');
+            const scrolled = window.pageYOffset;
+            parallaxBg.style.transform = `translateY(${scrolled * 0.5}px)`;
+        });
+
+        // Sales Notification System
+        const purchaseData = [
+            { name: 'Rajesh Kumar', city: 'Mumbai, Maharashtra' },
+            { name: 'Priya Sharma', city: 'Delhi, NCR' },
+            { name: 'Amit Patel', city: 'Ahmedabad, Gujarat' },
+            { name: 'Deepika Singh', city: 'Bangalore, Karnataka' },
+            { name: 'Suresh Reddy', city: 'Hyderabad, Telangana' },
+            { name: 'Meera Iyer', city: 'Chennai, Tamil Nadu' },
+            { name: 'Arjun Nair', city: 'Kochi, Kerala' },
+            { name: 'Neha Verma', city: 'Jaipur, Rajasthan' },
+            { name: 'Sanjay Mehta', city: 'Pune, Maharashtra' },
+            { name: 'Anjali Das', city: 'Kolkata, West Bengal' },
+            { name: 'Vikram Singh', city: 'Chandigarh, Punjab' },
+            { name: 'Pooja Gupta', city: 'Lucknow, Uttar Pradesh' },
+            { name: 'Rahul Khanna', city: 'Indore, Madhya Pradesh' },
+            { name: 'Kavita Rao', city: 'Mysore, Karnataka' },
+            { name: 'Arun Joshi', city: 'Nagpur, Maharashtra' },
+            { name: 'Sunita Patel', city: 'Surat, Gujarat' },
+            { name: 'Kiran Kumar', city: 'Visakhapatnam, Andhra Pradesh' },
+            { name: 'Divya Menon', city: 'Trivandrum, Kerala' },
+            { name: 'Manoj Shah', city: 'Vadodara, Gujarat' },
+            { name: 'Ritu Malhotra', city: 'Bhopal, Madhya Pradesh' },
+            { name: 'Anand Krishnan', city: 'Coimbatore, Tamil Nadu' },
+            { name: 'Sneha Reddy', city: 'Secunderabad, Telangana' },
+            { name: 'Rajiv Malhotra', city: 'Amritsar, Punjab' },
+            { name: 'Nandini Patel', city: 'Rajkot, Gujarat' },
+            { name: 'Aditya Sharma', city: 'Noida, Uttar Pradesh' },
+            { name: 'Lakshmi Menon', city: 'Thrissur, Kerala' },
+            { name: 'Vivek Singhania', city: 'Guwahati, Assam' },
+            { name: 'Shweta Kapoor', city: 'Dehradun, Uttarakhand' },
+            { name: 'Rohit Verma', city: 'Patna, Bihar' },
+            { name: 'Ananya Chatterjee', city: 'Siliguri, West Bengal' },
+            { name: 'Kartik Mehra', city: 'Gurgaon, Haryana' },
+            { name: 'Priyanka Desai', city: 'Nashik, Maharashtra' },
+            { name: 'Varun Nambiar', city: 'Mangalore, Karnataka' },
+            { name: 'Shreya Ghosh', city: 'Bhubaneswar, Odisha' },
+            { name: 'Nikhil Menon', city: 'Calicut, Kerala' },
+            { name: 'Aarti Saxena', city: 'Kanpur, Uttar Pradesh' },
+            { name: 'Prakash Iyer', city: 'Salem, Tamil Nadu' },
+            { name: 'Jyoti Sharma', city: 'Jodhpur, Rajasthan' },
+            { name: 'Mohan Rao', city: 'Vijayawada, Andhra Pradesh' },
+            { name: 'Sarita Kumari', city: 'Ranchi, Jharkhand' },
+            { name: 'Deepak Shetty', city: 'Udupi, Karnataka' },
+            { name: 'Roshni Patel', city: 'Bhavnagar, Gujarat' },
+            { name: 'Alok Mishra', city: 'Varanasi, Uttar Pradesh' },
+            { name: 'Meenakshi Sundaram', city: 'Madurai, Tamil Nadu' },
+            { name: 'Gaurav Malhotra', city: 'Ludhiana, Punjab' },
+            { name: 'Shalini Reddy', city: 'Warangal, Telangana' },
+            { name: 'Vinod Nair', city: 'Palakkad, Kerala' },
+            { name: 'Preeti Joshi', city: 'Raipur, Chhattisgarh' },
+            { name: 'Sameer Khan', city: 'Aurangabad, Maharashtra' },
+            { name: 'Kavya Krishnan', city: 'Ernakulam, Kerala' }
+        ];
+
+        let lastIndex = -1;
+
+        function showSalesNotification() {
+            const notification = document.getElementById('salesNotification');
+            const notificationText = notification.querySelector('.notification-text');
+
+            // Get random index different from last one
+            let randomIndex;
+            do {
+                randomIndex = Math.floor(Math.random() * purchaseData.length);
+            } while (randomIndex === lastIndex);
+            lastIndex = randomIndex;
+
+            const purchase = purchaseData[randomIndex];
+            notificationText.textContent = `${purchase.name} from ${purchase.city} just purchased this eBook!`;
+
+            // Show notification
+            notification.classList.add('show');
+
+            // Hide after 6 seconds (auto)
+            if (notification.hideTimeout) clearTimeout(notification.hideTimeout);
+            notification.hideTimeout = setTimeout(() => {
+                notification.classList.remove('show');
+            }, 6000);
+        }
+
+        // Swipe/drag to dismiss notification (mobile and desktop)
+        (function addNotificationDismissGesture() {
+            const notification = document.getElementById('salesNotification');
+            let startX = null;
+            let currentX = null;
+            let isDragging = false;
+
+            // Desktop: mouse drag
+            notification.addEventListener('mousedown', function(e) {
+                isDragging = true;
+                startX = e.clientX;
+                notification.style.transition = 'none';
+            });
+            document.addEventListener('mousemove', function(e) {
+                if (!isDragging) return;
+                currentX = e.clientX;
+                const deltaX = currentX - startX;
+                if (Math.abs(deltaX) > 0) {
+                    notification.style.transform = `translateX(${420 + deltaX}px)`;
+                }
+            });
+            document.addEventListener('mouseup', function(e) {
+                if (!isDragging) return;
+                isDragging = false;
+                notification.style.transition = '';
+                const deltaX = e.clientX - startX;
+                if (Math.abs(deltaX) > 80) {
+                    notification.classList.remove('show');
+                    notification.style.transform = '';
+                } else {
+                    notification.style.transform = 'translateX(420px)';
+                }
+            });
+
+            // Mobile: touch swipe
+            notification.addEventListener('touchstart', function(e) {
+                if (e.touches.length !== 1) return;
+                isDragging = true;
+                startX = e.touches[0].clientX;
+                notification.style.transition = 'none';
+            });
+            notification.addEventListener('touchmove', function(e) {
+                if (!isDragging || e.touches.length !== 1) return;
+                currentX = e.touches[0].clientX;
+                const deltaX = currentX - startX;
+                if (Math.abs(deltaX) > 0) {
+                    notification.style.transform = `translateX(${420 + deltaX}px)`;
+                }
+            });
+            notification.addEventListener('touchend', function(e) {
+                if (!isDragging) return;
+                isDragging = false;
+                notification.style.transition = '';
+                const deltaX = currentX - startX;
+                if (Math.abs(deltaX) > 60) {
+                    notification.classList.remove('show');
+                    notification.style.transform = '';
+                } else {
+                    notification.style.transform = 'translateX(420px)';
+                }
+            });
+        })();
+
+        // Show first notification after 5 seconds
+        setTimeout(() => {
+            showSalesNotification();
+            // Then show every 22-27 seconds
+            function scheduleNextNotification() {
+                const delay = Math.floor(Math.random() * (27000 - 22000 + 1)) + 22000; // Random between 22-27 seconds
+                setTimeout(() => {
+                    showSalesNotification();
+                    scheduleNextNotification();
+                }, delay);
+            }
+            scheduleNextNotification();
+        }, 5000);
+
+        // Add Yours Modal Logic
+        const addYoursBtn = document.getElementById('addYoursBtn');
+        const addYoursModal = document.getElementById('addYoursModal');
+        const closeAddYours = document.getElementById('closeAddYours');
+        const addYoursForm = document.getElementById('addYoursForm');
+        const testimonialCarousel = document.querySelector('.testimonial-carousel');
+        const yourRatingStars = document.getElementById('yourRatingStars');
+        const ratingError = document.getElementById('ratingError');
+        let selectedRating = 0;
+        let selectedHalf = false;
+        // Render 5 stars for rating input
+        function renderRatingStarsInput(rating, half) {
+            let html = '';
+            for (let i = 1; i <= 5; i++) {
+                if (rating >= i) {
+                    html += `<i class='fa-solid fa-star' data-value='${i}' style='font-size:1.5rem;'></i>`;
+                } else if (rating >= i - 0.5 && half && Math.ceil(rating) === i) {
+                    html += `<i class='fa-solid fa-star-half-stroke' data-value='${i-0.5}' style='font-size:1.5rem;'></i>`;
+                } else {
+                    html += `<i class='fa-regular fa-star' data-value='${i}' style='font-size:1.5rem;'></i>`;
+                }
+            }
+            yourRatingStars.innerHTML = html;
+        }
+        // Initial render
+        renderRatingStarsInput(0, false);
+        // Star click/hover logic
+        yourRatingStars.addEventListener('mousemove', function(e) {
+            if (!e.target.matches('i')) return;
+            const rect = e.target.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const starWidth = rect.width;
+            let value = parseInt(e.target.getAttribute('data-value'));
+            let isHalf = x < starWidth / 2;
+            renderRatingStarsInput(isHalf ? value - 0.5 : value, isHalf);
+        });
+        yourRatingStars.addEventListener('mouseleave', function() {
+            renderRatingStarsInput(selectedRating, selectedHalf);
+        });
+        yourRatingStars.addEventListener('click', function(e) {
+            if (!e.target.matches('i')) return;
+            const rect = e.target.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const starWidth = rect.width;
+            let value = parseInt(e.target.getAttribute('data-value'));
+            let isHalf = x < starWidth / 2;
+            selectedRating = isHalf ? value - 0.5 : value;
+            selectedHalf = isHalf;
+            renderRatingStarsInput(selectedRating, selectedHalf);
+            ratingError.style.display = 'none';
+        });
+        addYoursBtn.onclick = () => { addYoursModal.style.display = 'flex'; };
+        closeAddYours.onclick = () => { addYoursModal.style.display = 'none'; };
+        addYoursForm.onsubmit = function(e) {
+            e.preventDefault();
+            const name = document.getElementById('yourName').value.trim();
+            const testimonial = document.getElementById('yourTestimonial').value.trim();
+            if (!name || !testimonial) return;
+            if (!selectedRating || selectedRating < 1) {
+                ratingError.style.display = 'block';
+                return;
+            }
+            const initials = name.split(' ').map(w => w[0]).join('').toUpperCase().slice(0,2);
+            const card = document.createElement('div');
+            card.className = 'testimonial-card';
+            card.style.flex = '0 0 340px';
+            card.style.scrollSnapAlign = 'start';
+            card.style.position = 'relative';
+            // Stars HTML
+            let starsHtml = '<div class="testimonial-stars" style="position: absolute; top: 0.7rem; right: 0.9rem; font-size: 1.05rem; color: var(--accent-primary); display: flex; gap: 1px;">';
+            for (let i = 1; i <= 5; i++) {
+                if (selectedRating >= i) {
+                    starsHtml += '<i class="fa-solid fa-star"></i>';
+                } else if (selectedRating >= i - 0.5) {
+                    starsHtml += '<i class="fa-solid fa-star-half-stroke"></i>';
+                } else {
+                    starsHtml += '<i class="fa-regular fa-star"></i>';
+                }
+            }
+            starsHtml += '</div>';
+            card.innerHTML = `${starsHtml}<div class="avatar"><span class="initials">${initials}</span></div><h3>${name}</h3><p>${testimonial}</p>`;
+            testimonialCarousel.insertBefore(card, testimonialCarousel.lastElementChild);
+            addYoursModal.style.display = 'none';
+            addYoursForm.reset();
+            selectedRating = 0;
+            selectedHalf = false;
+            renderRatingStarsInput(0, false);
+        };
+
+        // Add random sharp stars to each testimonial card (3.5, 4, 4.5, 5)
+        function addRandomStarsToTestimonials() {
+            const testimonialCards = document.querySelectorAll('.testimonial-card');
+            const possibleRatings = [3.5, 4, 4.5, 5];
+            testimonialCards.forEach(card => {
+                let rating = possibleRatings[Math.floor(Math.random() * possibleRatings.length)];
+                let starsHtml = '';
+                for (let i = 1; i <= 5; i++) {
+                    if (rating >= i) {
+                        starsHtml += '<i class="fa-solid fa-star"></i>';
+                    } else if (rating >= i - 0.5) {
+                        starsHtml += '<i class="fa-solid fa-star-half-stroke"></i>';
+                    } else {
+                        starsHtml += '<i class="fa-regular fa-star"></i>';
+                    }
+                }
+                const starsDiv = card.querySelector('.testimonial-stars');
+                if (starsDiv) starsDiv.innerHTML = starsHtml;
+            });
+        }
+        document.addEventListener('DOMContentLoaded', addRandomStarsToTestimonials);
+
+        // Book Preview Modal Logic
+        const previewModal = document.getElementById('previewModal');
+        const modalImg = previewModal.querySelector('.modal-img');
+        const closeModalBtn = previewModal.querySelector('.close-modal');
+        document.querySelectorAll('.preview-cards-row .book-placeholder.thumbnail img').forEach(img => {
+            img.parentElement.onclick = function() {
+                modalImg.src = img.src;
+                previewModal.classList.add('active');
+            };
+        });
+        closeModalBtn.onclick = function() {
+            previewModal.classList.remove('active');
+            modalImg.src = '';
+        };
+        previewModal.onclick = function(e) {
+            if (e.target === previewModal) {
+                previewModal.classList.remove('active');
+                modalImg.src = '';
+            }
+        };
+    </script>
     <style>
         .sales-notification {
             position: fixed;
@@ -478,53 +1038,5 @@
             margin-bottom: -0.5rem;
         }
     </style>
-    <script>
-    // Simple 10-minute countdown timer for both hero and bottom offer
-    function startSimpleTimer(durationSeconds, onHeroUpdate, onBottomUpdate) {
-        let remaining = durationSeconds;
-        function tick() {
-            // Hero timer (mm:ss)
-            if (onHeroUpdate) {
-                let mins = Math.floor(remaining / 60);
-                let secs = remaining % 60;
-                onHeroUpdate(mins, secs);
-            }
-            // Bottom timer (hh:mm:ss)
-            if (onBottomUpdate) {
-                let hours = Math.floor(remaining / 3600);
-                let minutes = Math.floor((remaining % 3600) / 60);
-                let seconds = remaining % 60;
-                onBottomUpdate(hours, minutes, seconds);
-            }
-            if (remaining > 0) {
-                remaining--;
-            } else {
-                clearInterval(timerInterval);
-            }
-        }
-        tick();
-        const timerInterval = setInterval(tick, 1000);
-    }
-    startSimpleTimer(600,
-        function(mins, secs) {
-            var minEl = document.getElementById('hero-minutes');
-            var secEl = document.getElementById('hero-seconds');
-            if (minEl && secEl) {
-                minEl.textContent = mins.toString().padStart(2, '0');
-                secEl.textContent = secs.toString().padStart(2, '0');
-            }
-        },
-        function(hours, minutes, seconds) {
-            var hoursEl = document.getElementById('hours');
-            var minutesEl = document.getElementById('minutes');
-            var secondsEl = document.getElementById('seconds');
-            if (hoursEl && minutesEl && secondsEl) {
-                hoursEl.textContent = hours.toString().padStart(2, '0');
-                minutesEl.textContent = minutes.toString().padStart(2, '0');
-                secondsEl.textContent = seconds.toString().padStart(2, '0');
-            }
-        }
-    );
-    </script>
 </body>
 </html> 
