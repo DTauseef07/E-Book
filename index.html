@@ -243,6 +243,9 @@
                         <h3>Suresh Saini</h3>
                         <p>Top-notch guide for Instagram growth! Meri dukaan ka account ab zyada customers tak pahunch raha hai. Thanks, Tauseef Sir!</p>
                     </div>
+                    <div class="testimonial-card add-yours-card" style="flex: 0 0 340px; scroll-snap-align: start; display: flex; align-items: center; justify-content: center;">
+                        <button id="addYoursBtn" style="background: var(--gradient-primary); color: #000; border: none; border-radius: 50px; padding: 1.1rem 2.2rem; font-size: 1.1rem; font-weight: 700; cursor: pointer; box-shadow: 0 2px 8px 0 #00ffb310; transition: transform 0.28s cubic-bezier(.4,0,.2,1), box-shadow 0.28s cubic-bezier(.4,0,.2,1);">+ Add Yours</button>
+                    </div>
                 </div>
             </div>
         </section>
@@ -338,6 +341,17 @@
             </div>
         </div>
     </footer>
+
+    <!-- Add Yours Modal -->
+    <div id="addYoursModal" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(10,30,25,0.92); z-index:9999; align-items:center; justify-content:center;">
+        <form id="addYoursForm" style="background:var(--glass-bg); border-radius:18px; box-shadow:0 0 24px 0 #00ffb322,0 2px 8px 0 #001a1440; border:1.5px solid var(--glass-border); padding:2.1rem 1.5rem 1.5rem 1.5rem; min-width:270px; max-width:95vw; text-align:center; display:flex; flex-direction:column; align-items:center; gap:1.1rem;">
+            <h2 style="color:var(--accent-primary); margin-bottom:1.1rem; font-size:1.13rem; letter-spacing:1.2px; font-weight:700;">Add Your Testimonial</h2>
+            <input type="text" id="yourName" placeholder="Your Name" required style="padding:0.8rem 1.2rem; border-radius:12px; border:1px solid var(--glass-border); background:rgba(10,10,10,0.8); color:#fff; width:100%; margin-bottom:0.7rem;" />
+            <textarea id="yourTestimonial" placeholder="Your Testimonial" required style="padding:0.8rem 1.2rem; border-radius:12px; border:1px solid var(--glass-border); background:rgba(10,10,10,0.8); color:#fff; width:100%; min-height:80px; margin-bottom:0.7rem;"></textarea>
+            <button type="submit" style="background:var(--gradient-primary); color:#000; border:none; border-radius:50px; padding:0.9rem 2.1rem; font-size:1.08rem; font-weight:700; cursor:pointer; box-shadow:0 2px 8px 0 #00ffb310;">Add</button>
+            <button type="button" id="closeAddYours" style="background:none; color:var(--accent-primary); border:none; font-size:1.01rem; cursor:pointer; margin-top:0.7rem;">Cancel</button>
+        </form>
+    </div>
 
     <script>
         // Initialize AOS with optimized settings
@@ -750,6 +764,30 @@
             }
             scheduleNextNotification();
         }, 5000);
+
+        // Add Yours Modal Logic
+        const addYoursBtn = document.getElementById('addYoursBtn');
+        const addYoursModal = document.getElementById('addYoursModal');
+        const closeAddYours = document.getElementById('closeAddYours');
+        const addYoursForm = document.getElementById('addYoursForm');
+        const testimonialCarousel = document.querySelector('.testimonial-carousel');
+        addYoursBtn.onclick = () => { addYoursModal.style.display = 'flex'; };
+        closeAddYours.onclick = () => { addYoursModal.style.display = 'none'; };
+        addYoursForm.onsubmit = function(e) {
+            e.preventDefault();
+            const name = document.getElementById('yourName').value.trim();
+            const testimonial = document.getElementById('yourTestimonial').value.trim();
+            if (!name || !testimonial) return;
+            const initials = name.split(' ').map(w => w[0]).join('').toUpperCase().slice(0,2);
+            const card = document.createElement('div');
+            card.className = 'testimonial-card';
+            card.style.flex = '0 0 340px';
+            card.style.scrollSnapAlign = 'start';
+            card.innerHTML = `<div class="avatar"><span class="initials">${initials}</span></div><h3>${name}</h3><p>${testimonial}</p>`;
+            testimonialCarousel.insertBefore(card, testimonialCarousel.lastElementChild);
+            addYoursModal.style.display = 'none';
+            addYoursForm.reset();
+        };
     </script>
     <style>
         .sales-notification {
