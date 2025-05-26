@@ -138,6 +138,12 @@
             </div>
         </section>
 
+        <!-- Book Preview Modal -->
+        <div id="previewModal">
+            <button class="close-modal" aria-label="Close Preview">&times;</button>
+            <img class="modal-img" src="" alt="Book Preview Large" />
+        </div>
+
         <!-- Testimonials Section -->
         <section class="testimonials" id="testimonials">
             <div class="container">
@@ -921,6 +927,27 @@
             });
         }
         document.addEventListener('DOMContentLoaded', addRandomStarsToTestimonials);
+
+        // Book Preview Modal Logic
+        const previewModal = document.getElementById('previewModal');
+        const modalImg = previewModal.querySelector('.modal-img');
+        const closeModalBtn = previewModal.querySelector('.close-modal');
+        document.querySelectorAll('.preview-cards-row .book-placeholder.thumbnail img').forEach(img => {
+            img.parentElement.onclick = function() {
+                modalImg.src = img.src;
+                previewModal.classList.add('active');
+            };
+        });
+        closeModalBtn.onclick = function() {
+            previewModal.classList.remove('active');
+            modalImg.src = '';
+        };
+        previewModal.onclick = function(e) {
+            if (e.target === previewModal) {
+                previewModal.classList.remove('active');
+                modalImg.src = '';
+            }
+        };
     </script>
     <style>
         .sales-notification {
