@@ -727,12 +727,12 @@ body {
 
 .preview-cards-row {
     display: flex;
-    gap: 3rem;
+    gap: 2.2rem;
     justify-content: flex-start;
     align-items: center;
     flex-wrap: nowrap;
     overflow-x: auto;
-    padding: 3rem 0 3rem 0 !important;
+    padding: 2.5rem 0 2.5rem 0 !important;
     margin-left: 0 !important;
     margin-right: 0 !important;
     scrollbar-width: none;
@@ -741,15 +741,15 @@ body {
     box-sizing: border-box;
 }
 .book-placeholder.thumbnail {
-    max-width: 48vw;
-    min-width: 48vw;
-    height: 28vw;
-    border-radius: 32px;
+    max-width: 38vw;
+    min-width: 38vw;
+    height: 20vw;
+    border-radius: 28px;
     margin-left: 0 !important;
     margin-right: 0 !important;
 }
 .book-placeholder.thumbnail img {
-    border-radius: 32px;
+    border-radius: 28px;
 }
 .preview-cards-row::-webkit-scrollbar {
     display: none;
