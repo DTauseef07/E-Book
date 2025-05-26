@@ -1521,9 +1521,14 @@ textarea:focus {
 }
 
 .testimonial-carousel {
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+    overflow-x: auto !important;
+    scroll-snap-type: x mandatory;
+    padding: 2rem 0;
     scrollbar-width: none !important; /* Firefox */
     -ms-overflow-style: none !important; /* IE and Edge */
-    overflow-x: auto !important;
     -webkit-overflow-scrolling: touch;
 }
 .testimonial-carousel::-webkit-scrollbar {
