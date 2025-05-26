@@ -529,22 +529,58 @@
             }
         });
 
-        // Countdown Timer
-        let bottomTimerSeconds = 600; // 10 minutes
-        function updateTimer() {
-            const hours = Math.floor(bottomTimerSeconds / 3600);
-            const minutes = Math.floor((bottomTimerSeconds % 3600) / 60);
-            const seconds = bottomTimerSeconds % 60;
-            
-            document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
-            document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
-            document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
-
-            if (bottomTimerSeconds > 0) bottomTimerSeconds--;
+        // --- Persistent Countdown Timers (Hero & Bottom Offer) ---
+        function setupPersistentTimer(timerKey, durationSeconds, updateCallback) {
+            // Get or set the end time in localStorage
+            let endTime = localStorage.getItem(timerKey);
+            if (!endTime || isNaN(Number(endTime)) || Number(endTime) < Date.now()) {
+                endTime = Date.now() + durationSeconds * 1000;
+                localStorage.setItem(timerKey, endTime);
+            }
+            function tick() {
+                const now = Date.now();
+                let remaining = Math.floor((endTime - now) / 1000);
+                if (remaining < 0) remaining = 0;
+                updateCallback(remaining);
+                if (remaining === 0) {
+                    // Optionally, clear timer or reset
+                    // localStorage.removeItem(timerKey);
+                    return;
+                }
+            }
+            tick();
+            const interval = setInterval(() => {
+                tick();
+                if (Math.floor((endTime - Date.now()) / 1000) <= 0) clearInterval(interval);
+            }, 1000);
         }
 
-        setInterval(updateTimer, 1000);
-        updateTimer();
+        // Hero Timer (10 min)
+        setupPersistentTimer('hero-timer-end', 600, function(remaining) {
+            var mins = Math.floor(remaining / 60);
+            var secs = remaining % 60;
+            var minEl = document.getElementById('hero-minutes');
+            var secEl = document.getElementById('hero-seconds');
+            if (minEl && secEl) {
+                minEl.textContent = mins.toString().padStart(2, '0');
+                secEl.textContent = secs.toString().padStart(2, '0');
+            }
+        });
+
+        // Bottom Offer Timer (10 min)
+        setupPersistentTimer('bottom-timer-end', 600, function(remaining) {
+            var hours = Math.floor(remaining / 3600);
+            var minutes = Math.floor((remaining % 3600) / 60);
+            var seconds = remaining % 60;
+            var hoursEl = document.getElementById('hours');
+            var minutesEl = document.getElementById('minutes');
+            var secondsEl = document.getElementById('seconds');
+            if (hoursEl && minutesEl && secondsEl) {
+                hoursEl.textContent = hours.toString().padStart(2, '0');
+                minutesEl.textContent = minutes.toString().padStart(2, '0');
+                secondsEl.textContent = seconds.toString().padStart(2, '0');
+            }
+        });
 
         // Mobile Menu
         const menuBtn = document.querySelector('.mobile-menu-btn');
@@ -618,23 +654,6 @@
             parallaxBg.style.transform = `translateY(${scrolled * 0.5}px)`;
         });
 
-        // 10-min Hero Timer
-        (function() {
-            var totalSeconds = 600; // 10 minutes;
-            var minEl = document.getElementById('hero-minutes');
-            var secEl = document.getElementById('hero-seconds');
-            function updateHeroTimer() {
-                var mins = Math.floor(totalSeconds / 60);
-                var secs = totalSeconds % 60;
-                minEl.textContent = mins.toString().padStart(2, '0');
-                secEl.textContent = secs.toString().padStart(2, '0');
-                if (totalSeconds > 0) totalSeconds--;
-            }
-            if (minEl && secEl) {
-                updateHeroTimer();
-                setInterval(updateHeroTimer, 1000);
-            }
-        })();
         // Sales Notification System
         const purchaseData = [
             { name: 'Rajesh Kumar', city: 'Mumbai, Maharashtra' },
