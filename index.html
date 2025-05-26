@@ -144,7 +144,7 @@
                 <h2 class="section-title" data-aos="fade-up">What Readers Say</h2>
                 <div class="testimonial-carousel">
                     <div class="testimonial-card" data-aos="fade-up" data-aos-delay="100" style="flex: 0 0 340px; scroll-snap-align: start; position: relative;">
-                        <div class="testimonial-stars" style="position: absolute; top: 1.2rem; right: 1.2rem; font-size: 1.25rem; color: var(--accent-primary); display: flex; gap: 2px;"></div>
+                        <div class="testimonial-stars" style="position: absolute; top: 0.7rem; right: 0.9rem; font-size: 1.05rem; color: var(--accent-primary); display: flex; gap: 1px;"></div>
                         <div class="avatar"><span class="initials">VS</span></div>
                         <h3>Vikram Singh</h3>
                         <p>This ebook is a game-changer! Mere Instagram followers 2 months mein 5k se 8k ho gaye. Highly recommend!</p>
@@ -790,7 +790,7 @@
             addYoursForm.reset();
         };
 
-        // Add random stars to each testimonial card
+        // Add random sharp stars to each testimonial card
         function addRandomStarsToTestimonials() {
             const testimonialCards = document.querySelectorAll('.testimonial-card');
             testimonialCards.forEach(card => {
@@ -798,11 +798,11 @@
                 let starsHtml = '';
                 for (let i = 1; i <= 5; i++) {
                     if (i <= Math.floor(rating / 2)) {
-                        starsHtml += '<i class="fas fa-star"></i>';
+                        starsHtml += '<i class="fa-solid fa-star-sharp"></i>';
                     } else if (i === Math.ceil(rating / 2) && rating % 2 !== 0) {
-                        starsHtml += '<i class="fas fa-star-half-alt"></i>';
+                        starsHtml += '<i class="fa-solid fa-star-half-stroke"></i>';
                     } else {
-                        starsHtml += '<i class="far fa-star"></i>';
+                        starsHtml += '<i class="fa-regular fa-star-sharp"></i>';
                     }
                 }
                 const starsDiv = card.querySelector('.testimonial-stars');
