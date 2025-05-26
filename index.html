@@ -790,11 +790,12 @@
             addYoursForm.reset();
         };
 
-        // Add random sharp stars to each testimonial card
+        // Add random sharp stars to each testimonial card (3.5, 4, 4.5, 5)
         function addRandomStarsToTestimonials() {
             const testimonialCards = document.querySelectorAll('.testimonial-card');
+            const possibleRatings = [7, 8, 9, 10]; // 3.5, 4, 4.5, 5
             testimonialCards.forEach(card => {
-                let rating = Math.floor(Math.random() * 4) + 7; // 7 to 10 (3.5 to 5 stars)
+                let rating = possibleRatings[Math.floor(Math.random() * possibleRatings.length)];
                 let starsHtml = '';
                 for (let i = 1; i <= 5; i++) {
                     if (i <= Math.floor(rating / 2)) {
