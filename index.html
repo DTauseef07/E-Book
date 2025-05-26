@@ -812,14 +812,14 @@
         // Add random sharp stars to each testimonial card (3.5, 4, 4.5, 5)
         function addRandomStarsToTestimonials() {
             const testimonialCards = document.querySelectorAll('.testimonial-card');
-            const possibleRatings = [7, 8, 9, 10]; // 3.5, 4, 4.5, 5
+            const possibleRatings = [3.5, 4, 4.5, 5];
             testimonialCards.forEach(card => {
                 let rating = possibleRatings[Math.floor(Math.random() * possibleRatings.length)];
                 let starsHtml = '';
                 for (let i = 1; i <= 5; i++) {
-                    if (i <= Math.floor(rating / 2)) {
+                    if (rating >= i) {
                         starsHtml += '<i class="fa-solid fa-star-sharp"></i>';
-                    } else if (i === Math.ceil(rating / 2) && rating % 2 !== 0) {
+                    } else if (rating >= i - 0.5) {
                         starsHtml += '<i class="fa-solid fa-star-half-stroke"></i>';
                     } else {
                         starsHtml += '<i class="fa-regular fa-star-sharp"></i>';
