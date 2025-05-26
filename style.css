@@ -735,8 +735,11 @@ body {
     padding: 2rem 0 2rem 0;
     scrollbar-width: none;
     scroll-snap-type: x mandatory;
+    scroll-padding-left: 0;
 }
-
+.preview-cards-row > .book-placeholder.thumbnail {
+    scroll-snap-align: start;
+}
 .preview-cards-row::-webkit-scrollbar {
     display: none;
 }
