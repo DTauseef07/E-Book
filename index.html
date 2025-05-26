@@ -535,57 +535,54 @@
             }
         });
 
-        // --- Persistent Countdown Timers (Hero & Bottom Offer) ---
-        function setupPersistentTimer(timerKey, durationSeconds, updateCallback) {
-            // Get or set the end time in localStorage
-            let endTime = localStorage.getItem(timerKey);
-            if (!endTime || isNaN(Number(endTime)) || Number(endTime) < Date.now()) {
-                endTime = Date.now() + durationSeconds * 1000;
-                localStorage.setItem(timerKey, endTime);
-            }
-            function tick() {
-                const now = Date.now();
-                let remaining = Math.floor((endTime - now) / 1000);
-                if (remaining < 0) remaining = 0;
-                updateCallback(remaining);
-                if (remaining === 0) {
-                    // Optionally, clear timer or reset
-                    // localStorage.removeItem(timerKey);
-                    return;
+        document.addEventListener('DOMContentLoaded', function() {
+            // --- Persistent Countdown Timers (Hero & Bottom Offer) ---
+            function setupPersistentTimer(timerKey, durationSeconds, updateCallback) {
+                let endTime = localStorage.getItem(timerKey);
+                if (!endTime || isNaN(Number(endTime)) || Number(endTime) < Date.now()) {
+                    endTime = Date.now() + durationSeconds * 1000;
+                    localStorage.setItem(timerKey, endTime);
                 }
-            }
-            tick();
-            const interval = setInterval(() => {
+                function tick() {
+                    const now = Date.now();
+                    let remaining = Math.floor((endTime - now) / 1000);
+                    if (remaining < 0) remaining = 0;
+                    updateCallback(remaining);
+                    if (remaining === 0) {
+                        return;
+                    }
+                }
                 tick();
-                if (Math.floor((endTime - Date.now()) / 1000) <= 0) clearInterval(interval);
-            }, 1000);
-        }
-
-        // Hero Timer (10 min)
-        setupPersistentTimer('hero-timer-end', 600, function(remaining) {
-            var mins = Math.floor(remaining / 60);
-            var secs = remaining % 60;
-            var minEl = document.getElementById('hero-minutes');
-            var secEl = document.getElementById('hero-seconds');
-            if (minEl && secEl) {
-                minEl.textContent = mins.toString().padStart(2, '0');
-                secEl.textContent = secs.toString().padStart(2, '0');
+                const interval = setInterval(() => {
+                    tick();
+                    if (Math.floor((endTime - Date.now()) / 1000) <= 0) clearInterval(interval);
+                }, 1000);
             }
-        });
-
-        // Bottom Offer Timer (10 min)
-        setupPersistentTimer('bottom-timer-end', 600, function(remaining) {
-            var hours = Math.floor(remaining / 3600);
-            var minutes = Math.floor((remaining % 3600) / 60);
-            var seconds = remaining % 60;
-            var hoursEl = document.getElementById('hours');
-            var minutesEl = document.getElementById('minutes');
-            var secondsEl = document.getElementById('seconds');
-            if (hoursEl && minutesEl && secondsEl) {
-                hoursEl.textContent = hours.toString().padStart(2, '0');
-                minutesEl.textContent = minutes.toString().padStart(2, '0');
-                secondsEl.textContent = seconds.toString().padStart(2, '0');
-            }
+            // Hero Timer (10 min)
+            setupPersistentTimer('hero-timer-end', 600, function(remaining) {
+                var mins = Math.floor(remaining / 60);
+                var secs = remaining % 60;
+                var minEl = document.getElementById('hero-minutes');
+                var secEl = document.getElementById('hero-seconds');
+                if (minEl && secEl) {
+                    minEl.textContent = mins.toString().padStart(2, '0');
+                    secEl.textContent = secs.toString().padStart(2, '0');
+                }
+            });
+            // Bottom Offer Timer (10 min)
+            setupPersistentTimer('bottom-timer-end', 600, function(remaining) {
+                var hours = Math.floor(remaining / 3600);
+                var minutes = Math.floor((remaining % 3600) / 60);
+                var seconds = remaining % 60;
+                var hoursEl = document.getElementById('hours');
+                var minutesEl = document.getElementById('minutes');
+                var secondsEl = document.getElementById('seconds');
+                if (hoursEl && minutesEl && secondsEl) {
+                    hoursEl.textContent = hours.toString().padStart(2, '0');
+                    minutesEl.textContent = minutes.toString().padStart(2, '0');
+                    secondsEl.textContent = seconds.toString().padStart(2, '0');
+                }
+            });
         });
 
         // Mobile Menu
