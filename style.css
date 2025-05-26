@@ -418,7 +418,7 @@ body {
     min-width: 480px;
     height: 320px;
     border-radius: 24px;
-    box-shadow: 0 4px 32px #00ffe733, 0 1.5px 8px #00ffb308;
+    box-shadow: 0 2px 8px #00ffe722, 0 1.5px 4px #00ffb308;
     margin: 0;
     background: rgba(10, 10, 10, 0.95);
     display: flex;
@@ -442,7 +442,7 @@ body {
 
 .book-placeholder.thumbnail:hover {
     transform: scale(1.03) perspective(800px) rotateY(-4deg);
-    box-shadow: 0 8px 32px 0 #00ffb322, 0 1.5px 8px 0 #00ffb308;
+    box-shadow: 0 4px 12px 0 #00ffb322, 0 1.5px 4px 0 #00ffb308;
 }
 
 /* Modal for image preview */
@@ -727,12 +727,12 @@ body {
 
 .preview-cards-row {
     display: flex;
-    gap: 2rem;
+    gap: 3.5rem;
     justify-content: flex-start;
     align-items: center;
     flex-wrap: nowrap;
     overflow-x: auto;
-    padding: 2rem 0;
+    padding: 2rem 2vw 2rem 2vw;
     scrollbar-width: thin;
     scroll-snap-type: x mandatory;
 }
