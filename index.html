@@ -535,54 +535,53 @@
             }
         });
 
-        document.addEventListener('DOMContentLoaded', function() {
-            // --- Persistent Countdown Timers (Hero & Bottom Offer) ---
-            function setupPersistentTimer(timerKey, durationSeconds, updateCallback) {
-                let endTime = localStorage.getItem(timerKey);
-                if (!endTime || isNaN(Number(endTime)) || Number(endTime) < Date.now()) {
-                    endTime = Date.now() + durationSeconds * 1000;
-                    localStorage.setItem(timerKey, endTime);
+        // Simple 10-minute countdown timer for both hero and bottom offer
+        function startSimpleTimer(durationSeconds, onHeroUpdate, onBottomUpdate) {
+            let remaining = durationSeconds;
+            function tick() {
+                // Hero timer (mm:ss)
+                if (onHeroUpdate) {
+                    let mins = Math.floor(remaining / 60);
+                    let secs = remaining % 60;
+                    onHeroUpdate(mins, secs);
                 }
-                function tick() {
-                    const now = Date.now();
-                    let remaining = Math.floor((endTime - now) / 1000);
-                    if (remaining < 0) remaining = 0;
-                    updateCallback(remaining);
-                    if (remaining === 0) {
-                        return;
+                // Bottom timer (hh:mm:ss)
+                if (onBottomUpdate) {
+                    let hours = Math.floor(remaining / 3600);
+                    let minutes = Math.floor((remaining % 3600) / 60);
+                    let seconds = remaining % 60;
+                    onBottomUpdate(hours, minutes, seconds);
+                }
+                if (remaining > 0) {
+                    remaining--;
+                } else {
+                    clearInterval(timerInterval);
+                }
+            }
+            tick();
+            const timerInterval = setInterval(tick, 1000);
+        }
+        document.addEventListener('DOMContentLoaded', function() {
+            startSimpleTimer(600,
+                function(mins, secs) {
+                    var minEl = document.getElementById('hero-minutes');
+                    var secEl = document.getElementById('hero-seconds');
+                    if (minEl && secEl) {
+                        minEl.textContent = mins.toString().padStart(2, '0');
+                        secEl.textContent = secs.toString().padStart(2, '0');
+                    }
+                },
+                function(hours, minutes, seconds) {
+                    var hoursEl = document.getElementById('hours');
+                    var minutesEl = document.getElementById('minutes');
+                    var secondsEl = document.getElementById('seconds');
+                    if (hoursEl && minutesEl && secondsEl) {
+                        hoursEl.textContent = hours.toString().padStart(2, '0');
+                        minutesEl.textContent = minutes.toString().padStart(2, '0');
+                        secondsEl.textContent = seconds.toString().padStart(2, '0');
                     }
                 }
-                tick();
-                const interval = setInterval(() => {
-                    tick();
-                    if (Math.floor((endTime - Date.now()) / 1000) <= 0) clearInterval(interval);
-                }, 1000);
-            }
-            // Hero Timer (10 min)
-            setupPersistentTimer('hero-timer-end', 600, function(remaining) {
-                var mins = Math.floor(remaining / 60);
-                var secs = remaining % 60;
-                var minEl = document.getElementById('hero-minutes');
-                var secEl = document.getElementById('hero-seconds');
-                if (minEl && secEl) {
-                    minEl.textContent = mins.toString().padStart(2, '0');
-                    secEl.textContent = secs.toString().padStart(2, '0');
-                }
-            });
-            // Bottom Offer Timer (10 min)
-            setupPersistentTimer('bottom-timer-end', 600, function(remaining) {
-                var hours = Math.floor(remaining / 3600);
-                var minutes = Math.floor((remaining % 3600) / 60);
-                var seconds = remaining % 60;
-                var hoursEl = document.getElementById('hours');
-                var minutesEl = document.getElementById('minutes');
-                var secondsEl = document.getElementById('seconds');
-                if (hoursEl && minutesEl && secondsEl) {
-                    hoursEl.textContent = hours.toString().padStart(2, '0');
-                    minutesEl.textContent = minutes.toString().padStart(2, '0');
-                    secondsEl.textContent = seconds.toString().padStart(2, '0');
-                }
-            });
+            );
         });
 
         // Mobile Menu
