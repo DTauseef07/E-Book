@@ -1521,9 +1521,11 @@ textarea:focus {
 }
 
 .testimonial-carousel {
-    scrollbar-width: none; /* Firefox */
-    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none !important; /* Firefox */
+    -ms-overflow-style: none !important; /* IE and Edge */
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch;
 }
 .testimonial-carousel::-webkit-scrollbar {
-    display: none; /* Chrome, Safari, Opera */
+    display: none !important; /* Chrome, Safari, Opera */
 }
