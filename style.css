@@ -735,7 +735,8 @@ body {
     padding: 2.5rem 0 2.5rem 0 !important;
     margin-left: 0 !important;
     margin-right: 0 !important;
-    scrollbar-width: none;
+    scrollbar-width: thin;
+    scrollbar-color: #00ffe7 rgba(10,30,25,0.3);
     scroll-snap-type: x mandatory;
     scroll-padding-left: 0 !important;
     box-sizing: border-box;
@@ -752,7 +753,18 @@ body {
     border-radius: 28px;
 }
 .preview-cards-row::-webkit-scrollbar {
-    display: none;
+    height: 10px;
+    background: rgba(10,30,25,0.3);
+    border-radius: 8px;
+}
+.preview-cards-row::-webkit-scrollbar-thumb {
+    background: linear-gradient(90deg, #00ffe7 40%, #00ffb3 100%);
+    border-radius: 8px;
+    box-shadow: 0 0 8px #00ffe733;
+    border: 2px solid rgba(10,30,25,0.7);
+}
+.preview-cards-row::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(90deg, #00ffe7 70%, #00ffb3 100%);
 }
 
 .preview-slide {
@@ -1607,10 +1619,21 @@ textarea:focus {
     overflow-x: auto !important;
     scroll-snap-type: x mandatory;
     padding: 2rem 0;
-    scrollbar-width: none !important; /* Firefox */
-    -ms-overflow-style: none !important; /* IE and Edge */
+    scrollbar-width: thin;
+    scrollbar-color: #00ffe7 rgba(10,30,25,0.3);
     -webkit-overflow-scrolling: touch;
 }
 .testimonial-carousel::-webkit-scrollbar {
-    display: none !important; /* Chrome, Safari, Opera */
+    height: 10px;
+    background: rgba(10,30,25,0.3);
+    border-radius: 8px;
+}
+.testimonial-carousel::-webkit-scrollbar-thumb {
+    background: linear-gradient(90deg, #00ffe7 40%, #00ffb3 100%);
+    border-radius: 8px;
+    box-shadow: 0 0 8px #00ffe733;
+    border: 2px solid rgba(10,30,25,0.7);
+}
+.testimonial-carousel::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(90deg, #00ffe7 70%, #00ffb3 100%);
 }
