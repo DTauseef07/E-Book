@@ -273,7 +273,7 @@
                         <p>Top-notch guide for Instagram growth! Meri dukaan ka account ab zyada customers tak pahunch raha hai. Thanks, Tauseef Sir!</p>
                     </div>
                     <div class="testimonial-card add-yours-card" data-aos="fade-up" data-aos-delay="2100" style="flex: 0 0 340px; scroll-snap-align: start; display: flex; align-items: center; justify-content: center; background: rgba(10, 10, 10, 0.8); border: 1px solid var(--glass-border); min-height: 280px;">
-                        <button id="addYoursBtn" style="background: linear-gradient(135deg, #00ffe7, #00ffb3); color: #000; border: none; border-radius: 50px; padding: 1.1rem 2.2rem; font-size: 1.1rem; font-weight: 700; cursor: pointer; box-shadow: 0 2px 8px 0 #00ffb310; transition: transform 0.28s cubic-bezier(.4,0,.2,1), box-shadow 0.28s cubic-bezier(.4,0,.2,1); -webkit-tap-highlight-color: transparent;">+ Add Yours</button>
+                        <button id="addYoursBtn" style="background: rgba(0, 255, 231, 0.05); color: #00ffe7; border: 1px solid #00ffe7; border-radius: 50px; padding: 1.1rem 2.2rem; font-size: 1.1rem; font-weight: 600; cursor: pointer; transition: all 0.3s cubic-bezier(.4,0,.2,1); -webkit-tap-highlight-color: transparent;">+ Add Yours</button>
                     </div>
                 </div>
             </div>
@@ -372,20 +372,32 @@
     </footer>
 
     <!-- Add Yours Modal -->
-    <div id="addYoursModal" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(10,30,25,0.72); z-index:9999; align-items:center; justify-content:center; backdrop-filter: blur(8px);">
-        <form id="addYoursForm" style="background:rgba(10,30,25,0.95); border-radius:22px; box-shadow:0 0 32px 0 #00ffe755,0 2px 12px 0 #00ffe722; border:1.5px solid var(--accent-primary); padding:2.1rem 1.5rem 1.5rem 1.5rem; min-width:270px; max-width:95vw; text-align:center; display:flex; flex-direction:column; align-items:center; gap:1.1rem; position:relative;">
-            <h2 style="color:var(--accent-primary); margin-bottom:1.1rem; font-size:1.13rem; letter-spacing:1.2px; font-weight:700; text-shadow:0 0 12px #00ffe799;">Add Your Testimonial</h2>
-            <input type="text" id="yourName" placeholder="Your Name" required style="padding:0.8rem 1.2rem; border-radius:12px; border:1px solid var(--glass-border); background:rgba(10,10,10,0.8); color:#fff; width:100%; margin-bottom:0.7rem; font-size:1.05rem; cursor:text;" />
-            <textarea id="yourTestimonial" placeholder="Your Testimonial" required style="padding:0.8rem 1.2rem; border-radius:12px; border:1px solid var(--glass-border); background:rgba(10,10,10,0.8); color:#fff; width:100%; min-height:120px; margin-bottom:0.7rem; font-size:1.05rem; cursor:text; resize:vertical;"></textarea>
-            <div id="yourRatingWrap" style="display:flex; align-items:center; gap:0.3rem; margin-bottom:0.5rem; user-select:none;">
-                <span style="color:var(--accent-primary); font-weight:600; font-size:1.05rem; margin-right:0.5rem;">Your Rating:</span>
-                <div id="yourRatingStars" style="display:flex; gap:2px; cursor:pointer;">
+    <div id="addYoursModal" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(10,30,25,0.85); z-index:9999; align-items:center; justify-content:center; backdrop-filter: blur(12px);">
+        <form id="addYoursForm" style="background:rgba(10,15,14,0.95); border-radius:24px; box-shadow:0 0 40px 0 #00ffe744, 0 2px 12px 0 #00ffe722; border:1px solid #00ffe7; padding:2.5rem 2rem 2rem 2rem; min-width:320px; max-width:95vw; text-align:center; display:flex; flex-direction:column; align-items:center; gap:1.2rem; position:relative;">
+            <h2 style="color:#00ffe7; margin-bottom:0.8rem; font-size:1.2rem; letter-spacing:1.2px; font-weight:600;">Share Your Experience</h2>
+            
+            <div style="width:100%; text-align:left;">
+                <label for="yourName" style="color:#00ffe7; font-size:0.9rem; margin-bottom:0.4rem; display:block; letter-spacing:0.5px;">Your Name</label>
+                <input type="text" id="yourName" placeholder="Enter your name" required style="width:100%; padding:0.9rem 1.2rem; border-radius:12px; border:1px solid rgba(0,255,231,0.2); background:rgba(0,255,231,0.03); color:#fff; font-size:1rem; transition:all 0.3s ease; margin-top:0.2rem;" />
+            </div>
+
+            <div style="width:100%; text-align:left;">
+                <label for="yourTestimonial" style="color:#00ffe7; font-size:0.9rem; margin-bottom:0.4rem; display:block; letter-spacing:0.5px;">Your Testimonial</label>
+                <textarea id="yourTestimonial" placeholder="Share your experience..." required style="width:100%; padding:0.9rem 1.2rem; border-radius:12px; border:1px solid rgba(0,255,231,0.2); background:rgba(0,255,231,0.03); color:#fff; min-height:120px; font-size:1rem; transition:all 0.3s ease; margin-top:0.2rem; resize:vertical;"></textarea>
+            </div>
+
+            <div style="width:100%; text-align:left;">
+                <label style="color:#00ffe7; font-size:0.9rem; margin-bottom:0.4rem; display:block; letter-spacing:0.5px;">Rating</label>
+                <div id="yourRatingStars" style="display:flex; gap:4px; padding:0.5rem 0; cursor:pointer;">
                     <!-- Stars will be rendered by JS -->
                 </div>
+                <div id="ratingError" style="color:#ff4444; font-size:0.85rem; margin-top:0.3rem; display:none;">Please select a rating</div>
             </div>
-            <div id="ratingError" style="color:#ff4444; font-size:0.98rem; display:none; margin-bottom:-0.5rem;">Please select a rating.</div>
-            <button type="submit" style="background:linear-gradient(135deg, #00ffe7, #00ffb3); color:#000; border:none; border-radius:50px; padding:0.9rem 2.1rem; font-size:1.08rem; font-weight:700; cursor:pointer; box-shadow:0 2px 8px 0 #00ffb310; transition:transform 0.28s cubic-bezier(.4,0,.2,1), box-shadow 0.28s cubic-bezier(.4,0,.2,1); -webkit-tap-highlight-color: transparent;">Add</button>
-            <button type="button" id="closeAddYours" style="background:none; color:var(--accent-primary); border:none; font-size:1.01rem; cursor:pointer; margin-top:0.7rem; -webkit-tap-highlight-color: transparent;">Cancel</button>
+
+            <div style="display:flex; gap:1rem; margin-top:0.5rem;">
+                <button type="submit" style="background:#00ffe7; color:#000; border:none; border-radius:50px; padding:0.9rem 2rem; font-size:1rem; font-weight:600; cursor:pointer; transition:all 0.3s ease;">Submit</button>
+                <button type="button" id="closeAddYours" style="background:transparent; color:#00ffe7; border:1px solid #00ffe7; border-radius:50px; padding:0.9rem 2rem; font-size:1rem; font-weight:600; cursor:pointer; transition:all 0.3s ease;">Cancel</button>
+            </div>
         </form>
     </div>
 
@@ -817,176 +829,134 @@
             scheduleNextNotification();
         }, 5000);
 
-        // Add Yours Modal Logic
+        // Add Yours Modal Logic with animations
+        const modal = document.getElementById('addYoursModal');
         const addYoursBtn = document.getElementById('addYoursBtn');
-        const addYoursModal = document.getElementById('addYoursModal');
-        const closeAddYours = document.getElementById('closeAddYours');
-        const addYoursForm = document.getElementById('addYoursForm');
-        const testimonialCarousel = document.querySelector('.testimonial-carousel');
-        const yourRatingStars = document.getElementById('yourRatingStars');
-        const ratingError = document.getElementById('ratingError');
-        let selectedRating = 0;
-        let selectedHalf = false;
-        // Render 5 stars for rating input
-        function renderRatingStarsInput(rating, half) {
-            let html = '';
-            for (let i = 1; i <= 5; i++) {
-                if (rating >= i) {
-                    html += `<i class='fa-solid fa-star' data-value='${i}' style='font-size:1.5rem;'></i>`;
-                } else if (rating >= i - 0.5 && half && Math.ceil(rating) === i) {
-                    html += `<i class='fa-solid fa-star-half-stroke' data-value='${i-0.5}' style='font-size:1.5rem;'></i>`;
-                } else {
-                    html += `<i class='fa-regular fa-star' data-value='${i}' style='font-size:1.5rem;'></i>`;
-                }
-            }
-            yourRatingStars.innerHTML = html;
-        }
-        // Initial render
-        renderRatingStarsInput(0, false);
-        // Star click/hover logic
-        yourRatingStars.addEventListener('mousemove', function(e) {
-            if (!e.target.matches('i')) return;
-            const rect = e.target.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const starWidth = rect.width;
-            let value = parseInt(e.target.getAttribute('data-value'));
-            let isHalf = x < starWidth / 2;
-            renderRatingStarsInput(isHalf ? value - 0.5 : value, isHalf);
-        });
-        yourRatingStars.addEventListener('mouseleave', function() {
-            renderRatingStarsInput(selectedRating, selectedHalf);
-        });
-        yourRatingStars.addEventListener('click', function(e) {
-            if (!e.target.matches('i')) return;
-            const rect = e.target.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const starWidth = rect.width;
-            let value = parseInt(e.target.getAttribute('data-value'));
-            let isHalf = x < starWidth / 2;
-            selectedRating = isHalf ? value - 0.5 : value;
-            selectedHalf = isHalf;
-            renderRatingStarsInput(selectedRating, selectedHalf);
-            ratingError.style.display = 'none';
-        });
-        addYoursBtn.onclick = () => { addYoursModal.style.display = 'flex'; };
-        closeAddYours.onclick = () => { addYoursModal.style.display = 'none'; };
-        addYoursForm.onsubmit = function(e) {
-            e.preventDefault();
-            const name = document.getElementById('yourName').value.trim();
-            const testimonial = document.getElementById('yourTestimonial').value.trim();
-            if (!name || !testimonial) return;
-            if (!selectedRating || selectedRating < 1) {
-                ratingError.style.display = 'block';
-                return;
-            }
-            const initials = name.split(' ').map(w => w[0]).join('').toUpperCase().slice(0,2);
-            const card = document.createElement('div');
-            card.className = 'testimonial-card';
-            card.style.flex = '0 0 340px';
-            card.style.scrollSnapAlign = 'start';
-            card.style.position = 'relative';
-            // Stars HTML
-            let starsHtml = '<div class="testimonial-stars" style="position: absolute; top: 0.7rem; right: 0.9rem; font-size: 1.05rem; color: var(--accent-primary); display: flex; gap: 1px;">';
-            for (let i = 1; i <= 5; i++) {
-                if (selectedRating >= i) {
-                    starsHtml += '<i class="fa-solid fa-star"></i>';
-                } else if (selectedRating >= i - 0.5) {
-                    starsHtml += '<i class="fa-solid fa-star-half-stroke"></i>';
-                } else {
-                    starsHtml += '<i class="fa-regular fa-star"></i>';
-                }
-            }
-            starsHtml += '</div>';
-            card.innerHTML = `${starsHtml}<div class="avatar"><span class="initials">${initials}</span></div><h3>${name}</h3><p>${testimonial}</p>`;
-            testimonialCarousel.insertBefore(card, testimonialCarousel.lastElementChild);
-            addYoursModal.style.display = 'none';
-            addYoursForm.reset();
-            selectedRating = 0;
-            selectedHalf = false;
-            renderRatingStarsInput(0, false);
-        };
+        const closeBtn = document.getElementById('closeAddYours');
 
-        // Add random sharp stars to each testimonial card (3.5, 4, 4.5, 5)
-        function addRandomStarsToTestimonials() {
-            const testimonialCards = document.querySelectorAll('.testimonial-card');
-            const possibleRatings = [3.5, 4, 4.5, 5];
-            testimonialCards.forEach(card => {
-                let rating = possibleRatings[Math.floor(Math.random() * possibleRatings.length)];
-                let starsHtml = '';
-                for (let i = 1; i <= 5; i++) {
-                    if (rating >= i) {
-                        starsHtml += '<i class="fa-solid fa-star"></i>';
-                    } else if (rating >= i - 0.5) {
-                        starsHtml += '<i class="fa-solid fa-star-half-stroke"></i>';
-                    } else {
-                        starsHtml += '<i class="fa-regular fa-star"></i>';
-                    }
-                }
-                const starsDiv = card.querySelector('.testimonial-stars');
-                if (starsDiv) starsDiv.innerHTML = starsHtml;
-            });
-        }
-        document.addEventListener('DOMContentLoaded', addRandomStarsToTestimonials);
-
-        // Book Preview Modal Logic
-        const previewModal = document.getElementById('previewModal');
-        const modalImg = previewModal.querySelector('.modal-img');
-        const closeModalBtn = previewModal.querySelector('.close-modal');
-        document.querySelectorAll('.preview-cards-row .book-placeholder.thumbnail img').forEach(img => {
-            img.parentElement.onclick = function() {
-                modalImg.src = img.src;
-                previewModal.classList.add('active');
-            };
-        });
-        closeModalBtn.onclick = function() {
-            previewModal.classList.remove('active');
-            modalImg.src = '';
-        };
-        previewModal.onclick = function(e) {
-            if (e.target === previewModal) {
-                previewModal.classList.remove('active');
-                modalImg.src = '';
-            }
-        };
-
-        function openModal(imageSrc) {
-            const modal = document.getElementById('previewModal');
-            const modalImg = document.getElementById('modalImage');
+        function openModal() {
             modal.style.display = 'flex';
-            modalImg.src = imageSrc;
-            
-            // Add animation class
-            modalImg.style.animation = 'modalImageIn 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
-            modal.style.animation = 'modalBgIn 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
+            setTimeout(() => modal.classList.add('show'), 10);
         }
 
         function closeModal() {
-            const modal = document.getElementById('previewModal');
-            const modalImg = document.getElementById('modalImage');
-            
-            // Add closing animation
-            modalImg.style.animation = 'modalImageOut 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
-            modal.style.animation = 'modalBgOut 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
-            
-            setTimeout(() => {
-                modal.style.display = 'none';
-                modalImg.src = '';
-            }, 300);
+            modal.classList.remove('show');
+            setTimeout(() => modal.style.display = 'none', 300);
         }
 
-        // Close modal when clicking outside the image
-        document.getElementById('previewModal').addEventListener('click', function(e) {
-            if (e.target === this) {
-                closeModal();
+        addYoursBtn.onclick = openModal;
+        closeBtn.onclick = closeModal;
+
+        // Close modal when clicking outside
+        modal.onclick = function(e) {
+            if (e.target === modal) closeModal();
+        };
+
+        // Star rating logic with enhanced UI
+        let selectedRating = 0;
+        let selectedHalf = false;
+
+        function renderRatingStars(rating, half) {
+            const starsContainer = document.getElementById('yourRatingStars');
+            let html = '';
+            for (let i = 1; i <= 5; i++) {
+                if (rating >= i) {
+                    html += `<i class="fas fa-star" data-value="${i}"></i>`;
+                } else if (rating >= i - 0.5 && half) {
+                    html += `<i class="fas fa-star-half-alt" data-value="${i-0.5}"></i>`;
+                } else {
+                    html += `<i class="far fa-star" data-value="${i}"></i>`;
+                }
             }
+            starsContainer.innerHTML = html;
+        }
+
+        // Initial render
+        renderRatingStars(0, false);
+
+        // Star rating interaction
+        const ratingStars = document.getElementById('yourRatingStars');
+        
+        ratingStars.addEventListener('mousemove', function(e) {
+            if (!e.target.matches('i')) return;
+            const rect = e.target.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const starWidth = rect.width;
+            let value = parseFloat(e.target.getAttribute('data-value'));
+            let isHalf = x < starWidth / 2;
+            renderRatingStars(isHalf ? value - 0.5 : value, isHalf);
         });
 
-        // Add keydown event to close modal with Escape key
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape' && document.getElementById('previewModal').style.display === 'flex') {
-                closeModal();
-            }
+        ratingStars.addEventListener('mouseleave', function() {
+            renderRatingStars(selectedRating, selectedHalf);
         });
+
+        ratingStars.addEventListener('click', function(e) {
+            if (!e.target.matches('i')) return;
+            const rect = e.target.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const starWidth = rect.width;
+            let value = parseFloat(e.target.getAttribute('data-value'));
+            let isHalf = x < starWidth / 2;
+            selectedRating = isHalf ? value - 0.5 : value;
+            selectedHalf = isHalf;
+            renderRatingStars(selectedRating, selectedHalf);
+            document.getElementById('ratingError').style.display = 'none';
+        });
+
+        // Form submission with validation
+        document.getElementById('addYoursForm').onsubmit = function(e) {
+            e.preventDefault();
+            const name = document.getElementById('yourName').value.trim();
+            const testimonial = document.getElementById('yourTestimonial').value.trim();
+            
+            if (!selectedRating) {
+                document.getElementById('ratingError').style.display = 'block';
+                return;
+            }
+            
+            if (!name || !testimonial) return;
+
+            const initials = name.split(' ').map(w => w[0]).join('').toUpperCase().slice(0,2);
+            
+            // Create new testimonial card
+            const card = document.createElement('div');
+            card.className = 'testimonial-card';
+            card.setAttribute('data-aos', 'fade-up');
+            card.style.flex = '0 0 340px';
+            card.style.scrollSnapAlign = 'start';
+            
+            // Add stars HTML
+            let starsHtml = '<div class="testimonial-stars" style="position:absolute;top:0.7rem;right:0.9rem;font-size:1.05rem;color:var(--accent-primary);display:flex;gap:1px;">';
+            for (let i = 1; i <= 5; i++) {
+                if (selectedRating >= i) {
+                    starsHtml += '<i class="fas fa-star"></i>';
+                } else if (selectedRating >= i - 0.5) {
+                    starsHtml += '<i class="fas fa-star-half-alt"></i>';
+                } else {
+                    starsHtml += '<i class="far fa-star"></i>';
+                }
+            }
+            starsHtml += '</div>';
+            
+            card.innerHTML = `
+                ${starsHtml}
+                <div class="avatar"><span class="initials">${initials}</span></div>
+                <h3>${name}</h3>
+                <p>${testimonial}</p>
+            `;
+
+            // Insert before the "Add Yours" card
+            const addYoursCard = document.querySelector('.add-yours-card');
+            addYoursCard.parentNode.insertBefore(card, addYoursCard);
+
+            // Reset form and close modal
+            this.reset();
+            selectedRating = 0;
+            selectedHalf = false;
+            renderRatingStars(0, false);
+            closeModal();
+        };
     </script>
     <style>
         .sales-notification {
@@ -1165,42 +1135,81 @@
         }
 
         .add-yours-card {
-            transition: transform 0.3s cubic-bezier(.4,0,.2,1), box-shadow 0.3s cubic-bezier(.4,0,.2,1);
+            transition: all 0.3s cubic-bezier(.4,0,.2,1);
         }
         
         .add-yours-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 8px 32px 0 #00ffe733;
+            box-shadow: 0 8px 32px 0 rgba(0,255,231,0.2);
         }
         
         #addYoursBtn:hover {
-            transform: scale(1.05);
-            box-shadow: 0 4px 16px 0 #00ffe744;
+            background: rgba(0,255,231,0.1);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 20px 0 rgba(0,255,231,0.3);
         }
         
         #addYoursBtn:active {
-            transform: scale(0.95);
+            transform: translateY(1px);
         }
         
         #addYoursModal input:focus,
         #addYoursModal textarea:focus {
-            border-color: var(--accent-primary);
-            box-shadow: 0 0 0 2px rgba(0, 255, 231, 0.1);
+            border-color: #00ffe7;
+            background: rgba(0,255,231,0.05);
+            box-shadow: 0 0 0 3px rgba(0,255,231,0.1);
             outline: none;
         }
         
         #yourRatingStars i {
-            transition: transform 0.2s, color 0.2s;
-            color: var(--accent-primary);
+            font-size: 1.5rem;
+            transition: all 0.2s ease;
+            color: rgba(0,255,231,0.3);
+        }
+        
+        #yourRatingStars i.fas,
+        #yourRatingStars i.fa-star-half-alt {
+            color: #00ffe7;
         }
         
         #yourRatingStars i:hover {
             transform: scale(1.2);
+            color: #00ffe7;
         }
-        
-        /* Remove tap highlight from all buttons */
-        button {
-            -webkit-tap-highlight-color: transparent !important;
+
+        #addYoursForm button[type="submit"]:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 20px 0 rgba(0,255,231,0.3);
+        }
+
+        #closeAddYours:hover {
+            background: rgba(0,255,231,0.1);
+            transform: translateY(-2px);
+        }
+
+        #addYoursForm button:active {
+            transform: translateY(1px);
+        }
+
+        /* Smooth modal animation */
+        #addYoursModal {
+            transition: opacity 0.3s ease;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        #addYoursModal.show {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        #addYoursForm {
+            transform: scale(0.95);
+            transition: transform 0.3s ease;
+        }
+
+        #addYoursModal.show #addYoursForm {
+            transform: scale(1);
         }
     </style>
 </body>
