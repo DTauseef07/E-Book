@@ -272,8 +272,8 @@
                         <h3>Suresh Saini</h3>
                         <p>Top-notch guide for Instagram growth! Meri dukaan ka account ab zyada customers tak pahunch raha hai. Thanks, Tauseef Sir!</p>
                     </div>
-                    <div class="testimonial-card add-yours-card" style="flex: 0 0 340px; scroll-snap-align: start; display: flex; align-items: center; justify-content: center;">
-                        <button id="addYoursBtn" style="background: var(--gradient-primary); color: #000; border: none; border-radius: 50px; padding: 1.1rem 2.2rem; font-size: 1.1rem; font-weight: 700; cursor: pointer; box-shadow: 0 2px 8px 0 #00ffb310; transition: transform 0.28s cubic-bezier(.4,0,.2,1), box-shadow 0.28s cubic-bezier(.4,0,.2,1);">+ Add Yours</button>
+                    <div class="testimonial-card add-yours-card" data-aos="fade-up" data-aos-delay="2100" style="flex: 0 0 340px; scroll-snap-align: start; display: flex; align-items: center; justify-content: center; background: rgba(10, 10, 10, 0.8); border: 1px solid var(--glass-border); min-height: 280px;">
+                        <button id="addYoursBtn" style="background: linear-gradient(135deg, #00ffe7, #00ffb3); color: #000; border: none; border-radius: 50px; padding: 1.1rem 2.2rem; font-size: 1.1rem; font-weight: 700; cursor: pointer; box-shadow: 0 2px 8px 0 #00ffb310; transition: transform 0.28s cubic-bezier(.4,0,.2,1), box-shadow 0.28s cubic-bezier(.4,0,.2,1); -webkit-tap-highlight-color: transparent;">+ Add Yours</button>
                     </div>
                 </div>
             </div>
@@ -376,7 +376,7 @@
         <form id="addYoursForm" style="background:rgba(10,30,25,0.95); border-radius:22px; box-shadow:0 0 32px 0 #00ffe755,0 2px 12px 0 #00ffe722; border:1.5px solid var(--accent-primary); padding:2.1rem 1.5rem 1.5rem 1.5rem; min-width:270px; max-width:95vw; text-align:center; display:flex; flex-direction:column; align-items:center; gap:1.1rem; position:relative;">
             <h2 style="color:var(--accent-primary); margin-bottom:1.1rem; font-size:1.13rem; letter-spacing:1.2px; font-weight:700; text-shadow:0 0 12px #00ffe799;">Add Your Testimonial</h2>
             <input type="text" id="yourName" placeholder="Your Name" required style="padding:0.8rem 1.2rem; border-radius:12px; border:1px solid var(--glass-border); background:rgba(10,10,10,0.8); color:#fff; width:100%; margin-bottom:0.7rem; font-size:1.05rem; cursor:text;" />
-            <textarea id="yourTestimonial" placeholder="Your Testimonial" required style="padding:0.8rem 1.2rem; border-radius:12px; border:1px solid var(--glass-border); background:rgba(10,10,10,0.8); color:#fff; width:100%; min-height:80px; margin-bottom:0.7rem; font-size:1.05rem; cursor:text;"></textarea>
+            <textarea id="yourTestimonial" placeholder="Your Testimonial" required style="padding:0.8rem 1.2rem; border-radius:12px; border:1px solid var(--glass-border); background:rgba(10,10,10,0.8); color:#fff; width:100%; min-height:120px; margin-bottom:0.7rem; font-size:1.05rem; cursor:text; resize:vertical;"></textarea>
             <div id="yourRatingWrap" style="display:flex; align-items:center; gap:0.3rem; margin-bottom:0.5rem; user-select:none;">
                 <span style="color:var(--accent-primary); font-weight:600; font-size:1.05rem; margin-right:0.5rem;">Your Rating:</span>
                 <div id="yourRatingStars" style="display:flex; gap:2px; cursor:pointer;">
@@ -384,8 +384,8 @@
                 </div>
             </div>
             <div id="ratingError" style="color:#ff4444; font-size:0.98rem; display:none; margin-bottom:-0.5rem;">Please select a rating.</div>
-            <button type="submit" style="background:var(--gradient-primary); color:#000; border:none; border-radius:50px; padding:0.9rem 2.1rem; font-size:1.08rem; font-weight:700; cursor:pointer; box-shadow:0 2px 8px 0 #00ffb310;">Add</button>
-            <button type="button" id="closeAddYours" style="background:none; color:var(--accent-primary); border:none; font-size:1.01rem; cursor:pointer; margin-top:0.7rem;">Cancel</button>
+            <button type="submit" style="background:linear-gradient(135deg, #00ffe7, #00ffb3); color:#000; border:none; border-radius:50px; padding:0.9rem 2.1rem; font-size:1.08rem; font-weight:700; cursor:pointer; box-shadow:0 2px 8px 0 #00ffb310; transition:transform 0.28s cubic-bezier(.4,0,.2,1), box-shadow 0.28s cubic-bezier(.4,0,.2,1); -webkit-tap-highlight-color: transparent;">Add</button>
+            <button type="button" id="closeAddYours" style="background:none; color:var(--accent-primary); border:none; font-size:1.01rem; cursor:pointer; margin-top:0.7rem; -webkit-tap-highlight-color: transparent;">Cancel</button>
         </form>
     </div>
 
@@ -1162,6 +1162,45 @@
             -webkit-tap-highlight-color: transparent;
             user-select: none;
             outline: none;
+        }
+
+        .add-yours-card {
+            transition: transform 0.3s cubic-bezier(.4,0,.2,1), box-shadow 0.3s cubic-bezier(.4,0,.2,1);
+        }
+        
+        .add-yours-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 32px 0 #00ffe733;
+        }
+        
+        #addYoursBtn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 16px 0 #00ffe744;
+        }
+        
+        #addYoursBtn:active {
+            transform: scale(0.95);
+        }
+        
+        #addYoursModal input:focus,
+        #addYoursModal textarea:focus {
+            border-color: var(--accent-primary);
+            box-shadow: 0 0 0 2px rgba(0, 255, 231, 0.1);
+            outline: none;
+        }
+        
+        #yourRatingStars i {
+            transition: transform 0.2s, color 0.2s;
+            color: var(--accent-primary);
+        }
+        
+        #yourRatingStars i:hover {
+            transform: scale(1.2);
+        }
+        
+        /* Remove tap highlight from all buttons */
+        button {
+            -webkit-tap-highlight-color: transparent !important;
         }
     </style>
 </body>
