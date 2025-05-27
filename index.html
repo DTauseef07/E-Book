@@ -115,7 +115,7 @@
         <section class="preview" id="preview">
             <div class="container">
                 <h2 class="section-title" data-aos="fade-up">Book Preview</h2>
-                <div style="font-size:1.18rem;color:#b2fff7;margin-bottom:1.5rem;margin-top:-1.2rem;letter-spacing:0.2px;">This is few sample preview from the actual eBook.</div>
+                <div style="font-size:1.18rem;color:#fff;margin-bottom:1.5rem;margin-top:-1.2rem;letter-spacing:0.2px;">This is few sample preview from the actual eBook.</div>
                 <div class="preview-cards-row" style="display: flex; gap: 2.5vw; overflow-x: auto; padding: 32px 0; scrollbar-width: none; justify-content: flex-start;">
                     <div class="book-card" style="width:30vw; min-width:30vw; height:19vw; background:#181c1b; border-radius:22px; box-shadow:0 8px 32px 0 #00ffe733, 0 1.5px 8px 0 #00ffb308; display:flex; align-items:center; justify-content:center; transition:transform 0.25s, box-shadow 0.25s; margin:0; cursor:pointer;">
                         <img src="Images/1.png" alt="Book Preview 1" style="width:95%;height:90%;object-fit:cover;border-radius:18px;box-shadow:0 2px 8px #00ffe733;">
@@ -1039,14 +1039,17 @@
             margin-bottom: -0.5rem;
         }
         .book-card {
-            box-shadow: 0 2px 12px 0 #00ffe722, 0 1.5px 4px 0 #00ffb308;
-            background: linear-gradient(135deg, rgba(24,28,27,0.98) 80%, rgba(0,255,231,0.04) 100%);
+            box-shadow: 0 2px 8px 0 #001a14cc;
+            background: #131917;
             border-radius: 22px;
             transition: transform 0.25s, box-shadow 0.25s;
         }
+        .book-card img {
+            box-shadow: none !important;
+        }
         .book-card:hover {
             transform: scale(1.04) perspective(800px) rotateY(-4deg);
-            box-shadow: 0 6px 24px 0 #00ffe744, 0 2px 8px 0 #00ffb322;
+            box-shadow: 0 6px 18px 0 #00ffe744;
         }
     </style>
 </body>
