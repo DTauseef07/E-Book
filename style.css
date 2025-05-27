@@ -455,14 +455,12 @@ body {
     align-items: center;
     justify-content: center;
     backdrop-filter: blur(8px);
-    transition: opacity 0.2s;
+    /* transition: opacity 0.2s; */ /* Removed to prevent conflict with keyframe animations */
 }
 
-#previewModal.active {
-    display: flex;
-}
+/* #previewModal.active { display: flex; } */ /* Removed as it relates to old JS logic */
 
-#previewModal .modal-img {
+#previewModal .modal-img { /* This selector was from the old JS, but #modalImage is used now */
     max-width: 90vw;
     max-height: 90vh;
     border-radius: 24px;
@@ -735,8 +733,7 @@ body {
     padding: 2.5rem 0 2.5rem 0 !important;
     margin-left: 0 !important;
     margin-right: 0 !important;
-    scrollbar-width: thin;
-    scrollbar-color: #00ffe7 rgba(10,30,25,0.3);
+    scrollbar-width: none;
     scroll-snap-type: x mandatory;
     scroll-padding-left: 0 !important;
     box-sizing: border-box;
@@ -753,18 +750,7 @@ body {
     border-radius: 28px;
 }
 .preview-cards-row::-webkit-scrollbar {
-    height: 10px;
-    background: rgba(10,30,25,0.3);
-    border-radius: 8px;
-}
-.preview-cards-row::-webkit-scrollbar-thumb {
-    background: linear-gradient(90deg, #00ffe7 40%, #00ffb3 100%);
-    border-radius: 8px;
-    box-shadow: 0 0 8px #00ffe733;
-    border: 2px solid rgba(10,30,25,0.7);
-}
-.preview-cards-row::-webkit-scrollbar-thumb:hover {
-    background: linear-gradient(90deg, #00ffe7 70%, #00ffb3 100%);
+    display: none;
 }
 
 .preview-slide {
@@ -1619,21 +1605,61 @@ textarea:focus {
     overflow-x: auto !important;
     scroll-snap-type: x mandatory;
     padding: 2rem 0;
-    scrollbar-width: thin;
-    scrollbar-color: #00ffe7 rgba(10,30,25,0.3);
+    /* scrollbar-width: none !important; */ /* Removed for Firefox */
+    -ms-overflow-style: auto !important; /* Changed from none to auto for IE/Edge */
     -webkit-overflow-scrolling: touch;
 }
 .testimonial-carousel::-webkit-scrollbar {
+    /* display: none !important; */ /* Removed for Chrome/Safari/Opera */
+    display: block !important; /* Explicitly show scrollbar */
+    height: 10px; /* Increased height for better visibility */
+}
+
+/* Custom horizontal scrollbar for preview and testimonial carousels */
+.preview-cards-row,
+.testimonial-carousel {
+    scrollbar-width: thin; /* Can be 'auto' or 'thin' */
+    scrollbar-color: #00c5b2 rgba(0, 255, 231, 0.05); /* Thumb (less vibrant) and a very subtle track */
+}
+.preview-cards-row::-webkit-scrollbar,
+.testimonial-carousel::-webkit-scrollbar {
     height: 10px;
-    background: rgba(10,30,25,0.3);
-    border-radius: 8px;
+    background: rgba(0, 255, 231, 0.05); /* Very subtle track */
+    border-radius: 10px;
+    display: block !important;
 }
+.preview-cards-row::-webkit-scrollbar-thumb,
 .testimonial-carousel::-webkit-scrollbar-thumb {
-    background: linear-gradient(90deg, #00ffe7 40%, #00ffb3 100%);
-    border-radius: 8px;
-    box-shadow: 0 0 8px #00ffe733;
-    border: 2px solid rgba(10,30,25,0.7);
+    background: linear-gradient(90deg, #00c5b2 60%, #00b3a1 100%); /* Less vibrant gradient */
+    border-radius: 10px;
+    box-shadow: 0 0 8px #00c5b226; /* Softer shadow */
 }
-.testimonial-carousel::-webkit-scrollbar-thumb:hover {
-    background: linear-gradient(90deg, #00ffe7 70%, #00ffb3 100%);
+.preview-cards-row::-webkit-scrollbar-track,
+.testimonial-carousel::-webkit-scrollbar-track {
+    background: rgba(0, 255, 231, 0.05); /* Ensure track is very subtle */
+    border-radius: 10px;
+}
+.preview-cards-row::-webkit-scrollbar,
+.testimonial-carousel::-webkit-scrollbar {
+    display: block !important;
+}
+
+.book-card {
+    box-shadow: 0 1px 3px 0 #00ffe708, 0 0.5px 1px 0 #00ffb304;
+    background: #101312; /* Note: inline style in HTML uses #181c1b */
+    border-radius: 22px;
+    /* transition: transform 0.25s, box-shadow 0.25s; */ /* Inline transition 'all 0.3s' will take precedence */
+    border: 1.5px solid transparent; /* Added for hover effect */
+}
+.book-card img {
+    box-shadow: 0 1px 2px #00ffe708;
+}
+.book-card:hover {
+    /* transform: scale(1.04) perspective(800px) rotateY(-4deg); */ /* Old transform */
+    transform: scale(1.03) perspective(1000px) rotateY(-2deg); /* Adjusted transform */
+    box-shadow: 0 2px 8px 0 #00ffe71a, 0 1px 4px 0 #00ffb30f;
+    border-color: var(--accent-primary);
+}
+.book-card:active {
+    transform: scale(0.97);
 }
